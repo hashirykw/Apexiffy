@@ -361,6 +361,123 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
   .auth-card{padding:28px 22px}
 }
 
+
+.swipe-hint{display:none;text-align:center;color:var(--muted);font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;margin-bottom:14px}
+@media (max-width:768px){.swipe-hint{display:block}}
+/* ===== MOBILE APP-GRADE LAYER ===== */
+@media (max-width:768px){
+  /* hero built for thumb */
+  .hero{min-height:100svh}
+  .hero-inner{padding:96px 6vw 100px}
+  .hero h1{font-size:clamp(2.5rem,12vw,3.4rem)}
+  .hero-ctas{flex-direction:column;align-items:stretch;gap:12px}
+  .hero-ctas .btn{width:100%;padding:16px}
+  .hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:18px 10px;margin-top:44px}
+  .hstat b{font-size:1.5rem}
+  .scroll-hint{display:none}
+  .hero-badge{font-size:.66rem;padding:7px 14px}
+
+  /* landing sections: horizontal swipe carousels */
+  .gal-strip,.steps{display:flex;grid-template-columns:none;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;padding:4px 4px 18px;margin:0 -5vw;padding-left:5vw;padding-right:5vw;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .gal-strip::-webkit-scrollbar,.steps::-webkit-scrollbar{display:none}
+  .gcard{flex:0 0 72%;scroll-snap-align:center}
+  .step{flex:0 0 78%;scroll-snap-align:center}
+  .plans{gap:16px}
+  .plan{padding:30px 24px}
+  .bento{grid-auto-rows:auto}
+  .bcard{padding:22px}
+  .bcard.feature{min-height:240px}
+
+  /* app: thumb-friendly */
+  #dayTabs{display:flex;overflow-x:auto;white-space:nowrap;gap:8px;padding-bottom:10px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  #dayTabs::-webkit-scrollbar{display:none}
+  .day-tab{margin:0;flex:0 0 auto;padding:10px 18px}
+  .card{overflow-x:auto}
+  .card table{min-width:520px}
+  #pg-admin .card table{min-width:640px}
+  .exo{padding:14px}
+  .snav button,.tabbar button{-webkit-tap-highlight-color:transparent}
+  .btn,.day-tab,.up-slot,.bell{-webkit-tap-highlight-color:transparent}
+  .field input,.field select{padding:15px 16px;font-size:16px} /* 16px stops iOS zoom */
+  .topbar .right{gap:10px}
+  .marquee{padding:14px 0}
+  .sec-head h2{font-size:1.7rem}
+  section{padding:64px 5vw}
+  .cta-final .btn{width:100%}
+  footer{flex-direction:column;text-align:center;gap:10px}
+}
+@media (max-width:520px){
+  .ring-wrap{flex-direction:column;align-items:flex-start}
+  .ring{width:110px;height:110px}
+  .grid.g4{gap:12px}
+  .stat-card b{font-size:1.25rem}
+  .report-hero{padding:20px 18px}
+  .report-hero h2{font-size:1.15rem}
+  .gcard{flex:0 0 82%}
+  .auth-card{padding:26px 20px;border-radius:20px}
+  .notif-panel{max-height:60vh}
+  .main{padding-left:12px;padding-right:12px}
+  .up-grid{gap:10px}
+  .m-lab{font-size:.64rem;padding:4px 10px}
+}
+
+
+/* ===== LUXURY FEATURES ===== */
+.tcard{background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:30px 26px;display:flex;flex-direction:column;gap:16px}
+.tcard p{color:var(--text);font-size:.92rem;line-height:1.65;font-style:italic;opacity:.9}
+.stars{color:#ffd76a;letter-spacing:.2em;font-size:.9rem;text-shadow:0 0 14px rgba(255,215,106,.4)}
+.tby{display:flex;align-items:center;gap:12px;margin-top:auto}
+.tby small{color:var(--muted);display:block;font-size:.74rem}
+.faq-list{max-width:760px;margin:0 auto}
+.faq{border:1px solid var(--border);border-radius:16px;background:var(--surface);margin-bottom:12px;overflow:hidden;transition:border-color .3s}
+.faq[open]{border-color:rgba(200,255,61,.35)}
+.faq summary{list-style:none;cursor:pointer;padding:20px 22px;font-weight:700;font-size:.95rem;display:flex;justify-content:space-between;align-items:center;gap:14px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary span{color:var(--accent);font-size:1.3rem;font-weight:400;transition:transform .3s}
+.faq[open] summary span{transform:rotate(45deg)}
+.faq p{padding:0 22px 20px;color:var(--muted);font-size:.88rem}
+.lux-footer{display:block;padding:70px 5vw 30px}
+.f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.3fr;gap:36px;max-width:1150px;margin:0 auto 44px}
+.f-grid h4{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text);margin-bottom:16px}
+.f-grid a{display:block;color:var(--muted);text-decoration:none;font-size:.88rem;padding:5px 0;cursor:pointer;transition:color .25s,transform .25s}
+.f-grid a:hover{color:var(--accent);transform:translateX(4px)}
+.nl{display:flex;gap:8px}
+.nl input{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:12px 14px;color:var(--text);font-size:.88rem;outline:none;min-width:0}
+.nl input:focus{border-color:var(--accent)}
+.f-bottom{text-align:center;color:var(--muted);font-size:.78rem;border-top:1px solid var(--border);padding-top:26px;max-width:1150px;margin:0 auto}
+/* water */
+.water-row{display:flex;gap:10px;flex-wrap:wrap}
+.glass{width:34px;height:46px;border:2px solid var(--border);border-radius:6px 6px 10px 10px;cursor:pointer;position:relative;overflow:hidden;transition:border-color .3s}
+.glass i{position:absolute;left:0;right:0;bottom:0;height:0;background:linear-gradient(180deg,rgba(61,214,255,.7),rgba(61,214,255,.95));transition:height .4s}
+.glass.full{border-color:var(--accent2)}
+.glass.full i{height:100%}
+/* badges */
+.badges{display:flex;gap:8px;flex-wrap:wrap}
+.badge{padding:8px 14px;border-radius:999px;font-size:.74rem;font-weight:700;border:1px solid var(--border);color:var(--muted);background:var(--bg2)}
+.badge.on{border-color:rgba(255,215,106,.5);color:#ffd76a;background:rgba(255,215,106,.07);box-shadow:0 0 16px rgba(255,215,106,.12)}
+/* leaderboard */
+.lb{display:flex;align-items:center;gap:12px;padding:11px 4px;border-bottom:1px dashed var(--border);font-size:.9rem}
+.lb-rank{width:20px;font-weight:900;color:var(--muted)}
+.lb-val{margin-left:auto;font-weight:800}
+/* before-after */
+.ba-wrap{position:relative;aspect-ratio:16/8;border-radius:18px;overflow:hidden;border:1px solid var(--border)}
+.ba-side{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.ba-before{background:radial-gradient(100% 90% at 30% 20%,rgba(255,77,109,.18),transparent 55%),linear-gradient(160deg,#191420,#0d0a10);z-index:1}
+.ba-after{background:radial-gradient(100% 90% at 70% 20%,rgba(200,255,61,.2),transparent 55%),linear-gradient(160deg,#131a0e,#0a0d07);clip-path:inset(0 0 0 50%);z-index:2}
+.ba-side img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ba-tag{position:absolute;top:14px;left:14px;background:rgba(0,0,0,.55);backdrop-filter:blur(8px);padding:6px 14px;border-radius:999px;font-size:.7rem;font-weight:800;letter-spacing:.1em;z-index:3}
+.ba-range{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;z-index:5}
+.ba-handle{position:absolute;top:0;bottom:0;left:50%;width:3px;background:var(--accent);z-index:4;box-shadow:0 0 18px rgba(200,255,61,.7);pointer-events:none}
+.ba-handle span{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--accent);color:#000;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.8rem}
+/* rest timer */
+#restTimer{position:fixed;bottom:100px;right:20px;z-index:250;background:var(--surface);border:1px solid rgba(200,255,61,.5);border-radius:18px;padding:16px 20px;display:none;align-items:center;gap:14px;box-shadow:0 18px 50px rgba(0,0,0,.6)}
+#restTimer.on{display:flex;animation:pop .3s}
+#restTimer b{font-size:1.5rem;font-variant-numeric:tabular-nums;color:var(--accent)}
+#restTimer small{color:var(--muted);display:block;font-size:.7rem}
+#restTimer button{background:none;border:none;color:var(--muted);font-size:1rem}
+@media (max-width:900px){.f-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.f-grid{grid-template-columns:1fr}.ba-wrap{aspect-ratio:16/11}}
+
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
   [data-reveal]{opacity:1;transform:none}
@@ -382,6 +499,7 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
     <a href="#how">How it works</a>
     <a href="#gallery">Transformations</a>
     <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
     <a class="btn btn-ghost" onclick="openAuth('login')" style="padding:10px 22px">Log in</a>
     <a class="btn btn-primary" onclick="openAuth('signup')" style="padding:10px 22px">Start Free Trial</a>
   </div>
@@ -442,6 +560,7 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
     <div class="tag">How it works</div>
     <h2>Four steps to a new physique</h2>
   </div>
+  <div class="swipe-hint">← swipe →</div>
   <div class="steps">
     <div class="step" data-tilt data-reveal style="--i:0"><b>1</b><h3>Create your profile</h3><p>Height, weight, age, goal, experience level and days you can train.</p></div>
     <div class="step" data-tilt data-reveal style="--i:1"><b>2</b><h3>Get your custom guide</h3><p>Your split, exercises, sets & reps, calories and macros — generated instantly.</p></div>
@@ -456,6 +575,7 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
     <h2>The gallery doesn't lie</h2>
     <p>Every member logs monthly full-body photos. Progress you can see — and get notified about.</p>
   </div>
+  <div class="swipe-hint">← swipe →</div>
   <div class="gal-strip">
     <div class="gcard" data-tilt data-reveal style="--i:0">
       <div class="cov" style="--ca:#c8ff3d">
@@ -525,6 +645,44 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
   </div>
 </section>
 
+<section id="stories" style="background:var(--bg2)">
+  <div class="sec-head" data-reveal>
+    <div class="tag">Member Stories</div>
+    <h2>Trusted by people who show up</h2>
+  </div>
+  <div class="grid g3" style="max-width:1100px;margin:0 auto">
+    <div class="tcard" data-tilt data-reveal style="--i:0">
+      <div class="stars">★★★★★</div>
+      <p>"The custom guide removed all guesswork. I stopped program-hopping and dropped 9 kg in four months — the monthly photo reports kept me honest."</p>
+      <div class="tby"><div class="avatar">H</div><div><b>Hamza R.</b><small>Pro Member · Karachi</small></div></div>
+    </div>
+    <div class="tcard" data-tilt data-reveal style="--i:1">
+      <div class="stars">★★★★★</div>
+      <p>"Feels like a luxury app, works like a coach. The weekly grade is addictive — I train just to keep my A streak alive."</p>
+      <div class="tby"><div class="avatar" style="background:linear-gradient(135deg,var(--accent2),#be78ff)">S</div><div><b>Sara K.</b><small>Elite Member · Lahore</small></div></div>
+    </div>
+    <div class="tcard" data-tilt data-reveal style="--i:2">
+      <div class="stars">★★★★★</div>
+      <p>"Logged my first bulk properly — calories, splits, PRs, all in one place. +6 kg lean and my bench went up 15 kg."</p>
+      <div class="tby"><div class="avatar" style="background:linear-gradient(135deg,#ffb03d,var(--accent))">A</div><div><b>Ali M.</b><small>Pro Member · Islamabad</small></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="sec-head" data-reveal>
+    <div class="tag">Questions</div>
+    <h2>Everything you'd ask before joining</h2>
+  </div>
+  <div class="faq-list" data-reveal>
+    <details class="faq"><summary>Are my progress photos private?<span>+</span></summary><p>Yes — photos are private by default. Only you (and your coach, if you're Elite) can view them. You choose if a transformation ever goes public.</p></details>
+    <details class="faq"><summary>Do I need gym equipment?<span>+</span></summary><p>No. The guide generator adapts — tell it home, dumbbell-only, or full gym, and the exercises adjust to what you have.</p></details>
+    <details class="faq"><summary>Can I cancel anytime?<span>+</span></summary><p>Anytime, one tap, no questions. Your data and photos remain in your account even on the free plan.</p></details>
+    <details class="faq"><summary>How do payments work in Pakistan?<span>+</span></summary><p>JazzCash, Easypaisa, and all major debit/credit cards. Annual plans get two months free.</p></details>
+    <details class="faq"><summary>What makes this different from a PDF plan?<span>+</span></summary><p>A PDF never changes. Apexify recalculates your calories, adjusts your split, and grades your week — every week, from your real logs.</p></details>
+  </div>
+</section>
+
 <section class="cta-final">
   <div class="sec-head" data-reveal>
     <h2>Month 1 you vs Month 6 you.<br><span style="color:var(--accent)">Start the comparison today.</span></h2>
@@ -538,9 +696,21 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
   <a class="btn btn-primary" onclick="openAuth('signup')">Start Free →</a>
 </div>
 
-<footer>
-  <a class="logo" href="#">APEX<span>IFY</span></a>
-  <div>© 2026 Apexify · Train hard. Track harder.</div>
+<footer class="lux-footer">
+  <div class="f-grid">
+    <div>
+      <a class="logo" href="#">APEX<span>IFY</span></a>
+      <p style="color:var(--muted);font-size:.85rem;margin-top:14px;max-width:280px">The premium body engineering platform. Built for people who treat training like it matters.</p>
+    </div>
+    <div><h4>Platform</h4><a href="#features">Features</a><a href="#how">How it works</a><a href="#gallery">Transformations</a><a href="#pricing">Pricing</a></div>
+    <div><h4>Company</h4><a href="#stories">Member stories</a><a href="#faq">FAQ</a><a onclick="toast('Coming soon','Blog launches with v1.0')">Blog</a><a onclick="toast('Contact','support@apexify.app')">Contact</a></div>
+    <div>
+      <h4>Get the drop</h4>
+      <p style="color:var(--muted);font-size:.82rem;margin-bottom:12px">Launch news, training insights. No spam.</p>
+      <div class="nl"><input type="email" placeholder="your@email.com" id="nlEmail"><button class="btn btn-primary" style="padding:12px 20px" onclick="toast('Subscribed','You are on the launch list.');document.getElementById('nlEmail').value=''">→</button></div>
+    </div>
+  </div>
+  <div class="f-bottom">© 2026 Apexify · Crafted in Pakistan · Train hard. Track harder.</div>
 </footer>
 </div>
 
@@ -639,14 +809,33 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
           <div style="margin-top:34px;color:var(--muted);font-size:.82rem">Today: <b style="color:var(--accent)">PUSH DAY</b> — Chest, Shoulders, Triceps · 6 exercises</div>
         </div>
       </div>
-      <div class="card" style="margin-top:18px">
+      <div class="card" id="todayCard" style="margin-top:18px">
         <h3>Today's Session — Push Day</h3>
-        <div class="exo"><span>Incline Barbell Bench Press</span><b>4 × 6–8</b></div>
-        <div class="exo"><span>Flat Dumbbell Press</span><b>3 × 8–10</b></div>
-        <div class="exo"><span>Overhead Press</span><b>4 × 6–8</b></div>
-        <div class="exo"><span>Lateral Raises</span><b>4 × 12–15</b></div>
-        <div class="exo"><span>Cable Fly</span><b>3 × 12–15</b></div>
-        <div class="exo"><span>Rope Pushdowns</span><b>3 × 10–12</b></div>
+        <div class="exo" onclick="startRest(this)"><span>Incline Barbell Bench Press</span><b>4 × 6–8</b></div>
+        <div class="exo" onclick="startRest(this)"><span>Flat Dumbbell Press</span><b>3 × 8–10</b></div>
+        <div class="exo" onclick="startRest(this)"><span>Overhead Press</span><b>4 × 6–8</b></div>
+        <div class="exo" onclick="startRest(this)"><span>Lateral Raises</span><b>4 × 12–15</b></div>
+        <div class="exo" onclick="startRest(this)"><span>Cable Fly</span><b>3 × 12–15</b></div>
+        <div class="exo" onclick="startRest(this)"><span>Rope Pushdowns</span><b>3 × 10–12</b></div>
+        <p style="color:var(--muted);font-size:.76rem;margin-top:10px">Tap any exercise to start a 90-second rest timer.</p>
+      </div>
+      <div class="grid g2" style="margin-top:18px">
+        <div class="card">
+          <h3>Water Intake</h3>
+          <div class="water-row" id="waterRow"></div>
+          <p style="color:var(--muted);font-size:.82rem;margin-top:12px"><b id="waterCount" style="color:var(--accent2)">3</b> of 8 glasses · tap to log</p>
+        </div>
+        <div class="card">
+          <h3>Achievements</h3>
+          <div class="badges">
+            <span class="badge on">7-Day Streak</span>
+            <span class="badge on">First PR</span>
+            <span class="badge on">Photo Month 1</span>
+            <span class="badge">30-Day Streak</span>
+            <span class="badge">−5 kg Club</span>
+            <span class="badge">100 kg Bench</span>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -666,6 +855,19 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
 
     <!-- SPLIT -->
     <div class="page" id="pg-split">
+      <div class="card" style="margin-bottom:18px">
+        <h3>Build Your Own Split</h3>
+        <p style="color:var(--muted);font-size:.84rem;margin-bottom:16px">Assign each day yourself. Save it and Apexify sends you a daily notification with the muscles, exercises, sets, reps and your calorie target.</p>
+        <div class="grid g3">
+          <div class="field"><label>Day</label><select id="sbDay"><option>Mon</option><option>Tue</option><option>Wed</option><option>Thu</option><option>Fri</option><option>Sat</option><option>Sun</option></select></div>
+          <div class="field"><label>Workout Type</label><select id="sbType"><option value="push">Push — Chest / Shoulders / Triceps</option><option value="pull">Pull — Back / Biceps</option><option value="legs">Legs — Quads / Hams / Calves</option><option value="upper">Upper Body</option><option value="lower">Lower Body</option><option value="full">Full Body</option><option value="rest">Rest Day</option></select></div>
+          <div class="field"><label>&nbsp;</label><button class="btn btn-primary" style="width:100%" onclick="assignDay()">Assign Day</button></div>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:6px">
+          <button class="btn btn-ghost" style="padding:10px 20px;font-size:.82rem" onclick="addCustomExercise()">+ Add custom exercise to a day</button>
+          <button class="btn btn-primary" style="padding:10px 20px;font-size:.82rem" onclick="saveSplit()">Save Split & Enable Daily Alerts</button>
+        </div>
+      </div>
       <div class="card">
         <h3>My Weekly Split</h3>
         <div id="dayTabs"></div>
@@ -707,6 +909,16 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
         <p style="color:var(--muted);font-size:.86rem;margin-bottom:18px">Upload a full-body photo at the start of every month. Your monthly report compares them automatically.</p>
         <div class="up-grid" id="upGrid"></div>
       </div>
+      <div class="card" style="margin-top:18px">
+        <h3>Before / After Comparison</h3>
+        <p style="color:var(--muted);font-size:.84rem;margin-bottom:16px">Drag the handle. Uploads to Month 1 and the latest month appear here automatically.</p>
+        <div class="ba-wrap" id="baWrap">
+          <div class="ba-side ba-before" id="baBefore"><span class="ba-tag">MONTH 1</span></div>
+          <div class="ba-side ba-after" id="baAfter"><span class="ba-tag" style="right:14px;left:auto;background:var(--accent);color:#000">NOW</span></div>
+          <input type="range" min="0" max="100" value="50" class="ba-range" id="baRange" aria-label="comparison slider">
+          <div class="ba-handle" id="baHandle"><span>⟨ ⟩</span></div>
+        </div>
+      </div>
     </div>
 
     <!-- REPORTS -->
@@ -718,7 +930,14 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
           <div><div class="score-big">A−</div><small style="color:var(--muted)">Overall Grade</small></div>
           <div style="flex:1;min-width:220px;color:var(--muted);font-size:.9rem">4/5 sessions completed · calories on target 6 of 7 days · weight trending −0.4 kg · sleep avg 6.8h (improve this — aim 7.5h+). Biggest win: bench volume up 12%.</div>
         </div>
+        <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btn btn-primary" onclick="shareStory()">
+            <svg viewBox="0 0 24 24" width="16" style="vertical-align:-3px;margin-right:6px" fill="none" stroke="#000" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="#000" stroke="none"/></svg>
+            Share to Instagram Story</button>
+          <button class="btn btn-ghost" onclick="shareStory(true)">Download Story Image</button>
+        </div>
       </div>
+      <canvas id="storyCanvas" width="1080" height="1920" style="display:none"></canvas>
       <div class="grid g3">
         <div class="card stat-card"><small>Weight change</small><b>−0.4 kg</b><span class="trend up">Perfect cut pace</span></div>
         <div class="card stat-card"><small>Total volume</small><b>84 sets</b><span class="trend up">▲ 12% vs last week</span></div>
@@ -732,6 +951,23 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
           <tr><td>Bench 5RM</td><td>80 kg</td><td>85 kg</td><td><span class="pill b">+5 kg</span></td></tr>
           <tr><td>Consistency</td><td>—</td><td>88%</td><td><span class="pill a">Elite tier</span></td></tr>
         </tbody></table>
+      </div>
+      <div class="grid g2" style="margin-top:18px">
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><h3 style="margin:0">Personal Records</h3><button class="btn btn-ghost" style="padding:8px 16px;font-size:.78rem" onclick="addPR()">+ Add PR</button></div>
+          <table><thead><tr><th>Lift</th><th>Weight</th><th>Date</th></tr></thead><tbody id="prRows">
+            <tr><td>Bench Press</td><td><b>85 kg</b></td><td>Jun 28</td></tr>
+            <tr><td>Squat</td><td><b>120 kg</b></td><td>Jun 20</td></tr>
+            <tr><td>Deadlift</td><td><b>150 kg</b></td><td>Jul 4</td></tr>
+          </tbody></table>
+        </div>
+        <div class="card">
+          <h3>Consistency Leaderboard — July</h3>
+          <div class="lb"><span class="lb-rank" style="color:#ffd700">1</span><div class="avatar" style="width:32px;height:32px;font-size:.8rem">S</div><b>Sara K.</b><span class="lb-val">97%</span></div>
+          <div class="lb"><span class="lb-rank" style="color:#c0c0c0">2</span><div class="avatar" style="width:32px;height:32px;font-size:.8rem;background:linear-gradient(135deg,var(--accent2),#be78ff)">Y</div><b>You</b><span class="lb-val" style="color:var(--accent)">92%</span></div>
+          <div class="lb"><span class="lb-rank" style="color:#cd7f32">3</span><div class="avatar" style="width:32px;height:32px;font-size:.8rem;background:linear-gradient(135deg,#ffb03d,var(--accent))">H</div><b>Hamza R.</b><span class="lb-val">89%</span></div>
+          <div class="lb"><span class="lb-rank">4</span><div class="avatar" style="width:32px;height:32px;font-size:.8rem">A</div><b>Ali M.</b><span class="lb-val">81%</span></div>
+        </div>
       </div>
     </div>
 
@@ -790,6 +1026,7 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
   <div class="nhead">Notifications <a style="color:var(--accent);font-size:.78rem;cursor:pointer" onclick="clearNotifs()">Mark all read</a></div>
   <div id="notifList"></div>
 </div>
+<div id="restTimer"><div><b id="rtTime">1:30</b><small id="rtLabel">Rest — Bench Press</small></div><button onclick="stopRest()">✕</button></div>
 <div class="toast-wrap" id="toasts"></div>
 
 <script>
@@ -804,7 +1041,7 @@ const mqt = document.getElementById('mqt'); if(mqt) mqt.innerHTML += mqt.innerHT
   const cam = new THREE.PerspectiveCamera(60, innerWidth/innerHeight, .1, 100);
   cam.position.z = 6;
   const renderer = new THREE.WebGLRenderer({alpha:true, antialias:true});
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  renderer.setPixelRatio(Math.min(devicePixelRatio, innerWidth < 768 ? 1.5 : 2));
   renderer.setSize(innerWidth, innerHeight);
   holder.appendChild(renderer.domElement);
 
@@ -834,9 +1071,10 @@ const mqt = document.getElementById('mqt'); if(mqt) mqt.innerHTML += mqt.innerHT
   const ring2 = new THREE.Mesh(new THREE.TorusGeometry(3.7, .01, 12, 120),
     new THREE.MeshBasicMaterial({color:0x3dd6ff, transparent:true, opacity:.35}));
   ring2.rotation.x = Math.PI/1.8; ring2.rotation.y = .5; scene.add(ring2);
-  const knot = new THREE.Mesh(new THREE.TorusKnotGeometry(.55,.16,120,16),
+  const knot = new THREE.Mesh(new THREE.TorusKnotGeometry(.55,.16, innerWidth<768?80:120, innerWidth<768?10:16),
     new THREE.MeshBasicMaterial({color:0xc8ff3d, wireframe:true, transparent:true, opacity:.35}));
   scene.add(knot);
+  if (innerWidth < 768){ ring2.visible = false; ico2.visible = false; }
 
   let mx=0, my=0;
   addEventListener('pointermove', e=>{ mx=(e.clientX/innerWidth-.5); my=(e.clientY/innerHeight-.5); });
@@ -912,6 +1150,8 @@ function enterApp(){
   if (user.isAdmin) { go('admin'); toast('Admin mode', 'Full user database unlocked.'); }
   scrollTo(0,0);
   toast('Welcome, '+user.name,'Your Pro dashboard is ready.');
+  renderTodaySession();
+  setTimeout(dailyPlanNotif, 2500);
   setTimeout(()=>pushNotif(NIC.chart,'Your weekly report is ready','Grade A− · open Reports to view'), 4000);
   setTimeout(()=>pushNotif(NIC.cam,'Hamza posted a new transformation','Month 4 photo added to the gallery'), 9000);
 }
@@ -967,20 +1207,73 @@ function genGuide(){
   pushNotif(NIC.spark,'New custom guide created','Your '+days+'-day program is live on your dashboard');
 }
 
-/* ============ SPLIT TABS ============ */
-const week = [['Mon','Push','push'],['Tue','Pull','pull'],['Wed','Rest','rest'],['Thu','Legs','legs'],['Fri','Upper','upper'],['Sat','Lower','lower'],['Sun','Rest','rest']];
+/* ============ EDITABLE SPLIT + DAILY ALERTS ============ */
+const TYPE_LABEL = {push:'Push',pull:'Pull',legs:'Legs',upper:'Upper',lower:'Lower',full:'Full Body',rest:'Rest'};
+const MUSCLES = {push:'Chest · Shoulders · Triceps',pull:'Back · Biceps · Rear delts',legs:'Quads · Hamstrings · Calves',upper:'Chest · Back · Shoulders · Arms',lower:'Quads · Hams · Glutes · Calves',full:'Full body',rest:'Recovery'};
+let mySplit = {Mon:{type:'push',extra:[]},Tue:{type:'pull',extra:[]},Wed:{type:'rest',extra:[]},Thu:{type:'legs',extra:[]},Fri:{type:'upper',extra:[]},Sat:{type:'lower',extra:[]},Sun:{type:'rest',extra:[]}};
+const DAYS = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
 const tabsEl = document.getElementById('dayTabs'), dayEl = document.getElementById('dayContent');
-week.forEach(([d,label,key],i)=>{
-  const b = document.createElement('button');
-  b.className = 'day-tab'+(i===0?' active':''); b.textContent = d+' · '+label;
-  b.onclick = ()=>{ document.querySelectorAll('.day-tab').forEach(x=>x.classList.remove('active')); b.classList.add('active'); renderDay(label,key); };
-  tabsEl.appendChild(b);
-});
-function renderDay(label,key){
-  if(key==='rest'){ dayEl.innerHTML = '<p style="color:var(--muted);padding:20px 4px">Rest & recovery day — hit your protein, 8–10k steps, sleep 7.5h+.</p>'; return; }
-  dayEl.innerHTML = LIB[key].map(([ex,sr])=>`<div class="exo"><span>${ex}</span><b>${sr}</b></div>`).join('');
+let activeDay = 'Mon';
+function buildTabs(){
+  tabsEl.innerHTML = '';
+  DAYS.forEach(d=>{
+    const b = document.createElement('button');
+    b.className = 'day-tab'+(d===activeDay?' active':'');
+    b.textContent = d+' · '+TYPE_LABEL[mySplit[d].type];
+    b.onclick = ()=>{ activeDay = d; buildTabs(); renderDay(d); };
+    tabsEl.appendChild(b);
+  });
 }
-renderDay('Push','push');
+function dayExercises(d){
+  const s = mySplit[d];
+  if (s.type==='rest') return [];
+  return [...LIB[s.type], ...s.extra];
+}
+function renderDay(d){
+  const s = mySplit[d];
+  if(s.type==='rest'){ dayEl.innerHTML = '<p style="color:var(--muted);padding:20px 4px">Rest & recovery day — hit your protein, 8–10k steps, sleep 7.5h+.</p>'; return; }
+  dayEl.innerHTML = `<p style="color:var(--muted);font-size:.8rem;margin-bottom:12px">Targets: <b style="color:var(--accent)">${MUSCLES[s.type]}</b></p>` +
+    dayExercises(d).map(([ex,sr])=>`<div class="exo" onclick="startRest(this)"><span>${ex}</span><b>${sr}</b></div>`).join('');
+}
+function assignDay(){
+  const d = document.getElementById('sbDay').value, t = document.getElementById('sbType').value;
+  mySplit[d] = {type:t, extra: mySplit[d].extra};
+  activeDay = d; buildTabs(); renderDay(d);
+  toast(d+' assigned', TYPE_LABEL[t] + (t==='rest'?'':' — '+MUSCLES[t]));
+}
+function addCustomExercise(){
+  const d = prompt('Which day? (Mon/Tue/Wed/Thu/Fri/Sat/Sun)','Mon'); if(!d || !mySplit[d]) return;
+  const ex = prompt('Exercise name?'); if(!ex) return;
+  const sr = prompt('Sets × reps? (e.g. 3 × 12)','3 × 12') || '3 × 12';
+  mySplit[d].extra.push([ex, sr]);
+  if (mySplit[d].type==='rest') mySplit[d].type='full';
+  activeDay = d; buildTabs(); renderDay(d);
+  toast('Exercise added', ex+' → '+d);
+}
+function saveSplit(){
+  buildTabs(); renderDay(activeDay); renderTodaySession();
+  toast('Split saved','Daily training alerts are now active.');
+  pushNotif(NIC.cal,'Daily alerts enabled','You will get your plan every morning');
+  setTimeout(dailyPlanNotif, 1500);
+}
+function todayName(){ return ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][new Date().getDay()]; }
+function dailyPlanNotif(){
+  const d = todayName(), s = mySplit[d];
+  const cals = document.getElementById('dCals').textContent;
+  if (s.type==='rest'){ pushNotif(NIC.flame, 'Today: Rest Day', 'Recovery + '+cals+' kcal target · protein first'); return; }
+  const exs = dayExercises(d);
+  pushNotif(NIC.cal, 'Today: '+TYPE_LABEL[s.type]+' — '+MUSCLES[s.type],
+    exs.length+' exercises · e.g. '+exs[0][0]+' '+exs[0][1]+' · target '+cals+' kcal');
+}
+function renderTodaySession(){
+  const d = todayName(), s = mySplit[d];
+  const card = document.getElementById('todayCard'); if(!card) return;
+  if (s.type==='rest'){ card.innerHTML = '<h3>Today — Rest Day</h3><p style="color:var(--muted)">Recovery day. Hit protein, steps, and sleep.</p>'; return; }
+  card.innerHTML = '<h3>Today\'s Session — '+TYPE_LABEL[s.type]+' Day</h3>' +
+    dayExercises(d).map(([ex,sr])=>`<div class="exo" onclick="startRest(this)"><span>${ex}</span><b>${sr}</b></div>`).join('') +
+    '<p style="color:var(--muted);font-size:.76rem;margin-top:10px">Tap any exercise to start a 90-second rest timer.</p>';
+}
+buildTabs(); renderDay('Mon');
 
 /* ============ CALORIE CALC (Mifflin-St Jeor) ============ */
 function calcCals(){
@@ -1021,6 +1314,8 @@ months.forEach((m,i)=>{
     const file = e.target.files[0]; if(!file) return;
     const img = document.createElement('img'); img.src = URL.createObjectURL(file);
     slot.prepend(img);
+    const tgt = document.getElementById(i===0 ? 'baBefore' : 'baAfter');
+    if (tgt){ const c = document.createElement('img'); c.src = img.src; tgt.appendChild(c); }
     toast('Photo uploaded','Added to your '+m.replace(' — upload now','')+' progress log.');
     pushNotif(NIC.cam,'Progress photo added','Your monthly comparison will include this photo');
   });
@@ -1079,6 +1374,7 @@ setInterval(liveTick, 14000);
 
 /* ============ NOTIFICATIONS ============ */
 const NIC = {
+  cal:'<svg viewBox="0 0 24 24" width="18" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>',
   chart:'<svg viewBox="0 0 24 24" width="18" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"><path d="M4 20V10M10 20V4M16 20v-7M21 20H3"/></svg>',
   cam:'<svg viewBox="0 0 24 24" width="18" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v12H4V8Z"/><circle cx="12" cy="13" r="3.4"/></svg>',
   spark:'<svg viewBox="0 0 24 24" width="18" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/><circle cx="12" cy="12" r="3.2"/></svg>',
@@ -1149,6 +1445,122 @@ if (heroInner && !matchMedia('(prefers-reduced-motion: reduce)').matches){
     }
   }, {passive:true});
 }
+
+
+/* ============ WATER TRACKER ============ */
+const wr = document.getElementById('waterRow');
+if (wr){ let water = 3;
+  for (let i=0;i<8;i++){
+    const g = document.createElement('div');
+    g.className = 'glass' + (i<water?' full':''); g.innerHTML = '<i></i>';
+    g.onclick = ()=>{ water = i+1;
+      wr.querySelectorAll('.glass').forEach((x,j)=>x.classList.toggle('full', j<water));
+      document.getElementById('waterCount').textContent = water;
+      if (water===8) toast('Hydration complete','8 of 8 glasses logged today.');
+    };
+    wr.appendChild(g);
+  }
+}
+/* ============ REST TIMER ============ */
+let rtInt = null;
+function startRest(row){
+  const name = row.querySelector('span').textContent;
+  const box = document.getElementById('restTimer');
+  document.getElementById('rtLabel').textContent = 'Rest \u2014 ' + name;
+  clearInterval(rtInt); let s = 90; box.classList.add('on');
+  const tick = ()=>{ document.getElementById('rtTime').textContent = Math.floor(s/60)+':'+String(s%60).padStart(2,'0');
+    if (s-- <= 0){ stopRest(); toast('Rest over','Back to work \u2014 '+name); } };
+  tick(); rtInt = setInterval(tick, 1000);
+}
+function stopRest(){ clearInterval(rtInt); document.getElementById('restTimer').classList.remove('on'); }
+/* ============ PR TRACKER ============ */
+function addPR(){
+  const l = prompt('Which lift?'); if(!l) return;
+  const w = prompt('Weight (kg)?') || '\u2014';
+  document.getElementById('prRows').insertAdjacentHTML('afterbegin',
+    `<tr><td>${l}</td><td><b>${w} kg</b></td><td>${new Date().toLocaleDateString('en-PK',{month:'short',day:'numeric'})}</td></tr>`);
+  toast('New PR logged', l+' \u2014 '+w+' kg. Keep climbing.');
+  pushNotif(NIC.chart,'New personal record', l+' '+w+' kg logged');
+}
+/* ============ BEFORE / AFTER SLIDER ============ */
+const baR = document.getElementById('baRange');
+if (baR){ baR.addEventListener('input', ()=>{
+  document.getElementById('baAfter').style.clipPath = `inset(0 0 0 ${baR.value}%)`;
+  document.getElementById('baHandle').style.left = baR.value + '%';
+});}
+
+
+/* ============ INSTAGRAM STORY SHARE ============ */
+async function shareStory(forceDownload){
+  const cv = document.getElementById('storyCanvas'), x = cv.getContext('2d');
+  const W = 1080, H = 1920;
+  // background
+  const bg = x.createLinearGradient(0,0,W,H);
+  bg.addColorStop(0,'#0a0a12'); bg.addColorStop(1,'#07070c');
+  x.fillStyle = bg; x.fillRect(0,0,W,H);
+  // aurora glows
+  const g1 = x.createRadialGradient(160,220,0,160,220,700);
+  g1.addColorStop(0,'rgba(200,255,61,.28)'); g1.addColorStop(1,'transparent');
+  x.fillStyle = g1; x.fillRect(0,0,W,H);
+  const g2 = x.createRadialGradient(940,1700,0,940,1700,760);
+  g2.addColorStop(0,'rgba(61,214,255,.22)'); g2.addColorStop(1,'transparent');
+  x.fillStyle = g2; x.fillRect(0,0,W,H);
+  // subtle diagonal lines
+  x.strokeStyle = 'rgba(255,255,255,.04)'; x.lineWidth = 2;
+  for(let i=-H;i<W;i+=90){ x.beginPath(); x.moveTo(i,0); x.lineTo(i+H,H); x.stroke(); }
+  // logo
+  x.textAlign='center';
+  x.font = '900 84px Sora, sans-serif';
+  x.fillStyle = '#f2f2f7'; x.fillText('APEX', W/2 - 92, 220);
+  x.fillStyle = '#c8ff3d';
+  x.shadowColor = 'rgba(200,255,61,.8)'; x.shadowBlur = 40;
+  x.fillText('IFY', W/2 + 118, 220);
+  x.shadowBlur = 0;
+  // header
+  x.fillStyle = '#8a8a9e'; x.font = '600 34px Space Grotesk, sans-serif';
+  x.fillText('W E E K L Y   R E P O R T', W/2, 330);
+  x.fillStyle = '#c8ff3d'; x.font = '700 30px Space Grotesk, sans-serif';
+  x.fillText('JUL 6 — JUL 12 · 2026', W/2, 386);
+  // grade circle
+  x.beginPath(); x.arc(W/2, 660, 190, 0, Math.PI*2);
+  x.strokeStyle = 'rgba(255,255,255,.1)'; x.lineWidth = 22; x.stroke();
+  x.beginPath(); x.arc(W/2, 660, 190, -Math.PI/2, Math.PI*1.14);
+  x.strokeStyle = '#c8ff3d'; x.lineCap='round';
+  x.shadowColor = 'rgba(200,255,61,.7)'; x.shadowBlur = 30; x.stroke(); x.shadowBlur = 0;
+  x.fillStyle = '#f2f2f7'; x.font = '900 170px Sora, sans-serif';
+  x.fillText('A−', W/2, 720);
+  x.fillStyle = '#8a8a9e'; x.font = '600 30px Space Grotesk, sans-serif';
+  x.fillText('OVERALL GRADE', W/2, 900);
+  // stat rows
+  const stats = [['SESSIONS','4 / 5'],['WEIGHT','−0.4 kg'],['VOLUME','+12%'],['CONSISTENCY','92%']];
+  let y = 1010;
+  stats.forEach(([k,v])=>{
+    x.fillStyle = 'rgba(255,255,255,.045)';
+    roundRect(x, 110, y, W-220, 130, 26); x.fill();
+    x.textAlign='left'; x.fillStyle = '#8a8a9e'; x.font='700 32px Space Grotesk, sans-serif';
+    x.fillText(k, 160, y+80);
+    x.textAlign='right'; x.fillStyle = '#c8ff3d'; x.font='900 54px Sora, sans-serif';
+    x.fillText(v, W-160, y+86);
+    x.textAlign='center'; y += 158;
+  });
+  // footer
+  x.fillStyle = '#f2f2f7'; x.font='800 44px Sora, sans-serif';
+  x.fillText((user.name||'Athlete').toUpperCase(), W/2, 1755);
+  x.fillStyle = '#8a8a9e'; x.font='600 28px Space Grotesk, sans-serif';
+  x.fillText('T R A I N   H A R D  ·  T R A C K   H A R D E R', W/2, 1815);
+
+  cv.toBlob(async blob=>{
+    const file = new File([blob], 'apexify-weekly-report.png', {type:'image/png'});
+    if (!forceDownload && navigator.canShare && navigator.canShare({files:[file]})){
+      try { await navigator.share({files:[file], title:'My Apexify Weekly Report'});
+        toast('Share sheet opened','Pick Instagram → Add to Story.'); return; } catch(e){}
+    }
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = 'apexify-weekly-report.png'; a.click();
+    toast('Story image downloaded','Open Instagram → Story → add from gallery.');
+  }, 'image/png');
+}
+function roundRect(x,px,py,w,h,r){ x.beginPath(); x.moveTo(px+r,py); x.arcTo(px+w,py,px+w,py+h,r); x.arcTo(px+w,py+h,px,py+h,r); x.arcTo(px,py+h,px,py,r); x.arcTo(px,py,px+w,py,r); x.closePath(); }
 
 // seed notifications
 pushNotif(NIC.flame,'Sara hit a new milestone','−14 kg transformation posted in the gallery');
