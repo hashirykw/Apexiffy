@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
+<title>Sharjeel Ahmed — Creative Developer & Analyst</title>
+<meta name="description" content="Portfolio of Sharjeel Ahmed — Institutional Trader, Technical Analyst & Web Developer based in Karachi, Pakistan."/>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>"/>
+<meta name="theme-color" content="#0a0a0f"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --ink:#0a0a0f;
+  --ink2:#12121a;
+  --ink3:#1a1a26;
+  --ink4:#22223a;
+  --cyan:#00d4ff;
+  --cyan2:#0099bb;
+  --gold:#f5c842;
+  --coral:#ff5e3a;
+  --violet:#8b5cf6;
+  --white:#f0f4ff;
+  --off:#7a8099;
+  --border:rgba(0,212,255,0.12);
+  --glow:rgba(0,212,255,0.08);
+  --fd:'Bebas Neue',sans-serif;
+  --fb:'Inter',sans-serif;
+  --fm:'JetBrains Mono',monospace;
+  --nav:60px;
+  --bar:54px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{background:var(--ink);color:var(--white);font-family:var(--fb);line-height:1.6;overflow-x:hidden;padding-bottom:var(--bar);}
+a{color:inherit;text-decoration:none;}
+button{cursor:pointer;border:none;background:none;font-family:var(--fb);}
+ul{list-style:none;}
+::-webkit-scrollbar{width:2px;}
+::-webkit-scrollbar-thumb{background:var(--cyan);}
+
+/* ── NAVBAR ── */
+#nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:var(--nav);display:flex;align-items:center;justify-content:space-between;padding:0 20px;transition:background .3s;}
+#nav.solid{background:rgba(10,10,15,0.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:var(--fd);font-size:1.3rem;letter-spacing:.12em;color:var(--white);}
+.nav-logo em{color:var(--cyan);font-style:normal;}
+.nav-links{display:none;gap:24px;align-items:center;}
+.nav-links a{font-size:.75rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--off);transition:color .2s;}
+.nav-links a:hover{color:var(--cyan);}
+.nav-cta{font-family:var(--fm);font-size:.72rem;font-weight:500;letter-spacing:.08em;color:var(--cyan);border:1px solid var(--cyan);padding:7px 16px;border-radius:3px;transition:background .2s,color .2s;}
+.nav-cta:hover{background:var(--cyan);color:#000;}
+.hamburger{width:40px;height:40px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;}
+.hamburger span{display:block;width:20px;height:1.5px;background:var(--white);transition:all .3s;}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(4.5px,4.5px);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(4.5px,-4.5px);}
+@media(min-width:769px){.nav-links{display:flex;}.hamburger{display:none;}#nav{padding:0 48px;}}
+
+/* ── MOBILE MENU ── */
+#mmenu{position:fixed;inset:0;z-index:999;background:var(--ink);display:flex;flex-direction:column;padding:calc(var(--nav)+24px) 28px 32px;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);}
+#mmenu.open{transform:translateX(0);}
+.mmenu-links a{display:flex;align-items:center;font-family:var(--fd);font-size:2.2rem;letter-spacing:.06em;text-transform:uppercase;color:var(--white);padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06);transition:color .2s;min-height:44px;}
+.mmenu-links a:hover{color:var(--cyan);}
+.mmenu-footer{margin-top:auto;padding-top:24px;display:flex;flex-direction:column;gap:10px;}
+
+/* ═══════════════════════════════════════════
+   HERO — GTA 6 HYPERREALISTIC CITY
+═══════════════════════════════════════════ */
+#hero{position:relative;width:100%;height:100svh;min-height:600px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;}
+
+/* Sky gradient - Miami Vice dusk */
+.city-sky{position:absolute;inset:0;z-index:0;background:linear-gradient(to bottom,
+  #0a0015 0%,
+  #0d0025 8%,
+  #150040 15%,
+  #1a0060 22%,
+  #220080 28%,
+  #1a0060 32%,
+  #300060 38%,
+  #6b1060 45%,
+  #c04020 55%,
+  #e06820 62%,
+  #f09030 68%,
+  #e08030 73%,
+  #c05010 78%,
+  #601520 84%,
+  #1a0520 90%,
+  #080010 100%
+);}
+
+/* Stars layer */
+.city-stars{position:absolute;inset:0;z-index:1;}
+
+/* Moon */
+.city-moon{position:absolute;top:8%;right:15%;z-index:2;width:60px;height:60px;border-radius:50%;background:radial-gradient(circle at 38% 38%,#fffde8,#f5e080 40%,#c8a820 100%);box-shadow:0 0 40px rgba(248,224,80,.5),0 0 80px rgba(248,224,80,.25),0 0 160px rgba(248,224,80,.1);}
+@media(min-width:600px){.city-moon{width:90px;height:90px;top:7%;right:18%;}}
+
+/* Distant city glow on horizon */
+.city-horizon-glow{position:absolute;bottom:42%;left:0;right:0;z-index:3;height:120px;background:linear-gradient(to top,rgba(255,120,20,.35) 0%,rgba(255,80,10,.18) 40%,transparent 100%);}
+
+/* Ocean / water reflection at base */
+.city-water{position:absolute;bottom:0;left:0;right:0;z-index:4;height:28%;background:linear-gradient(to bottom,
+  rgba(10,5,30,.9) 0%,
+  rgba(8,4,25,.95) 40%,
+  rgba(6,3,18,1) 100%
+);}
+/* Water shimmer lines */
+.city-water::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(to bottom,transparent 0px,transparent 3px,rgba(0,180,255,.04) 3px,rgba(0,180,255,.04) 4px);animation:water-shimmer 3s infinite linear;opacity:.7;}
+.city-water::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,rgba(255,120,40,.4),rgba(255,200,80,.6),rgba(255,120,40,.4),transparent);}
+@keyframes water-shimmer{0%{transform:translateY(0)}100%{transform:translateY(4px)}}
+
+/* MAIN CITY SVG */
+.city-canvas{position:absolute;bottom:25%;left:0;right:0;z-index:5;width:100%;height:auto;}
+
+/* Foreground road + ground */
+.city-ground{position:absolute;bottom:0;left:0;right:0;z-index:7;height:28%;}
+.road-surface{position:absolute;bottom:0;left:0;right:0;height:100%;background:linear-gradient(to bottom,#1a1a28 0%,#0f0f1a 100%);}
+/* Road markings */
+.road-lane{position:absolute;bottom:35%;left:0;right:0;height:2px;background:repeating-linear-gradient(to right,transparent 0px,transparent 40px,rgba(255,200,0,.4) 40px,rgba(255,200,0,.4) 80px);}
+.road-center{position:absolute;bottom:60%;left:0;right:0;height:3px;background:linear-gradient(to right,transparent,rgba(255,220,50,.3),rgba(255,220,50,.5),rgba(255,220,50,.3),transparent);}
+/* Street glow on road */
+.road-glow{position:absolute;bottom:0;left:0;right:0;height:60%;background:radial-gradient(ellipse at 30% 100%,rgba(255,100,20,.12) 0%,transparent 60%),radial-gradient(ellipse at 70% 100%,rgba(0,180,255,.08) 0%,transparent 60%);}
+
+/* Palm trees silhouette */
+.palms{position:absolute;bottom:25%;left:0;right:0;z-index:6;height:120px;pointer-events:none;}
+
+/* Neon signs glow */
+.neon-layer{position:absolute;bottom:25%;left:0;right:0;z-index:8;height:200px;pointer-events:none;}
+
+/* Hero top gradient fade for navbar readability */
+.hero-top-fade{position:absolute;top:0;left:0;right:0;z-index:9;height:120px;background:linear-gradient(to bottom,rgba(10,10,15,.8),transparent);}
+/* Bottom fade into content */
+.hero-bottom-fade{position:absolute;bottom:0;left:0;right:0;z-index:9;height:220px;background:linear-gradient(to top,var(--ink) 0%,rgba(10,10,15,.85) 55%,transparent 100%);}
+
+/* Hero content */
+.hero-content{position:relative;z-index:10;padding:0 20px 52px;max-width:1100px;margin:0 auto;width:100%;}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--fm);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.2);padding:5px 14px;border-radius:2px;margin-bottom:18px;}
+.hero-tag-dot{width:5px;height:5px;border-radius:50%;background:var(--cyan);animation:blink 1.8s infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.hero-name{font-family:var(--fd);font-size:clamp(3.5rem,14vw,8.5rem);line-height:.88;letter-spacing:.02em;text-transform:uppercase;margin-bottom:10px;}
+.hero-name .line1{display:block;color:var(--white);}
+.hero-name .line2{display:block;color:transparent;-webkit-text-stroke:1.5px var(--cyan);}
+.hero-role{font-family:var(--fm);font-size:clamp(.7rem,2vw,.9rem);font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--off);margin-bottom:28px;}
+.hero-role span{color:var(--cyan);}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-primary{font-family:var(--fm);font-size:.78rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:12px 24px;background:var(--cyan);color:#000;border-radius:3px;transition:all .2s;min-height:44px;display:inline-flex;align-items:center;}
+.btn-primary:hover{background:#fff;transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,212,255,.3);}
+.btn-ghost{font-family:var(--fm);font-size:.78rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:11px 24px;background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.2);border-radius:3px;transition:all .2s;min-height:44px;display:inline-flex;align-items:center;}
+.btn-ghost:hover{border-color:var(--cyan);color:var(--cyan);}
+/* Scroll indicator */
+.hero-scroll{position:absolute;bottom:56px;right:24px;z-index:10;display:none;flex-direction:column;align-items:center;gap:6px;}
+.hero-scroll-line{width:1px;height:44px;background:linear-gradient(to bottom,var(--cyan),transparent);animation:drop 1.8s infinite;}
+.hero-scroll-label{font-family:var(--fm);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--off);writing-mode:vertical-lr;}
+@keyframes drop{0%{opacity:0;transform:scaleY(0);transform-origin:top}40%{opacity:1;transform:scaleY(1)}100%{opacity:0}}
+@media(min-width:600px){.hero-scroll{display:flex;}}
+@media(min-width:769px){.hero-content{padding:0 48px 64px;}}
+
+/* ═══════════════
+   SECTIONS
+═══════════════ */
+section{padding:64px 20px;}
+.section-inner{max-width:1100px;margin:0 auto;}
+.section-tag{font-family:var(--fm);font-size:.65rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:10px;display:flex;align-items:center;gap:10px;}
+.section-tag::before{content:'';display:block;width:20px;height:1px;background:var(--cyan);}
+.section-title{font-family:var(--fd);font-size:clamp(2rem,6vw,3.8rem);line-height:.95;letter-spacing:.04em;text-transform:uppercase;margin-bottom:14px;}
+.section-sub{font-size:.9rem;color:var(--off);max-width:480px;line-height:1.8;}
+@media(min-width:769px){section{padding:88px 28px;}}
+
+/* ── ABOUT STRIP ── */
+#about{background:var(--ink2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.about-grid{display:grid;grid-template-columns:1fr;gap:40px;align-items:center;}
+.about-facts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:24px;}
+.fact-box{background:var(--ink3);border:1px solid var(--border);border-radius:6px;padding:16px 14px;}
+.fact-val{font-family:var(--fh,var(--fd));font-size:1.6rem;font-weight:900;color:var(--cyan);line-height:1;font-family:var(--fd);}
+.fact-label{font-size:.65rem;color:var(--off);margin-top:4px;letter-spacing:.08em;text-transform:uppercase;}
+.about-desc p{color:var(--off);font-size:.9rem;line-height:1.85;margin-bottom:14px;}
+.about-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;}
+.tag{font-family:var(--fm);font-size:.65rem;letter-spacing:.08em;padding:5px 12px;border-radius:2px;border:1px solid var(--border);color:var(--off);}
+.tag.cyan{border-color:rgba(0,212,255,.3);color:var(--cyan);}
+.tag.gold{border-color:rgba(245,200,66,.3);color:var(--gold);}
+.tag.coral{border-color:rgba(255,94,58,.3);color:var(--coral);}
+.tag.violet{border-color:rgba(139,92,246,.3);color:var(--violet);}
+@media(min-width:769px){.about-grid{grid-template-columns:1fr 1fr;gap:60px;}}
+
+/* ── PROJECTS ── */
+#projects{background:var(--ink);}
+.projects-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:40px;}
+
+/* Project card */
+.proj-card{position:relative;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:var(--ink2);transition:border-color .3s,transform .3s;cursor:pointer;}
+.proj-card:hover{border-color:var(--cyan);transform:translateY(-4px);}
+.proj-card:hover .proj-overlay{opacity:1;}
+.proj-card:hover .proj-img{transform:scale(1.04);}
+
+/* Card visual */
+.proj-visual{position:relative;width:100%;height:200px;overflow:hidden;}
+.proj-img{width:100%;height:100%;object-fit:cover;transition:transform .5s;display:block;}
+.proj-visual-bg{width:100%;height:100%;transition:transform .5s;}
+.proj-overlay{position:absolute;inset:0;background:rgba(0,212,255,.08);opacity:0;transition:opacity .3s;}
+/* Category badge */
+.proj-cat{position:absolute;top:12px;left:12px;font-family:var(--fm);font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:2px;border:1px solid;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);}
+.cat-fin{background:rgba(245,200,66,.1);border-color:rgba(245,200,66,.4);color:var(--gold);}
+.cat-health{background:rgba(0,212,255,.1);border-color:rgba(0,212,255,.4);color:var(--cyan);}
+.cat-sports{background:rgba(255,94,58,.1);border-color:rgba(255,94,58,.4);color:var(--coral);}
+.cat-edu{background:rgba(139,92,246,.1);border-color:rgba(139,92,246,.4);color:var(--violet);}
+.cat-events{background:rgba(245,200,66,.1);border-color:rgba(245,200,66,.4);color:var(--gold);}
+.cat-tools{background:rgba(0,212,255,.1);border-color:rgba(0,212,255,.4);color:var(--cyan);}
+/* Live dot */
+.proj-live{position:absolute;top:12px;right:12px;display:flex;align-items:center;gap:5px;background:rgba(10,10,15,.7);border:1px solid rgba(0,212,255,.2);padding:3px 8px;border-radius:2px;backdrop-filter:blur(6px);}
+.proj-live-dot{width:5px;height:5px;border-radius:50%;background:#00ff88;animation:blink 2s infinite;}
+.proj-live-text{font-family:var(--fm);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:#00ff88;}
+
+/* Card body */
+.proj-body{padding:18px 20px 20px;}
+.proj-name{font-family:var(--fd);font-size:1.4rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px;color:var(--white);}
+.proj-tagline{font-size:.78rem;color:var(--off);line-height:1.5;margin-bottom:14px;}
+.proj-stack{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;}
+.proj-tech{font-family:var(--fm);font-size:.58rem;letter-spacing:.06em;color:var(--off);background:var(--ink3);border:1px solid rgba(255,255,255,.07);padding:3px 8px;border-radius:2px;}
+.proj-footer{display:flex;align-items:center;justify-content:space-between;}
+.proj-link{font-family:var(--fm);font-size:.65rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);display:flex;align-items:center;gap:6px;transition:gap .2s;}
+.proj-link:hover{gap:10px;}
+.proj-link svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2;}
+.proj-num{font-family:var(--fh,var(--fh));font-size:.65rem;color:var(--ink4);font-family:var(--fm);color:rgba(255,255,255,.12);}
+
+@media(min-width:560px){.projects-grid{grid-template-columns:repeat(2,1fr);}}
+@media(min-width:900px){.projects-grid{grid-template-columns:repeat(3,1fr);}}
+
+/* ── SKILLS ── */
+#skills{background:var(--ink2);border-top:1px solid var(--border);}
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:32px;}
+.skill-row{background:var(--ink3);border:1px solid var(--border);border-radius:6px;padding:16px 18px;}
+.skill-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.skill-name{font-family:var(--fm);font-size:.72rem;font-weight:500;letter-spacing:.06em;color:var(--white);}
+.skill-pct{font-family:var(--fm);font-size:.65rem;color:var(--cyan);}
+.skill-bar{height:2px;background:rgba(255,255,255,.07);border-radius:1px;overflow:hidden;}
+.skill-fill{height:100%;border-radius:1px;background:linear-gradient(to right,var(--cyan),var(--violet));transform:scaleX(0);transform-origin:left;transition:transform 1s cubic-bezier(.4,0,.2,1);}
+.skill-fill.in{transform:scaleX(1);}
+@media(min-width:600px){.skills-grid{grid-template-columns:repeat(3,1fr);}}
+@media(min-width:900px){.skills-grid{grid-template-columns:repeat(4,1fr);}}
+
+/* ── CONTACT ── */
+#contact{background:var(--ink);}
+.contact-grid{display:grid;grid-template-columns:1fr;gap:40px;margin-top:32px;}
+.contact-info p{font-size:.9rem;color:var(--off);line-height:1.8;margin-bottom:24px;}
+.contact-links{display:flex;flex-direction:column;gap:12px;}
+.contact-link{display:flex;align-items:center;gap:14px;padding:14px 18px;background:var(--ink2);border:1px solid var(--border);border-radius:6px;transition:border-color .2s;}
+.contact-link:hover{border-color:var(--cyan);}
+.cl-icon{width:36px;height:36px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.cl-label{font-family:var(--fm);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--off);margin-bottom:2px;}
+.cl-val{font-size:.85rem;font-weight:500;color:var(--white);}
+.contact-form{background:var(--ink2);border:1px solid var(--border);border-radius:8px;padding:28px 24px;}
+.form-row{margin-bottom:14px;}
+.form-row label{display:block;font-family:var(--fm);font-size:.62rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:7px;}
+.form-row input,.form-row textarea{width:100%;background:var(--ink3);border:1px solid rgba(255,255,255,.08);color:var(--white);font-family:var(--fb);font-size:15px;padding:12px 14px;border-radius:4px;outline:none;transition:border-color .2s;-webkit-appearance:none;}
+.form-row input:focus,.form-row textarea:focus{border-color:var(--cyan);}
+.form-row textarea{resize:vertical;min-height:100px;}
+.form-2col{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+#form-submit{width:100%;padding:14px;background:var(--cyan);color:#000;font-family:var(--fm);font-weight:700;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;border-radius:4px;transition:background .2s;margin-top:8px;border:none;cursor:pointer;min-height:48px;}
+#form-submit:hover{background:#fff;}
+@media(min-width:769px){.contact-grid{grid-template-columns:1fr 1.2fr;}.form-2col{grid-template-columns:1fr 1fr;}}
+
+/* ── FOOTER ── */
+footer{background:var(--ink2);border-top:1px solid var(--border);padding:36px 20px 28px;text-align:center;}
+.footer-logo{font-family:var(--fh,var(--fh));font-family:var(--fd);font-size:1.8rem;letter-spacing:.1em;color:var(--white);margin-bottom:8px;}
+.footer-logo em{color:var(--cyan);font-style:normal;}
+.footer-sub{font-family:var(--fm);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--off);margin-bottom:20px;}
+.footer-copy{font-size:.75rem;color:rgba(255,255,255,.18);}
+
+/* ── MOB BAR ── */
+#mob-bar{position:fixed;bottom:0;left:0;right:0;z-index:800;height:var(--bar);display:flex;background:var(--ink2);border-top:1px solid var(--border);padding-bottom:env(safe-area-inset-bottom);}
+.mbb{flex:1;display:flex;align-items:center;justify-content:center;gap:5px;font-family:var(--fm);font-weight:500;font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:var(--off);transition:color .2s;}
+.mbb:first-child{border-right:1px solid var(--border);}
+.mbb.accent{color:#000;background:var(--cyan);}
+.mbb:active{background:var(--ink3);}
+.mbb.accent:active{background:var(--cyan2);}
+@media(min-width:769px){#mob-bar{display:none;}body{padding-bottom:0;}}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .55s,transform .55s;}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+/* ─── PROJECT VISUAL BACKGROUNDS (canvas-painted) ─── */
+.pvb{width:100%;height:100%;display:block;}
+
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="nav">
+  <div class="nav-logo">SHARJEEL<em>.</em></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <a href="#contact" class="nav-cta">Hire Me</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div id="mmenu">
+  <ul class="mmenu-links">
+    <li><a href="#about" class="ml">About</a></li>
+    <li><a href="#projects" class="ml">Projects</a></li>
+    <li><a href="#skills" class="ml">Skills</a></li>
+    <li><a href="#contact" class="ml">Contact</a></li>
+  </ul>
+  <div class="mmenu-footer">
+    <a href="#contact" class="btn-primary ml">Hire Me</a>
+    <a href="https://wa.me/923239515018" target="_blank" rel="noopener" class="btn-ghost">WhatsApp</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <!-- SKY -->
+  <div class="city-sky"></div>
+
+  <!-- STARS (painted by JS) -->
+  <canvas class="city-stars" id="stars-canvas"></canvas>
+
+  <!-- MOON -->
+  <div class="city-moon"></div>
+
+  <!-- HORIZON GLOW -->
+  <div class="city-horizon-glow"></div>
+
+  <!-- CITY SKYLINE SVG -->
+  <div class="city-canvas">
+    <svg viewBox="0 0 1440 420" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax slice" style="display:block;width:100%;height:auto;">
+      <defs>
+        <!-- Building gradient - warm orange sunset glow on windows -->
+        <linearGradient id="bld-far" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#1a0a30" stop-opacity=".95"/>
+          <stop offset="60%" stop-color="#0d0520" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#080314" stop-opacity="1"/>
+        </linearGradient>
+        <linearGradient id="bld-mid" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#1c0b35" stop-opacity="1"/>
+          <stop offset="50%" stop-color="#100620" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#060210" stop-opacity="1"/>
+        </linearGradient>
+        <linearGradient id="bld-front" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#120828" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#04010c" stop-opacity="1"/>
+        </linearGradient>
+        <linearGradient id="sky-glow" x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0%" stop-color="#ff7010" stop-opacity=".6"/>
+          <stop offset="50%" stop-color="#ff4500" stop-opacity=".2"/>
+          <stop offset="100%" stop-color="#cc0040" stop-opacity="0"/>
+        </linearGradient>
+        <!-- Window orange warm glow -->
+        <filter id="glow-win">
+          <feGaussianBlur stdDeviation="1.2" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <filter id="glow-cyan">
+          <feGaussianBlur stdDeviation="2" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <filter id="glow-top">
+          <feGaussianBlur stdDeviation="3"/>
+        </filter>
+      </defs>
+
+      <!-- Horizon ambient glow -->
+      <rect x="0" y="250" width="1440" height="170" fill="url(#sky-glow)"/>
+
+      <!-- ─── FAR BACKGROUND LAYER (dark silhouettes) ─── -->
+      <!-- Left cluster -->
+      <rect x="0" y="280" width="45" height="140" fill="url(#bld-far)" opacity=".6"/>
+      <rect x="48" y="255" width="30" height="165" fill="url(#bld-far)" opacity=".55"/>
+      <polygon points="63,255 78,235 93,255" fill="url(#bld-far)" opacity=".55"/>
+      <rect x="82" y="260" width="55" height="160" fill="url(#bld-far)" opacity=".6"/>
+      <rect x="140" y="240" width="25" height="180" fill="url(#bld-far)" opacity=".5"/>
+      <rect x="168" y="270" width="60" height="150" fill="url(#bld-far)" opacity=".55"/>
+      <rect x="232" y="245" width="40" height="175" fill="url(#bld-far)" opacity=".6"/>
+      <!-- Spire -->
+      <rect x="250" y="215" width="4" height="35" fill="#2a1060" opacity=".8"/>
+      <rect x="270" y="250" width="22" height="170" fill="url(#bld-far)" opacity=".5"/>
+      <rect x="298" y="230" width="55" height="190" fill="url(#bld-far)" opacity=".6"/>
+      <!-- Antenna -->
+      <rect x="323" y="200" width="2" height="34" fill="#3a1080" opacity=".9"/>
+      <circle cx="324" cy="199" r="2.5" fill="#ff3366" opacity=".9"><animate attributeName="opacity" values="0.9;0.1;0.9" dur="1.2s" repeatCount="indefinite"/></circle>
+      <rect x="360" y="260" width="45" height="160" fill="url(#bld-far)" opacity=".5"/>
+      <rect x="410" y="238" width="65" height="182" fill="url(#bld-far)" opacity=".6"/>
+      <rect x="480" y="252" width="35" height="168" fill="url(#bld-far)" opacity=".5"/>
+      <rect x="520" y="235" width="50" height="185" fill="url(#bld-far)" opacity=".6"/>
+      <!-- Stepped tower -->
+      <rect x="575" y="200" width="60" height="220" fill="url(#bld-far)" opacity=".65"/>
+      <rect x="583" y="182" width="44" height="22" fill="url(#bld-far)" opacity=".65"/>
+      <rect x="592" y="168" width="26" height="18" fill="url(#bld-far)" opacity=".65"/>
+      <rect x="598" y="152" width="3" height="20" fill="#4020a0" opacity=".9"/>
+      <circle cx="599.5" cy="151" r="2" fill="#ff3366" opacity=".85"><animate attributeName="opacity" values="0.85;0.1;0.85" dur="1.5s" repeatCount="indefinite"/></circle>
+      <rect x="640" y="245" width="40" height="175" fill="url(#bld-far)" opacity=".5"/>
+      <rect x="685" y="228" width="55" height="192" fill="url(#bld-far)" opacity=".6"/>
+      <rect x="745" y="255" width="30" height="165" fill="url(#bld-far)" opacity=".5"/>
+      <rect x="780" y="240" width="48" height="180" fill="url(#bld-far)" opacity=".6"/>
+      <rect x="834" y="222" width="65" height="198" fill="url(#bld-far)" opacity=".65"/>
+      <!-- Spire right -->
+      <rect x="863" y="190" width="3" height="35" fill="#3a1080" opacity=".9"/>
+      <circle cx="864.5" cy="189" r="2" fill="#ff3366" opacity=".8"><animate attributeName="opacity" values="0.8;0.1;0.8" dur="1.8s" repeatCount="indefinite"/></circle>
+      <rect x="905" y="248" width="42" height="172" fill="url(#bld-far)" opacity=".55"/>
+      <rect x="952" y="233" width="55" height="187" fill="url(#bld-far)" opacity=".6"/>
+      <rect x="1012" y="252" width="38" height="168" fill="url(#bld-far)" opacity=".5"/>
+      <rect x="1055" y="235" width="60" height="185" fill="url(#bld-far)" opacity=".6"/>
+      <!-- Tall central right tower -->
+      <rect x="1120" y="195" width="65" height="225" fill="url(#bld-far)" opacity=".7"/>
+      <rect x="1130" y="172" width="45" height="26" fill="url(#bld-far)" opacity=".7"/>
+      <rect x="1140" y="155" width="25" height="20" fill="url(#bld-far)" opacity=".7"/>
+      <rect x="1150" y="138" width="3" height="20" fill="#5030c0" opacity=".9"/>
+      <circle cx="1151.5" cy="137" r="2.5" fill="#ff3366" opacity=".9"><animate attributeName="opacity" values="0.9;0.1;0.9" dur="1.1s" repeatCount="indefinite"/></circle>
+      <rect x="1192" y="248" width="48" height="172" fill="url(#bld-far)" opacity=".55"/>
+      <rect x="1245" y="232" width="58" height="188" fill="url(#bld-far)" opacity=".6"/>
+      <rect x="1308" y="252" width="40" height="168" fill="url(#bld-far)" opacity=".5"/>
+      <rect x="1354" y="238" width="52" height="182" fill="url(#bld-far)" opacity=".6"/>
+      <rect x="1411" y="255" width="35" height="165" fill="url(#bld-far)" opacity=".5"/>
+
+      <!-- ─── MID LAYER WINDOWS (small warm glow) ─── -->
+      <!-- Row of window dots far buildings -->
+      <g filter="url(#glow-win)" opacity=".7">
+        <!-- Building at 82 -->
+        <rect x="88" y="270" width="4" height="3" fill="#ffcc44" rx="0.5"/>
+        <rect x="96" y="270" width="4" height="3" fill="#ffcc44" rx="0.5"/>
+        <rect x="88" y="278" width="4" height="3" fill="#ffa020" rx="0.5"/>
+        <rect x="88" y="286" width="4" height="3" fill="#ffcc44" rx="0.5"/>
+        <rect x="96" y="286" width="4" height="3" fill="#ffcc44" rx="0.5"/>
+        <!-- Building at 298 -->
+        <rect x="304" y="242" width="5" height="3" fill="#ffcc44" rx="0.5"/>
+        <rect x="313" y="242" width="5" height="3" fill="#ffa020" rx="0.5"/>
+        <rect x="322" y="242" width="5" height="3" fill="#ffcc44" rx="0.5"/>
+        <rect x="304" y="252" width="5" height="3" fill="#ffcc44" rx="0.5"/>
+        <rect x="322" y="252" width="5" height="3" fill="#ffcc44" rx="0.5"/>
+        <rect x="304" y="262" width="5" height="3" fill="#ffa020" rx="0.5"/>
+        <rect x="313" y="262" width="5" height="3" fill="#ffcc44" rx="0.5"/>
+        <!-- Stepped tower windows -->
+        <rect x="582" y="210" width="6" height="4" fill="#ffdd55" rx="0.5"/>
+        <rect x="594" y="210" width="6" height="4" fill="#ffa530" rx="0.5"/>
+        <rect x="606" y="210" width="6" height="4" fill="#ffdd55" rx="0.5"/>
+        <rect x="582" y="222" width="6" height="4" fill="#ffdd55" rx="0.5"/>
+        <rect x="606" y="222" width="6" height="4" fill="#ffa530" rx="0.5"/>
+        <rect x="618" y="222" width="6" height="4" fill="#ffdd55" rx="0.5"/>
+        <rect x="582" y="234" width="6" height="4" fill="#ffa530" rx="0.5"/>
+        <rect x="594" y="234" width="6" height="4" fill="#ffdd55" rx="0.5"/>
+        <!-- Tall right tower windows -->
+        <rect x="1126" y="205" width="7" height="4" fill="#ffdd55" rx="0.5"/>
+        <rect x="1138" y="205" width="7" height="4" fill="#ffcc44" rx="0.5"/>
+        <rect x="1150" y="205" width="7" height="4" fill="#ffa530" rx="0.5"/>
+        <rect x="1162" y="205" width="7" height="4" fill="#ffdd55" rx="0.5"/>
+        <rect x="1126" y="218" width="7" height="4" fill="#ffdd55" rx="0.5"/>
+        <rect x="1150" y="218" width="7" height="4" fill="#ffdd55" rx="0.5"/>
+        <rect x="1126" y="231" width="7" height="4" fill="#ffa530" rx="0.5"/>
+        <rect x="1138" y="231" width="7" height="4" fill="#ffdd55" rx="0.5"/>
+        <rect x="1162" y="231" width="7" height="4" fill="#ffdd55" rx="0.5"/>
+      </g>
+
+      <!-- ─── CYAN NEON BUILDING OUTLINES / HIGHLIGHTS ─── -->
+      <g filter="url(#glow-cyan)" opacity=".55">
+        <!-- Edge glow on key towers -->
+        <line x1="575" y1="200" x2="575" y2="420" stroke="#00ccff" stroke-width="1"/>
+        <line x1="635" y1="200" x2="635" y2="420" stroke="#00ccff" stroke-width=".5"/>
+        <line x1="1120" y1="195" x2="1120" y2="420" stroke="#0088ff" stroke-width="1"/>
+        <line x1="1185" y1="195" x2="1185" y2="420" stroke="#0088ff" stroke-width=".5"/>
+        <line x1="298" y1="230" x2="298" y2="420" stroke="#00aaff" stroke-width=".8"/>
+      </g>
+
+      <!-- ─── MIDGROUND BUILDINGS (denser, more detail) ─── -->
+      <rect x="0" y="308" width="38" height="112" fill="url(#bld-mid)"/>
+      <rect x="42" y="290" width="55" height="130" fill="url(#bld-mid)"/>
+      <rect x="100" y="298" width="42" height="122" fill="url(#bld-mid)"/>
+      <!-- Steps -->
+      <rect x="148" y="275" width="55" height="145" fill="url(#bld-mid)"/>
+      <rect x="158" y="262" width="35" height="18" fill="url(#bld-mid)"/>
+      <rect x="210" y="295" width="48" height="125" fill="url(#bld-mid)"/>
+      <rect x="262" y="278" width="62" height="142" fill="url(#bld-mid)"/>
+      <rect x="332" y="265" width="72" height="155" fill="url(#bld-mid)"/>
+      <!-- Big center left tower -->
+      <rect x="412" y="250" width="80" height="170" fill="url(#bld-mid)"/>
+      <rect x="422" y="233" width="60" height="20" fill="url(#bld-mid)"/>
+      <rect x="432" y="220" width="40" height="15" fill="url(#bld-mid)"/>
+      <!-- Spire -->
+      <rect x="450" y="195" width="3" height="28" fill="#5020a0"/>
+      <circle cx="451.5" cy="194" r="2" fill="#ff2255" opacity=".9"><animate attributeName="opacity" values="0.9;0.2;0.9" dur="1.3s" repeatCount="indefinite"/></circle>
+      <rect x="500" y="282" width="52" height="138" fill="url(#bld-mid)"/>
+      <rect x="558" y="268" width="44" height="152" fill="url(#bld-mid)"/>
+      <!-- HERO TOWER - center -->
+      <rect x="608" y="238" width="95" height="182" fill="url(#bld-mid)"/>
+      <rect x="620" y="218" width="71" height="24" fill="url(#bld-mid)"/>
+      <rect x="634" y="200" width="43" height="20" fill="url(#bld-mid)"/>
+      <rect x="643" y="184" width="25" height="18" fill="url(#bld-mid)"/>
+      <!-- Hero tower spire -->
+      <rect x="654" y="160" width="3" height="28" fill="#8040ff"/>
+      <circle cx="655.5" cy="159" r="3" fill="#ff00aa" opacity=".95"><animate attributeName="opacity" values="0.95;0.15;0.95" dur="1s" repeatCount="indefinite"/></circle>
+      <!-- Hero tower windows - rich detail -->
+      <g filter="url(#glow-win)" opacity=".85">
+        <rect x="615" y="248" width="8" height="5" fill="#ffee66" rx="0.5"/>
+        <rect x="628" y="248" width="8" height="5" fill="#ffcc40" rx="0.5"/>
+        <rect x="641" y="248" width="8" height="5" fill="#ffee66" rx="0.5"/>
+        <rect x="654" y="248" width="8" height="5" fill="#ffcc40" rx="0.5"/>
+        <rect x="667" y="248" width="8" height="5" fill="#ffee66" rx="0.5"/>
+        <rect x="680" y="248" width="8" height="5" fill="#ffcc40" rx="0.5"/>
+        <rect x="693" y="248" width="8" height="5" fill="#ffee66" rx="0.5"/>
+        <rect x="615" y="260" width="8" height="5" fill="#ffcc40" rx="0.5"/>
+        <rect x="641" y="260" width="8" height="5" fill="#ffee66" rx="0.5"/>
+        <rect x="667" y="260" width="8" height="5" fill="#ffcc40" rx="0.5"/>
+        <rect x="693" y="260" width="8" height="5" fill="#ffee66" rx="0.5"/>
+        <rect x="615" y="272" width="8" height="5" fill="#ffee66" rx="0.5"/>
+        <rect x="628" y="272" width="8" height="5" fill="#ffcc40" rx="0.5"/>
+        <rect x="654" y="272" width="8" height="5" fill="#ffee66" rx="0.5"/>
+        <rect x="680" y="272" width="8" height="5" fill="#ffcc40" rx="0.5"/>
+        <rect x="615" y="284" width="8" height="5" fill="#ffcc40" rx="0.5"/>
+        <rect x="641" y="284" width="8" height="5" fill="#ffee66" rx="0.5"/>
+        <rect x="667" y="284" width="8" height="5" fill="#ffcc40" rx="0.5"/>
+        <rect x="693" y="284" width="8" height="5" fill="#ffee66" rx="0.5"/>
+      </g>
+      <rect x="710" y="270" width="58" height="150" fill="url(#bld-mid)"/>
+      <rect x="774" y="255" width="66" height="165" fill="url(#bld-mid)"/>
+      <rect x="848" y="268" width="50" height="152" fill="url(#bld-mid)"/>
+      <!-- Right cluster -->
+      <rect x="904" y="252" width="70" height="168" fill="url(#bld-mid)"/>
+      <rect x="914" y="236" width="50" height="18" fill="url(#bld-mid)"/>
+      <!-- Spire -->
+      <rect x="937" y="212" width="3" height="28" fill="#6030b0"/>
+      <circle cx="938.5" cy="211" r="2" fill="#ff2266" opacity=".88"><animate attributeName="opacity" values="0.88;0.1;0.88" dur="1.4s" repeatCount="indefinite"/></circle>
+      <rect x="980" y="265" width="58" height="155" fill="url(#bld-mid)"/>
+      <rect x="1044" y="250" width="68" height="170" fill="url(#bld-mid)"/>
+      <rect x="1120" y="258" width="55" height="162" fill="url(#bld-mid)"/>
+      <rect x="1182" y="242" width="72" height="178" fill="url(#bld-mid)"/>
+      <rect x="1262" y="265" width="52" height="155" fill="url(#bld-mid)"/>
+      <rect x="1320" y="250" width="65" height="170" fill="url(#bld-mid)"/>
+      <rect x="1392" y="268" width="55" height="152" fill="url(#bld-mid)"/>
+
+      <!-- ─── NEON SIGNS on midground buildings ─── -->
+      <!-- Cyan horizontal neon on building facades -->
+      <g filter="url(#glow-cyan)">
+        <rect x="155" y="285" width="40" height="2" fill="#00d4ff" opacity=".7" rx="1"/>
+        <rect x="155" y="295" width="28" height="1.5" fill="#00d4ff" opacity=".5" rx="1"/>
+        <rect x="340" y="290" width="55" height="2" fill="#ff44aa" opacity=".65" rx="1"/>
+        <rect x="420" y="260" width="72" height="2" fill="#00d4ff" opacity=".6" rx="1"/>
+        <rect x="616" y="246" width="85" height="1.5" fill="#00d4ff" opacity=".4" rx="1"/>
+        <rect x="780" y="268" width="60" height="2" fill="#aa44ff" opacity=".6" rx="1"/>
+        <rect x="1050" y="268" width="60" height="2" fill="#00d4ff" opacity=".55" rx="1"/>
+        <rect x="1188" y="255" width="65" height="2" fill="#ff4488" opacity=".6" rx="1"/>
+      </g>
+
+      <!-- ─── FOREGROUND BUILDINGS ─── -->
+      <rect x="0" y="340" width="52" height="80" fill="url(#bld-front)"/>
+      <rect x="56" y="322" width="68" height="98" fill="url(#bld-front)"/>
+      <rect x="128" y="312" width="55" height="108" fill="url(#bld-front)"/>
+      <!-- Stepped front -->
+      <rect x="188" y="298" width="80" height="122" fill="url(#bld-front)"/>
+      <rect x="200" y="282" width="56" height="18" fill="url(#bld-front)"/>
+      <rect x="280" y="315" width="60" height="105" fill="url(#bld-front)"/>
+      <rect x="348" y="305" width="72" height="115" fill="url(#bld-front)"/>
+      <!-- Big hotel/casino front left -->
+      <rect x="428" y="285" width="95" height="135" fill="url(#bld-front)"/>
+      <rect x="440" y="268" width="71" height="20" fill="url(#bld-front)"/>
+      <!-- Glowing cyan stripe detail -->
+      <rect x="428" y="285" width="95" height="2" fill="#00aaff" opacity=".4" filter="url(#glow-cyan)"/>
+      <rect x="428" y="302" width="95" height="1" fill="#0066ff" opacity=".3" filter="url(#glow-cyan)"/>
+      <!-- Windows front -->
+      <g filter="url(#glow-win)" opacity=".9">
+        <rect x="436" y="295" width="10" height="7" fill="#ffdd44" rx="0.5"/>
+        <rect x="452" y="295" width="10" height="7" fill="#ffbb22" rx="0.5"/>
+        <rect x="468" y="295" width="10" height="7" fill="#ffdd44" rx="0.5"/>
+        <rect x="484" y="295" width="10" height="7" fill="#ffbb22" rx="0.5"/>
+        <rect x="500" y="295" width="10" height="7" fill="#ffdd44" rx="0.5"/>
+        <rect x="436" y="310" width="10" height="7" fill="#ffbb22" rx="0.5"/>
+        <rect x="452" y="310" width="10" height="7" fill="#ffdd44" rx="0.5"/>
+        <rect x="484" y="310" width="10" height="7" fill="#ffdd44" rx="0.5"/>
+        <rect x="436" y="325" width="10" height="7" fill="#ffdd44" rx="0.5"/>
+        <rect x="468" y="325" width="10" height="7" fill="#ffbb22" rx="0.5"/>
+        <rect x="500" y="325" width="10" height="7" fill="#ffdd44" rx="0.5"/>
+      </g>
+      <rect x="530" y="318" width="52" height="102" fill="url(#bld-front)"/>
+      <rect x="590" y="302" width="78" height="118" fill="url(#bld-front)"/>
+      <!-- Center foreground tower - tallest -->
+      <rect x="675" y="272" width="100" height="148" fill="url(#bld-front)"/>
+      <rect x="687" y="254" width="76" height="20" fill="url(#bld-front)"/>
+      <rect x="700" y="240" width="50" height="16" fill="url(#bld-front)"/>
+      <!-- Cyan top edge highlight -->
+      <rect x="675" y="272" width="100" height="2" fill="#0088ff" opacity=".6" filter="url(#glow-cyan)"/>
+      <g filter="url(#glow-win)" opacity=".9">
+        <rect x="683" y="282" width="11" height="8" fill="#ffee55" rx="0.5"/>
+        <rect x="700" y="282" width="11" height="8" fill="#ffcc33" rx="0.5"/>
+        <rect x="717" y="282" width="11" height="8" fill="#ffee55" rx="0.5"/>
+        <rect x="734" y="282" width="11" height="8" fill="#ffcc33" rx="0.5"/>
+        <rect x="751" y="282" width="11" height="8" fill="#ffee55" rx="0.5"/>
+        <rect x="683" y="298" width="11" height="8" fill="#ffcc33" rx="0.5"/>
+        <rect x="717" y="298" width="11" height="8" fill="#ffee55" rx="0.5"/>
+        <rect x="751" y="298" width="11" height="8" fill="#ffcc33" rx="0.5"/>
+        <rect x="683" y="314" width="11" height="8" fill="#ffee55" rx="0.5"/>
+        <rect x="700" y="314" width="11" height="8" fill="#ffcc33" rx="0.5"/>
+        <rect x="734" y="314" width="11" height="8" fill="#ffee55" rx="0.5"/>
+        <rect x="751" y="314" width="11" height="8" fill="#ffcc33" rx="0.5"/>
+      </g>
+      <rect x="784" y="308" width="60" height="112" fill="url(#bld-front)"/>
+      <rect x="852" y="290" width="75" height="130" fill="url(#bld-front)"/>
+      <rect x="935" y="305" width="58" height="115" fill="url(#bld-front)"/>
+      <rect x="1001" y="285" width="82" height="135" fill="url(#bld-front)"/>
+      <rect x="1013" y="268" width="58" height="20" fill="url(#bld-front)"/>
+      <rect x="1090" y="312" width="55" height="108" fill="url(#bld-front)"/>
+      <rect x="1152" y="295" width="78" height="125" fill="url(#bld-front)"/>
+      <rect x="1238" y="308" width="60" height="112" fill="url(#bld-front)"/>
+      <rect x="1305" y="288" width="80" height="132" fill="url(#bld-front)"/>
+      <rect x="1393" y="318" width="55" height="102" fill="url(#bld-front)"/>
+
+      <!-- ─── PALM TREE SILHOUETTES ─── -->
+      <g opacity=".85">
+        <!-- Palm 1 -->
+        <rect x="80" y="350" width="5" height="70" fill="#0a0510" rx="2"/>
+        <ellipse cx="82" cy="350" rx="22" ry="9" fill="#080410" transform="rotate(-15,82,350)"/>
+        <ellipse cx="82" cy="350" rx="20" ry="8" fill="#080410" transform="rotate(10,82,350)"/>
+        <ellipse cx="82" cy="350" rx="18" ry="7" fill="#080410" transform="rotate(-35,82,350)"/>
+        <ellipse cx="82" cy="350" rx="18" ry="7" fill="#080410" transform="rotate(35,82,350)"/>
+        <!-- Palm 2 -->
+        <rect x="562" y="348" width="5" height="72" fill="#0a0510" rx="2"/>
+        <ellipse cx="564" cy="348" rx="24" ry="9" fill="#080410" transform="rotate(-12,564,348)"/>
+        <ellipse cx="564" cy="348" rx="22" ry="8" fill="#080410" transform="rotate(15,564,348)"/>
+        <ellipse cx="564" cy="348" rx="20" ry="7" fill="#080410" transform="rotate(-30,564,348)"/>
+        <!-- Palm 3 -->
+        <rect x="1350" y="345" width="5" height="75" fill="#0a0510" rx="2"/>
+        <ellipse cx="1352" cy="345" rx="22" ry="9" fill="#080410" transform="rotate(-10,1352,345)"/>
+        <ellipse cx="1352" cy="345" rx="20" ry="8" fill="#080410" transform="rotate(18,1352,345)"/>
+        <ellipse cx="1352" cy="345" rx="18" ry="7" fill="#080410" transform="rotate(-32,1352,345)"/>
+      </g>
+
+      <!-- ─── ROAD / WATER LINE ─── -->
+      <rect x="0" y="418" width="1440" height="2" fill="#00aaff" opacity=".25" filter="url(#glow-cyan)"/>
+      <!-- Road reflections -->
+      <rect x="0" y="390" width="1440" height="30" fill="url(#sky-glow)" opacity=".25"/>
+
+      <!-- ─── HELICOPTER (animated) ─── -->
+      <g id="heli" opacity=".8">
+        <rect x="0" y="1" width="18" height="5" fill="#1a1a40" rx="2"/>
+        <rect x="-6" y="0" width="30" height="1.5" fill="#aaaacc" rx="1" opacity=".8"><animateTransform attributeName="transform" type="rotate" from="0 9 1" to="360 9 1" dur=".3s" repeatCount="indefinite"/></rect>
+        <rect x="16" y="2" width="8" height="1" fill="#888899" rx="0.5"/>
+        <circle cx="9" cy="3" r="1.5" fill="#ff4400" opacity=".9"><animate attributeName="opacity" values="1;0.2;1" dur=".8s" repeatCount="indefinite"/></circle>
+      </g>
+      <animateMotion xlink:href="#heli" dur="18s" repeatCount="indefinite">
+        <mpath xlink:href="#heli-path"/>
+      </animateMotion>
+      <path id="heli-path" d="M-20,180 Q400,100 800,150 Q1100,180 1460,80" fill="none"/>
+
+    </svg>
+  </div>
+
+  <!-- WATER LAYER -->
+  <div class="city-water"></div>
+  <!-- GROUND -->
+  <div class="city-ground">
+    <div class="road-surface"></div>
+    <div class="road-center"></div>
+    <div class="road-lane"></div>
+    <div class="road-glow"></div>
+  </div>
+
+  <!-- FADES -->
+  <div class="hero-top-fade"></div>
+  <div class="hero-bottom-fade"></div>
+
+  <!-- SCROLL HINT -->
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span class="hero-scroll-label">Scroll</span>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="hero-content">
+    <div class="hero-tag"><span class="hero-tag-dot"></span>Available for projects · Karachi, Pakistan</div>
+    <div class="hero-name">
+      <span class="line1">Sharjeel</span>
+      <span class="line2">Ahmed</span>
+    </div>
+    <p class="hero-role">Institutional Trader &amp; Analyst · <span>Web Developer</span> · PSX · Forex</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="#contact" class="btn-ghost">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="section-tag">Who I Am</div>
+        <h2 class="section-title">Trader.<br/>Analyst.<br/>Builder.</h2>
+        <div class="about-facts">
+          <div class="fact-box"><div class="fact-val">4+</div><div class="fact-label">Years Trading</div></div>
+          <div class="fact-box"><div class="fact-val">10+</div><div class="fact-label">Live Projects</div></div>
+          <div class="fact-box"><div class="fact-val">PSX</div><div class="fact-label">+ Forex Markets</div></div>
+          <div class="fact-box"><div class="fact-val">ACCA</div><div class="fact-label">Qualified</div></div>
+        </div>
+      </div>
+      <div class="reveal">
+        <p class="about-desc">I'm a dual-track professional — institutional equity trader and technical analyst at Chase Securities Karachi by day, and a full-stack web developer building high-converting digital products by night.</p>
+        <p class="about-desc">My analytical framework is built on Elliott Wave Theory, Fibonacci retracements, and EMA confluences. My development stack is built on clean HTML/CSS/JS with a premium design sensibility. Everything I build is meant to perform — in the market or in the browser.</p>
+        <div class="about-tags">
+          <span class="tag cyan">Elliott Wave</span>
+          <span class="tag cyan">Fibonacci</span>
+          <span class="tag gold">PSX Equities</span>
+          <span class="tag gold">Forex</span>
+          <span class="tag violet">HTML / CSS / JS</span>
+          <span class="tag violet">React</span>
+          <span class="tag coral">Financial Modeling</span>
+          <span class="tag coral">DCF / SOTP</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-tag">Selected Work</div>
+      <h2 class="section-title">Projects</h2>
+      <p class="section-sub">Ten live products — from trading platforms to sports arenas to kids AI academies.</p>
+    </div>
+    <div class="projects-grid">
+
+      <!-- 1. AlphaEdge -->
+      <div class="proj-card reveal">
+        <div class="proj-visual">
+          <canvas class="pvb" id="cv-alphaedge" width="400" height="200"></canvas>
+          <div class="proj-overlay"></div>
+          <span class="proj-cat cat-fin">Finance</span>
+          <div class="proj-live"><span class="proj-live-dot"></span><span class="proj-live-text">Live</span></div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-name">AlphaEdge</div>
+          <p class="proj-tagline">Elite trading signals for PSX &amp; Forex — Elliott Wave powered, WhatsApp delivered</p>
+          <div class="proj-stack">
+            <span class="proj-tech">HTML</span><span class="proj-tech">CSS</span><span class="proj-tech">JS</span><span class="proj-tech">Elliott Wave</span>
+          </div>
+          <div class="proj-footer">
+            <a href="https://alphaedge-five.vercel.app/" target="_blank" rel="noopener" class="proj-link">View Live <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            <span class="proj-num">01</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. InfiniMind -->
+      <div class="proj-card reveal">
+        <div class="proj-visual">
+          <canvas class="pvb" id="cv-infinimind" width="400" height="200"></canvas>
+          <div class="proj-overlay"></div>
+          <span class="proj-cat cat-edu">EdTech</span>
+          <div class="proj-live"><span class="proj-live-dot"></span><span class="proj-live-text">Live</span></div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-name">InfiniMind</div>
+          <p class="proj-tagline">AI tech academy for kids grades 1–7 — three learning tracks, real projects</p>
+          <div class="proj-stack">
+            <span class="proj-tech">HTML</span><span class="proj-tech">CSS</span><span class="proj-tech">JS</span><span class="proj-tech">AI Chatbot</span>
+          </div>
+          <div class="proj-footer">
+            <a href="https://infinimind.vercel.app/" target="_blank" rel="noopener" class="proj-link">View Live <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            <span class="proj-num">02</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Gen Z Sports Arena -->
+      <div class="proj-card reveal">
+        <div class="proj-visual">
+          <canvas class="pvb" id="cv-genz" width="400" height="200"></canvas>
+          <div class="proj-overlay"></div>
+          <span class="proj-cat cat-sports">Sports</span>
+          <div class="proj-live"><span class="proj-live-dot"></span><span class="proj-live-text">Live</span></div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-name">Gen Z Arena</div>
+          <p class="proj-tagline">Premium padel club site — dark red brand, WhatsApp booking, mobile-first</p>
+          <div class="proj-stack">
+            <span class="proj-tech">HTML</span><span class="proj-tech">CSS</span><span class="proj-tech">JS</span><span class="proj-tech">WA API</span>
+          </div>
+          <div class="proj-footer">
+            <a href="https://genz-sports-arena.vercel.app/" target="_blank" rel="noopener" class="proj-link">View Live <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            <span class="proj-num">03</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Dental Sapphire -->
+      <div class="proj-card reveal">
+        <div class="proj-visual">
+          <canvas class="pvb" id="cv-dental" width="400" height="200"></canvas>
+          <div class="proj-overlay"></div>
+          <span class="proj-cat cat-health">Healthcare</span>
+          <div class="proj-live"><span class="proj-live-dot"></span><span class="proj-live-text">Live</span></div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-name">Dental Sapphire</div>
+          <p class="proj-tagline">Aesthetic dental clinic — orthodontics, implants, skin &amp; hair care, Karachi</p>
+          <div class="proj-stack">
+            <span class="proj-tech">HTML</span><span class="proj-tech">CSS</span><span class="proj-tech">JS</span><span class="proj-tech">AI Assistant</span>
+          </div>
+          <div class="proj-footer">
+            <a href="https://thedentalsapphire.vercel.app/" target="_blank" rel="noopener" class="proj-link">View Live <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            <span class="proj-num">04</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Sky Heaven Ballroom -->
+      <div class="proj-card reveal">
+        <div class="proj-visual">
+          <canvas class="pvb" id="cv-skyheaven" width="400" height="200"></canvas>
+          <div class="proj-overlay"></div>
+          <span class="proj-cat cat-events">Events</span>
+          <div class="proj-live"><span class="proj-live-dot"></span><span class="proj-live-text">Live</span></div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-name">Sky Heaven</div>
+          <p class="proj-tagline">Multi-floor wedding &amp; event venue — glass lifts, catering, North Nazimabad</p>
+          <div class="proj-stack">
+            <span class="proj-tech">HTML</span><span class="proj-tech">CSS</span><span class="proj-tech">JS</span><span class="proj-tech">Gallery</span>
+          </div>
+          <div class="proj-footer">
+            <a href="https://sky-heaven-ballroom.vercel.app/" target="_blank" rel="noopener" class="proj-link">View Live <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            <span class="proj-num">05</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Legacy Ballroom -->
+      <div class="proj-card reveal">
+        <div class="proj-visual">
+          <canvas class="pvb" id="cv-legacy" width="400" height="200"></canvas>
+          <div class="proj-overlay"></div>
+          <span class="proj-cat cat-events">Events</span>
+          <div class="proj-live"><span class="proj-live-dot"></span><span class="proj-live-text">Live</span></div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-name">Legacy Ballroom</div>
+          <p class="proj-tagline">Premium event venue — weddings, corporate events, sophisticated design</p>
+          <div class="proj-stack">
+            <span class="proj-tech">HTML</span><span class="proj-tech">CSS</span><span class="proj-tech">JS</span><span class="proj-tech">Booking</span>
+          </div>
+          <div class="proj-footer">
+            <a href="https://legacy-ballroom.vercel.app/" target="_blank" rel="noopener" class="proj-link">View Live <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            <span class="proj-num">06</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. Power Fitness Zone -->
+      <div class="proj-card reveal">
+        <div class="proj-visual">
+          <canvas class="pvb" id="cv-gym" width="400" height="200"></canvas>
+          <div class="proj-overlay"></div>
+          <span class="proj-cat cat-sports">Fitness</span>
+          <div class="proj-live"><span class="proj-live-dot"></span><span class="proj-live-text">Live</span></div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-name">Power Fitness</div>
+          <p class="proj-tagline">High-energy gym website — membership plans, trainer profiles, dark theme</p>
+          <div class="proj-stack">
+            <span class="proj-tech">HTML</span><span class="proj-tech">CSS</span><span class="proj-tech">JS</span><span class="proj-tech">Animations</span>
+          </div>
+          <div class="proj-footer">
+            <a href="https://power-fitness-zone-gym.vercel.app/" target="_blank" rel="noopener" class="proj-link">View Live <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            <span class="proj-num">07</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. AA Fitness -->
+      <div class="proj-card reveal">
+        <div class="proj-visual">
+          <canvas class="pvb" id="cv-aafitness" width="400" height="200"></canvas>
+          <div class="proj-overlay"></div>
+          <span class="proj-cat cat-sports">Fitness</span>
+          <div class="proj-live"><span class="proj-live-dot"></span><span class="proj-live-text">Live</span></div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-name">AA Fitness</div>
+          <p class="proj-tagline">Premium fitness studio — wine-red palette, class schedules, trainer bios</p>
+          <div class="proj-stack">
+            <span class="proj-tech">HTML</span><span class="proj-tech">CSS</span><span class="proj-tech">JS</span>
+          </div>
+          <div class="proj-footer">
+            <a href="https://aa-fitness-wine.vercel.app/" target="_blank" rel="noopener" class="proj-link">View Live <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            <span class="proj-num">08</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9. Lotus -->
+      <div class="proj-card reveal">
+        <div class="proj-visual">
+          <canvas class="pvb" id="cv-lotus" width="400" height="200"></canvas>
+          <div class="proj-overlay"></div>
+          <span class="proj-cat cat-health">Wellness</span>
+          <div class="proj-live"><span class="proj-live-dot"></span><span class="proj-live-text">Live</span></div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-name">Lotus</div>
+          <p class="proj-tagline">Elegant wellness brand — spa, beauty &amp; wellbeing with lotus-inspired visual identity</p>
+          <div class="proj-stack">
+            <span class="proj-tech">HTML</span><span class="proj-tech">CSS</span><span class="proj-tech">JS</span>
+          </div>
+          <div class="proj-footer">
+            <a href="https://lotus-one-orpin.vercel.app/" target="_blank" rel="noopener" class="proj-link">View Live <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            <span class="proj-num">09</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10. YKW Calculator -->
+      <div class="proj-card reveal">
+        <div class="proj-visual">
+          <canvas class="pvb" id="cv-ykw" width="400" height="200"></canvas>
+          <div class="proj-overlay"></div>
+          <span class="proj-cat cat-tools">Tool</span>
+          <div class="proj-live"><span class="proj-live-dot"></span><span class="proj-live-text">Live</span></div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-name">YKW Calculator</div>
+          <p class="proj-tagline">Custom financial calculator tool — built for precision, clean UI</p>
+          <div class="proj-stack">
+            <span class="proj-tech">HTML</span><span class="proj-tech">CSS</span><span class="proj-tech">JS</span><span class="proj-tech">Math</span>
+          </div>
+          <div class="proj-footer">
+            <a href="https://ykw-calculator.vercel.app/" target="_blank" rel="noopener" class="proj-link">View Live <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            <span class="proj-num">10</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-tag">Expertise</div>
+      <h2 class="section-title">Skills</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-row reveal"><div class="skill-head"><span class="skill-name">Elliott Wave</span><span class="skill-pct">95%</span></div><div class="skill-bar"><div class="skill-fill" style="--w:.95"></div></div></div>
+      <div class="skill-row reveal"><div class="skill-head"><span class="skill-name">Technical Analysis</span><span class="skill-pct">92%</span></div><div class="skill-bar"><div class="skill-fill" style="--w:.92"></div></div></div>
+      <div class="skill-row reveal"><div class="skill-head"><span class="skill-name">Fundamental Analysis</span><span class="skill-pct">88%</span></div><div class="skill-bar"><div class="skill-fill" style="--w:.88"></div></div></div>
+      <div class="skill-row reveal"><div class="skill-head"><span class="skill-name">Financial Modelling</span><span class="skill-pct">85%</span></div><div class="skill-bar"><div class="skill-fill" style="--w:.85"></div></div></div>
+      <div class="skill-row reveal"><div class="skill-head"><span class="skill-name">HTML / CSS</span><span class="skill-pct">90%</span></div><div class="skill-bar"><div class="skill-fill" style="--w:.90"></div></div></div>
+      <div class="skill-row reveal"><div class="skill-head"><span class="skill-name">JavaScript</span><span class="skill-pct">80%</span></div><div class="skill-bar"><div class="skill-fill" style="--w:.80"></div></div></div>
+      <div class="skill-row reveal"><div class="skill-head"><span class="skill-name">UI / UX Design</span><span class="skill-pct">82%</span></div><div class="skill-bar"><div class="skill-fill" style="--w:.82"></div></div></div>
+      <div class="skill-row reveal"><div class="skill-head"><span class="skill-name">Excel / Modelling</span><span class="skill-pct">88%</span></div><div class="skill-bar"><div class="skill-fill" style="--w:.88"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-tag">Get In Touch</div>
+      <h2 class="section-title">Let's Work<br/>Together</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="reveal">
+        <p class="about-desc" style="margin-bottom:24px;font-size:.9rem;color:var(--off);line-height:1.85;">Whether you need a high-converting website, a financial model, or market analysis — I deliver institutional-grade work. Based in Karachi, available worldwide.</p>
+        <div class="contact-links">
+          <a href="https://wa.me/923239515018" target="_blank" rel="noopener" class="contact-link">
+            <div class="cl-icon" style="background:rgba(37,211,102,.12);color:#25D366;">💬</div>
+            <div><div class="cl-label">WhatsApp</div><div class="cl-val">+92 323 9515018</div></div>
+          </a>
+          <a href="mailto:sharjeel@chasesecurities.com" class="contact-link">
+            <div class="cl-icon" style="background:rgba(0,212,255,.1);color:var(--cyan);">✉️</div>
+            <div><div class="cl-label">Email</div><div class="cl-val">Chase Securities, Karachi</div></div>
+          </a>
+          <a href="https://www.instagram.com/zaheer_sports_arena/" target="_blank" rel="noopener" class="contact-link">
+            <div class="cl-icon" style="background:rgba(255,94,58,.1);color:var(--coral);">📸</div>
+            <div><div class="cl-label">Instagram</div><div class="cl-val">@zaheer_sports_arena</div></div>
+          </a>
+          <div class="contact-link">
+            <div class="cl-icon" style="background:rgba(245,200,66,.1);color:var(--gold);">📍</div>
+            <div><div class="cl-label">Location</div><div class="cl-val">Karachi, Pakistan · Available Remotely</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form reveal">
+        <div class="form-2col">
+          <div class="form-row"><label>Name</label><input type="text" id="cf-name" placeholder="Your name"/></div>
+          <div class="form-row"><label>WhatsApp</label><input type="tel" id="cf-phone" placeholder="03XX XXXXXXX"/></div>
+        </div>
+        <div class="form-row"><label>What do you need?</label><input type="text" id="cf-subject" placeholder="e.g. Website, Financial model, Analysis"/></div>
+        <div class="form-row"><label>Message</label><textarea id="cf-msg" placeholder="Tell me about your project..."></textarea></div>
+        <button id="form-submit" type="button">Send via WhatsApp →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">SHARJEEL<em>.</em></div>
+  <div class="footer-sub">Trader · Analyst · Developer · Karachi</div>
+  <div class="footer-copy">© 2025 Sharjeel Ahmed. All rights reserved.</div>
+</footer>
+
+<!-- MOB BAR -->
+<div id="mob-bar">
+  <a href="#projects" class="mbb">Projects</a>
+  <a href="https://wa.me/923239515018" target="_blank" rel="noopener" class="mbb accent">WhatsApp Me</a>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+/* ── NAV ── */
+var nav=document.getElementById('nav');
+window.addEventListener('scroll',function(){nav.classList.toggle('solid',window.scrollY>40);},{passive:true});
+var hbg=document.getElementById('hamburger'),mm=document.getElementById('mmenu');
+function closeMM(){hbg.classList.remove('open');mm.classList.remove('open');document.body.style.overflow='';}
+hbg.addEventListener('click',function(){var o=hbg.classList.toggle('open');mm.classList.toggle('open',o);document.body.style.overflow=o?'hidden':'';});
+document.querySelectorAll('.ml').forEach(function(l){l.addEventListener('click',closeMM);});
+
+/* ── STARS ── */
+var sc=document.getElementById('stars-canvas');
+if(sc){
+  var sr=sc.getBoundingClientRect();
+  sc.width=window.innerWidth;sc.height=window.innerHeight;
+  var sctx=sc.getContext('2d');
+  var stars=[];
+  for(var i=0;i<220;i++){stars.push({x:Math.random()*sc.width,y:Math.random()*sc.height*.65,r:Math.random()*1.2+.3,a:Math.random(),s:Math.random()*.008+.003});}
+  function drawStars(){
+    sctx.clearRect(0,0,sc.width,sc.height);
+    stars.forEach(function(s){
+      s.a+=s.s;if(s.a>1||s.a<0)s.s*=-1;
+      sctx.beginPath();sctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      sctx.fillStyle='rgba(255,255,255,'+s.a.toFixed(2)+')';sctx.fill();
+    });
+    requestAnimationFrame(drawStars);
+  }
+  drawStars();
+  window.addEventListener('resize',function(){sc.width=window.innerWidth;sc.height=window.innerHeight;},{passive:true});
+}
+
+/* ── REVEAL ── */
+var revs=document.querySelectorAll('.reveal');
+var io=new IntersectionObserver(function(entries){entries.forEach(function(e,i){if(e.isIntersecting){setTimeout(function(){e.target.classList.add('in');},i*60);io.unobserve(e.target);}});},{threshold:0.07,rootMargin:'0px 0px -24px 0px'});
+revs.forEach(function(el){io.observe(el);});
+
+/* ── SKILL BARS ── */
+var fills=document.querySelectorAll('.skill-fill');
+var sio=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){var f=e.target;var w=f.style.getPropertyValue('--w')||'0';f.style.transitionDuration='1s';f.style.transform='scaleX('+w+')';f.classList.add('in');sio.unobserve(f);}});},{threshold:0.3});
+fills.forEach(function(f){sio.observe(f);});
+
+/* ── PROJECT CARD CANVASES ── */
+function drawProjectCanvas(id,cfg){
+  var c=document.getElementById(id);
+  if(!c)return;
+  var ctx=c.getContext('2d');
+  var w=c.width,h=c.height;
+  // Background gradient
+  var bg=ctx.createLinearGradient(0,0,w,h);
+  bg.addColorStop(0,cfg.bg0);bg.addColorStop(1,cfg.bg1);
+  ctx.fillStyle=bg;ctx.fillRect(0,0,w,h);
+  // Grid lines
+  ctx.strokeStyle=cfg.grid||'rgba(255,255,255,0.04)';ctx.lineWidth=1;
+  for(var x=0;x<w;x+=32){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,h);ctx.stroke();}
+  for(var y=0;y<h;y+=32){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke();}
+  // Accent glow
+  var gl=ctx.createRadialGradient(cfg.gx||w*.3,cfg.gy||h*.4,0,cfg.gx||w*.3,cfg.gy||h*.4,w*.55);
+  gl.addColorStop(0,cfg.ga);gl.addColorStop(1,'transparent');
+  ctx.fillStyle=gl;ctx.fillRect(0,0,w,h);
+  // Icon / text
+  ctx.font='bold 48px sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.globalAlpha=.18;ctx.fillStyle='#fff';
+  ctx.fillText(cfg.icon,w/2,h/2);ctx.globalAlpha=1;
+  // Project name overlay
+  ctx.font='900 18px Barlow Condensed, sans-serif';
+  ctx.letterSpacing='3px';
+  ctx.textAlign='left';ctx.textBaseline='bottom';
+  var gn=ctx.createLinearGradient(0,0,w,0);
+  gn.addColorStop(0,cfg.accent);gn.addColorStop(1,'transparent');
+  ctx.fillStyle=gn;ctx.globalAlpha=.35;
+  ctx.fillRect(0,h-44,w,44);ctx.globalAlpha=1;
+  // Bottom accent line
+  ctx.fillStyle=cfg.accent;ctx.globalAlpha=.8;
+  ctx.fillRect(0,h-2,w*.4,2);ctx.globalAlpha=1;
+  // Scan lines for realism
+  for(var sl=0;sl<h;sl+=4){
+    ctx.fillStyle='rgba(0,0,0,0.06)';
+    ctx.fillRect(0,sl,w,1);
+  }
+}
+
+/* Finance - dark gold chart look */
+drawProjectCanvas('cv-alphaedge',{bg0:'#0a0800',bg1:'#1a1200',gx:300,gy:80,ga:'rgba(245,200,66,0.18)',accent:'#f5c842',icon:'📈',grid:'rgba(245,200,66,0.06)'});
+/* EdTech - deep violet/blue */
+drawProjectCanvas('cv-infinimind',{bg0:'#06040f',bg1:'#0e0820',gx:200,gy:100,ga:'rgba(139,92,246,0.2)',accent:'#8b5cf6',icon:'∞',grid:'rgba(139,92,246,0.06)'});
+/* Sports - black/red */
+drawProjectCanvas('cv-genz',{bg0:'#0a0000',bg1:'#1a0000',gx:350,gy:80,ga:'rgba(232,0,13,0.18)',accent:'#e8000d',icon:'🎾',grid:'rgba(232,0,13,0.05)'});
+/* Dental - sapphire blue */
+drawProjectCanvas('cv-dental',{bg0:'#00050f',bg1:'#000a1a',gx:200,gy:120,ga:'rgba(0,100,220,0.2)',accent:'#0080ff',icon:'💎',grid:'rgba(0,100,220,0.06)'});
+/* Sky Heaven - purple gold */
+drawProjectCanvas('cv-skyheaven',{bg0:'#06020f',bg1:'#100520',gx:250,gy:80,ga:'rgba(200,150,255,0.18)',accent:'#c8a0ff',icon:'☁️',grid:'rgba(200,150,255,0.05)'});
+/* Legacy - dark gold */
+drawProjectCanvas('cv-legacy',{bg0:'#080600',bg1:'#141000',gx:180,gy:100,ga:'rgba(201,168,76,0.2)',accent:'#c9a84c',icon:'👑',grid:'rgba(201,168,76,0.06)'});
+/* Gym - orange fire */
+drawProjectCanvas('cv-gym',{bg0:'#0a0400',bg1:'#1a0800',gx:320,gy:70,ga:'rgba(255,80,0,0.2)',accent:'#ff5000',icon:'💪',grid:'rgba(255,80,0,0.05)'});
+/* AA Fitness - wine */
+drawProjectCanvas('cv-aafitness',{bg0:'#0a0004',bg1:'#180008',gx:200,gy:90,ga:'rgba(180,0,60,0.2)',accent:'#c0003c',icon:'🏋️',grid:'rgba(180,0,60,0.05)'});
+/* Lotus - pink rose */
+drawProjectCanvas('cv-lotus',{bg0:'#08040a',bg1:'#120818',gx:260,gy:80,ga:'rgba(255,100,180,0.18)',accent:'#ff64b4',icon:'🪷',grid:'rgba(255,100,180,0.05)'});
+/* Calculator - cyan data */
+drawProjectCanvas('cv-ykw',{bg0:'#000a0f',bg1:'#001520',gx:200,gy:100,ga:'rgba(0,212,255,0.18)',accent:'#00d4ff',icon:'🧮',grid:'rgba(0,212,255,0.06)'});
+
+/* ── CONTACT FORM → WHATSAPP ── */
+document.getElementById('form-submit').addEventListener('click',function(){
+  var n=document.getElementById('cf-name').value.trim();
+  var p=document.getElementById('cf-phone').value.trim();
+  var s=document.getElementById('cf-subject').value.trim();
+  var m=document.getElementById('cf-msg').value.trim();
+  if(!n||!m){alert('Please fill in your name and message.');return;}
+  var txt='Hi Sharjeel! I found your portfolio and I have a project for you.\n\nName: '+n+(p?'\nWhatsApp: '+p:'')+(s?'\nProject: '+s:'')+'\n\nMessage: '+m;
+  window.open('https://wa.me/923239515018?text='+encodeURIComponent(txt),'_blank');
+});
+
+})();
+</script>
+</body>
+</html>
