@@ -529,6 +529,22 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
   .badges .badge{font-size:.66rem;padding:6px 10px}
 }
 
+
+/* interactive reminder popup */
+#reminderPop{position:fixed;left:50%;bottom:calc(100px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:320;width:min(380px,92vw);display:none}
+#reminderPop.on{display:block;animation:pop .35s cubic-bezier(.2,.9,.3,1.3)}
+.rem-card{background:var(--surface);border:1px solid rgba(200,255,61,.4);border-radius:20px;padding:20px;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.rem-card .rh{display:flex;gap:12px;align-items:center;margin-bottom:14px}
+.rem-card .ri{width:44px;height:44px;border-radius:12px;background:rgba(61,214,255,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.rem-card b{font-size:1rem;display:block}
+.rem-card small{color:var(--muted);font-size:.8rem}
+.rem-btns{display:flex;gap:10px}
+.rem-btns button{flex:1;border:none;border-radius:12px;padding:13px;font-weight:800;font-size:.9rem;cursor:pointer;font-family:inherit;transition:transform .2s}
+.rem-btns button:hover{transform:translateY(-2px)}
+.rem-yes{background:var(--accent);color:#000}
+.rem-no{background:var(--bg2);color:var(--muted);border:1px solid var(--border)!important}
+@media (min-width:769px){#reminderPop{left:auto;right:24px;transform:none;bottom:24px}}
+
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
   [data-reveal]{opacity:1;transform:none}
@@ -1115,6 +1131,7 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
   <div id="notifList"></div>
 </div>
 <div id="restTimer"><div><b id="rtTime">1:30</b><small id="rtLabel">Rest — Bench Press</small></div><button onclick="stopRest()">✕</button></div>
+<div id="reminderPop"></div>
 <div class="toast-wrap" id="toasts"></div>
 
 <script>
@@ -1243,6 +1260,8 @@ function restoreSession(){
     const s = JSON.parse(localStorage.getItem('apx_session')||'null');
     if (!s || !s.user || !s.user.name) return false;
     user = s.user;
+    const today = new Date().toDateString();
+    if (user.waterDay !== today){ user.water = 0; user.waterDay = today; }  // fresh day resets water
     if (s.mySplit) { mySplit = s.mySplit; buildTabs(); renderDay(activeDay); buildPlanner(); }
     if (user.cals) document.getElementById('dCals').textContent = (+user.cals).toLocaleString();
     if (user.weight) document.getElementById('dWeight').textContent = user.weight + ' kg';
@@ -1393,7 +1412,9 @@ function enterApp(quiet){
   scrollTo(0,0);
   if (!quiet) toast('Welcome, '+user.name,'Your Pro dashboard is ready.');
   renderTodaySession();
+  paintWater();
   setTimeout(dailyPlanNotif, 2500);
+  if (!window._remEngineOn){ window._remEngineOn = true; startReminderEngine(); }
   setTimeout(()=>pushNotif(NIC.chart,'Your weekly report is ready','Grade A− · open Reports to view'), 4000);
   setTimeout(()=>pushNotif(NIC.cam,'Hamza posted a new transformation','Month 4 photo added to the gallery'), 9000);
 }
@@ -1704,19 +1725,29 @@ if (heroInner && !matchMedia('(prefers-reduced-motion: reduce)').matches){
 
 
 /* ============ WATER TRACKER ============ */
-const wr = document.getElementById('waterRow');
-if (wr){ let water = 3;
+let water = (user.water != null ? user.water : 0);
+function paintWater(){
+  const wr = document.getElementById('waterRow');
+  if (wr) wr.querySelectorAll('.glass').forEach((x,j)=>x.classList.toggle('full', j<water));
+  const wc = document.getElementById('waterCount'); if (wc) wc.textContent = water;
+}
+function setWater(n){
+  water = Math.max(0, Math.min(8, n));
+  user.water = water; user.waterDay = new Date().toDateString(); saveSession();
+  paintWater();
+  if (water >= 8) toast('Hydration complete','8 of 8 glasses today. Well done.');
+}
+(function initWater(){
+  const wr = document.getElementById('waterRow'); if(!wr) return;
+  wr.innerHTML = '';
   for (let i=0;i<8;i++){
     const g = document.createElement('div');
-    g.className = 'glass' + (i<water?' full':''); g.innerHTML = '<i></i>';
-    g.onclick = ()=>{ water = i+1;
-      wr.querySelectorAll('.glass').forEach((x,j)=>x.classList.toggle('full', j<water));
-      document.getElementById('waterCount').textContent = water;
-      if (water===8) toast('Hydration complete','8 of 8 glasses logged today.');
-    };
+    g.className = 'glass'; g.innerHTML = '<i></i>';
+    g.onclick = ()=> setWater(i+1);
     wr.appendChild(g);
   }
-}
+  paintWater();
+})();
 /* ============ REST TIMER ============ */
 let rtInt = null;
 function startRest(row){
@@ -1817,6 +1848,61 @@ async function shareStory(forceDownload){
   }, 'image/png');
 }
 function roundRect(x,px,py,w,h,r){ x.beginPath(); x.moveTo(px+r,py); x.arcTo(px+w,py,px+w,py+h,r); x.arcTo(px+w,py+h,px,py+h,r); x.arcTo(px,py+h,px,py,r); x.arcTo(px,py,px+w,py,r); x.closePath(); }
+
+
+/* ============ INTERACTIVE REMINDERS (yes/no -> updates your data) ============ */
+function showReminder(icon, title, sub, yesLabel, noLabel, onYes, onNo){
+  const pop = document.getElementById('reminderPop');
+  pop.innerHTML = `<div class="rem-card">
+    <div class="rh"><div class="ri">${icon}</div><div><b>${title}</b><small>${sub}</small></div></div>
+    <div class="rem-btns"><button class="rem-no" id="remNo">${noLabel}</button><button class="rem-yes" id="remYes">${yesLabel}</button></div>
+  </div>`;
+  pop.classList.add('on');
+  const close = ()=> pop.classList.remove('on');
+  document.getElementById('remYes').onclick = ()=>{ close(); onYes&&onYes(); };
+  document.getElementById('remNo').onclick  = ()=>{ close(); onNo&&onNo(); };
+  systemNotify(title, sub);          // also fire OS notification if allowed
+  setTimeout(()=>{ if(pop.classList.contains('on')) close(); }, 30000); // auto-dismiss after 30s
+}
+
+const WATER_ICON = '<svg viewBox="0 0 24 24" width="22" fill="none" stroke="var(--accent2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c4 5 6 8 6 11a6 6 0 0 1-12 0c0-3 2-6 6-11Z"/></svg>';
+function waterReminder(){
+  if (document.getElementById('app').style.display !== 'block') return;
+  if (water >= 8) return; // already done for the day
+  showReminder(WATER_ICON, 'Time to hydrate 💧'.replace(' 💧',''), 'Did you drink a glass of water?',
+    'Yes, I drank', 'Not yet',
+    ()=>{ setWater(water+1); toast('Nice — logged','Glass '+water+' of 8 today.'); },
+    ()=>{ toast('No worries','I\'ll remind you again soon.'); });
+}
+
+const MEAL_ICON = '<svg viewBox="0 0 24 24" width="22" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v18M4 8h4M8 3v18M14 3c-1.5 0-2 2-2 4s.5 4 2 4M14 11v10"/></svg>';
+function mealReminder(){
+  if (document.getElementById('app').style.display !== 'block') return;
+  showReminder(MEAL_ICON, 'Meal check-in', 'Did you hit your protein at your last meal?',
+    'Yes ✓'.replace(' ✓',''), 'Missed it',
+    ()=>{ toast('Great','Protein is what protects your muscle.'); },
+    ()=>{ toast('Next meal counts','Aim for a palm of protein each meal.'); });
+}
+
+const WORKOUT_ICON = '<svg viewBox="0 0 24 24" width="22" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7v10M18 7v10M4 9h4M16 9h4M8 12h8"/></svg>';
+function workoutReminder(){
+  if (document.getElementById('app').style.display !== 'block') return;
+  const d = todayName(), s = mySplit[d];
+  if (s.type === 'rest') return;
+  showReminder(WORKOUT_ICON, 'Did you train today?', TYPE_LABEL[s.type]+' day — '+MUSCLES[s.type],
+    'Yes, done', 'Not yet',
+    ()=>{ user.trainedToday = new Date().toDateString(); saveSession(); toast('Logged','Session marked complete. Streak safe.'); pushNotif(NIC.chart,'Workout logged',TYPE_LABEL[s.type]+' day complete'); },
+    ()=>{ toast('Still time','Even 30 minutes counts. Go get it.'); });
+}
+
+/* schedule: water every ~90 min while app open, meal + workout nudges spaced out */
+function startReminderEngine(){
+  setTimeout(waterReminder, 60000);              // first water nudge after 1 min (demo-friendly)
+  setInterval(waterReminder, 90*60000);          // then every 90 minutes
+  setTimeout(workoutReminder, 20*60000);         // workout check after 20 min
+  setTimeout(mealReminder, 45*60000);            // meal check after 45 min
+  setInterval(mealReminder, 4*60*60000);         // meals every 4 hours
+}
 
 /* auto-login returning users */
 restoreSession();
