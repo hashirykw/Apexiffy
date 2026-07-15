@@ -773,7 +773,7 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
       <h2>Start your 3-day free trial</h2>
       <p>Full Pro access. No card required. Cancel anytime.</p>
       <div class="field"><label>Username</label><input type="text" id="suName" placeholder="Choose a username"></div>
-      <div class="field"><label>Phone Number</label><input type="tel" id="suPhone" placeholder="03XX-XXXXXXX" inputmode="tel"></div>
+      <div class="field"><label>Phone Number <span style="color:var(--danger)">*</span></label><input type="tel" id="suPhone" placeholder="03XX-XXXXXXX" inputmode="tel" maxlength="12" oninput="fmtPhone(this)"><small id="phoneHint" style="color:var(--muted);font-size:.72rem;display:block;margin-top:5px">Required — we use this to reach you about your plan</small></div>
       <div class="field"><label>Password</label><input type="password" id="suPass" placeholder="Min 8 characters"></div>
       <div class="trial-note">✓ 3 days of full Pro access — then Rs 999/month if you continue</div>
       <button class="btn btn-primary" style="width:100%" onclick="doSignup()">Start Free Trial →</button>
@@ -1242,6 +1242,26 @@ function restoreSession(){
     return true;
   } catch(e){ return false; }
 }
+/* ---- phone validation + live formatting ---- */
+function normalizePhone(v){
+  let d = (v||'').replace(/[^0-9]/g,'');
+  if (d.startsWith('92')) d = '0' + d.slice(2);        // +92 300... -> 0300...
+  if (d.length === 10 && d.startsWith('3')) d = '0'+d;  // 300... -> 0300...
+  // valid PK mobile: 11 digits, starts 03, 4th digit 0-9
+  if (/^03[0-9]{9}$/.test(d)) return d.slice(0,4)+'-'+d.slice(4);  // 03XX-XXXXXXX
+  return null;
+}
+function fmtPhone(el){
+  let d = el.value.replace(/[^0-9]/g,'').slice(0,11);
+  el.value = d.length > 4 ? d.slice(0,4)+'-'+d.slice(4) : d;
+  const ok = /^03[0-9]{9}$/.test(d);
+  const hint = document.getElementById('phoneHint');
+  if (hint){
+    if (!d){ hint.textContent='Required — we use this to reach you about your plan'; hint.style.color='var(--muted)'; }
+    else if (ok){ hint.textContent='✓ Valid number'; hint.style.color='var(--accent)'; }
+    else { hint.textContent='Enter 11 digits: 03XX-XXXXXXX'; hint.style.color='var(--danger)'; }
+  }
+}
 async function hashPass(p){
   const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode('apx::'+p));
   return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');
@@ -1279,10 +1299,11 @@ async function doLogin(){
 }
 function doSignup(){
   const n = document.getElementById('suName').value.trim();
-  const p = document.getElementById('suPhone').value.trim();
+  const pRaw = document.getElementById('suPhone').value.trim();
   const pw = document.getElementById('suPass').value;
   if(!n){ toast('Username required','Pick a username to continue.'); return; }
-  if(!/^[0-9+\-\s]{10,15}$/.test(p)){ toast('Valid phone number required','Format: 03XX-XXXXXXX'); return; }
+  const p = normalizePhone(pRaw);
+  if(!p){ toast('Enter a valid phone number','Pakistani mobile: 03XX-XXXXXXX (11 digits).'); document.getElementById('suPhone').focus(); return; }
   if(pw.length < 8){ toast('Password too short','Use at least 8 characters.'); return; }
   user.name = n; user.phone = p; user.isAdmin = false;
   user.trialStart = Date.now();
