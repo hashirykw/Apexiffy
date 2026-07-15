@@ -139,6 +139,7 @@ footer{padding:50px 5vw;border-top:1px solid var(--border);display:flex;justify-
 .field label{display:block;font-size:.78rem;color:var(--muted);margin-bottom:6px;letter-spacing:.05em;text-transform:uppercase;font-weight:700}
 .field input,.field select{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:13px 16px;color:var(--text);font-size:.95rem;outline:none;transition:border-color .25s}
 .field input:focus,.field select:focus{border-color:var(--accent)}
+.trial-note{background:rgba(200,255,61,.07);border:1px solid rgba(200,255,61,.25);border-radius:12px;padding:11px 14px;font-size:.78rem;color:var(--accent);margin-bottom:16px}
 .auth-switch{text-align:center;margin-top:18px;font-size:.85rem;color:var(--muted)}
 .auth-switch a{color:var(--accent);cursor:pointer;font-weight:700}
 .close-x{position:absolute;top:16px;right:20px;background:none;border:none;color:var(--muted);font-size:1.4rem}
@@ -501,7 +502,7 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
     <a href="#pricing">Pricing</a>
     <a href="#faq">FAQ</a>
     <a class="btn btn-ghost" onclick="openAuth('login')" style="padding:10px 22px">Log in</a>
-    <a class="btn btn-primary" onclick="openAuth('signup')" style="padding:10px 22px">Start Free Trial</a>
+    <a class="btn btn-primary" onclick="openAuth('signup')" style="padding:10px 22px">Start 3-Day Free Trial</a>
   </div>
   <button class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
 </nav>
@@ -517,7 +518,7 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
     </h1>
     <p>Build your own split, log your schedule, diet & calories — and get a fully custom training guide built around <em>your</em> body, height, goal and lifestyle. Track your transformation with monthly photo reports.</p>
     <div class="hero-ctas">
-      <a class="btn btn-primary" onclick="openAuth('signup')">Start Your Transformation →</a>
+      <a class="btn btn-primary" onclick="openAuth('signup')">Start 3-Day Free Trial →</a>
       <a class="btn btn-ghost" href="#how">See how it works</a>
     </div>
     <div class="hero-stats">
@@ -627,9 +628,9 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
   </div>
   <div class="plans">
     <div class="plan" data-tilt data-reveal style="--i:0">
-      <h3>Starter</h3><div class="price">Free<small></small></div>
+      <h3>Trial</h3><div class="price">Free<small> / 3 days</small></div>
       <ul><li><b>✓</b>1 custom guide</li><li><b>✓</b>Calorie calculator</li><li><b>✓</b>Basic workout log</li><li><b>✕</b>Photo gallery & reports</li><li><b>✕</b>Notifications</li></ul>
-      <a class="btn btn-ghost" onclick="openAuth('signup')">Try Free</a>
+      <a class="btn btn-ghost" onclick="openAuth('signup')">Start 3-Day Trial</a>
     </div>
     <div class="plan pro" data-tilt data-reveal style="--i:1">
       <div class="pop">MOST POPULAR</div>
@@ -687,7 +688,7 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
   <div class="sec-head" data-reveal>
     <h2>Month 1 you vs Month 6 you.<br><span style="color:var(--accent)">Start the comparison today.</span></h2>
     <p style="margin:20px 0 30px">Join the platform. Upload photo #1. Let the reports do the talking.</p>
-    <a class="btn btn-primary" onclick="openAuth('signup')" style="font-size:1rem;padding:16px 40px">Create Free Account</a>
+    <a class="btn btn-primary" onclick="openAuth('signup')" style="font-size:1rem;padding:16px 40px">Start 3-Day Free Trial</a>
   </div>
 </section>
 
@@ -721,18 +722,19 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
     <div id="loginForm">
       <h2>Welcome back</h2>
       <p>Log in to your Apexify account</p>
-      <div class="field"><label>Email</label><input type="email" id="liEmail" placeholder="you@email.com"></div>
+      <div class="field"><label>Username or Phone</label><input type="text" id="liEmail" placeholder="Username / 03XX-XXXXXXX"></div>
       <div class="field"><label>Password</label><input type="password" id="liPass" placeholder="••••••••"></div>
       <button class="btn btn-primary" style="width:100%" onclick="doLogin()">Log In →</button>
       <div class="auth-switch">New here? <a onclick="switchAuth('signup')">Create account</a></div>
     </div>
     <div id="signupForm" style="display:none">
-      <h2>Create your account</h2>
-      <p>30-second setup. Your custom guide is waiting.</p>
-      <div class="field"><label>Full Name</label><input type="text" id="suName" placeholder="Your name"></div>
-      <div class="field"><label>Email</label><input type="email" id="suEmail" placeholder="you@email.com"></div>
+      <h2>Start your 3-day free trial</h2>
+      <p>Full Pro access. No card required. Cancel anytime.</p>
+      <div class="field"><label>Username</label><input type="text" id="suName" placeholder="Choose a username"></div>
+      <div class="field"><label>Phone Number</label><input type="tel" id="suPhone" placeholder="03XX-XXXXXXX" inputmode="tel"></div>
       <div class="field"><label>Password</label><input type="password" id="suPass" placeholder="Min 8 characters"></div>
-      <button class="btn btn-primary" style="width:100%" onclick="doSignup()">Create Account →</button>
+      <div class="trial-note">✓ 3 days of full Pro access — then Rs 999/month if you continue</div>
+      <button class="btn btn-primary" style="width:100%" onclick="doSignup()">Start Free Trial →</button>
       <div class="auth-switch">Already a member? <a onclick="switchAuth('login')">Log in</a></div>
     </div>
   </div>
@@ -1003,7 +1005,7 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
           <button class="btn btn-primary" style="padding:10px 22px" onclick="exportCSV()">Export CSV ↓</button>
         </div>
         <div style="overflow-x:auto">
-        <table><thead><tr><th>#</th><th>Name</th><th>Email</th><th>Plan</th><th>Joined</th><th>Device</th></tr></thead>
+        <table><thead><tr><th>#</th><th>Username</th><th>Phone</th><th>Plan</th><th>Joined</th><th>Device</th></tr></thead>
         <tbody id="adminRows"></tbody></table>
         </div>
       </div>
@@ -1124,20 +1126,48 @@ function switchAuth(m){
   document.getElementById('signupForm').style.display = m==='signup'?'block':'none';
 }
 let user = {name:'Athlete'};
+/* ======= DATABASE SYNC (connects to apexifydatabase.vercel.app via Supabase) =======
+   1. Create a free project at supabase.com
+   2. Create table `signups` with columns: username (text), phone (text), joined_at (timestamptz), plan (text)
+   3. Paste the same two values below AND in the database website file. Done — both sites share live data. */
+const SUPABASE_URL = '';   // e.g. https://xxxx.supabase.co
+const SUPABASE_KEY = '';   // your anon public key
+async function sendToDatabase(u){
+  if(!SUPABASE_URL || !SUPABASE_KEY) return; // demo mode: session-only DB
+  try{
+    await fetch(SUPABASE_URL+'/rest/v1/signups', { method:'POST',
+      headers:{ apikey:SUPABASE_KEY, Authorization:'Bearer '+SUPABASE_KEY, 'Content-Type':'application/json', Prefer:'return=minimal' },
+      body: JSON.stringify({ username:u.name, phone:u.phone, joined_at:new Date().toISOString(), plan:u.plan||'Trial' }) });
+  }catch(e){ console.warn('DB sync failed', e); }
+}
 function doLogin(){
   const e = document.getElementById('liEmail').value.trim();
-  if(!e){ toast('Enter your email','Demo mode: any email + password works.'); return; }
+  if(!e){ toast('Enter your username','Demo mode: any username + password works.'); return; }
   user.name = e.split('@')[0];
-  user.isAdmin = e.toLowerCase() === 'admin@apexify.com';
-  if(!user.isAdmin) recordUser(user.name, e, 'login');
+  user.isAdmin = e.toLowerCase() === 'admin@apexify.com' || e.toLowerCase() === 'admin';
+  if(!user.isAdmin){ user.phone = /^[0-9+\-\s]{7,}$/.test(e) ? e : '—'; recordUser(user.name, user.phone, 'login'); }
   enterApp();
 }
 function doSignup(){
   const n = document.getElementById('suName').value.trim();
-  const e = document.getElementById('suEmail').value.trim() || 'no-email@demo';
-  user.name = n || 'Athlete'; user.isAdmin = false;
-  recordUser(user.name, e, 'signup');
+  const p = document.getElementById('suPhone').value.trim();
+  const pw = document.getElementById('suPass').value;
+  if(!n){ toast('Username required','Pick a username to continue.'); return; }
+  if(!/^[0-9+\-\s]{10,15}$/.test(p)){ toast('Valid phone number required','Format: 03XX-XXXXXXX'); return; }
+  if(pw.length < 8){ toast('Password too short','Use at least 8 characters.'); return; }
+  user.name = n; user.phone = p; user.isAdmin = false;
+  user.trialStart = Date.now();
+  recordUser(n, p, 'signup');
+  askNotifPermission();
   enterApp();
+}
+function askNotifPermission(){
+  if ('Notification' in window && Notification.permission === 'default')
+    Notification.requestPermission();
+}
+function systemNotify(title, body){
+  if ('Notification' in window && Notification.permission === 'granted')
+    try{ new Notification(title, { body }); }catch(e){}
 }
 function enterApp(){
   closeAuth();
@@ -1146,6 +1176,10 @@ function enterApp(){
   document.getElementById('uName').textContent = user.name;
   document.getElementById('uAv').textContent = user.name[0].toUpperCase();
   document.getElementById('adminNavBtn').style.display = user.isAdmin ? 'flex' : 'none';
+  if (user.trialStart){
+    document.querySelector('.pro-badge').textContent = 'TRIAL · 3 DAYS LEFT';
+    document.querySelector('.user-chip small').textContent = 'Free Trial — 3 days';
+  }
   renderAdmin();
   if (user.isAdmin) { go('admin'); toast('Admin mode', 'Full user database unlocked.'); }
   scrollTo(0,0);
@@ -1262,8 +1296,10 @@ function dailyPlanNotif(){
   const cals = document.getElementById('dCals').textContent;
   if (s.type==='rest'){ pushNotif(NIC.flame, 'Today: Rest Day', 'Recovery + '+cals+' kcal target · protein first'); return; }
   const exs = dayExercises(d);
-  pushNotif(NIC.cal, 'Today: '+TYPE_LABEL[s.type]+' — '+MUSCLES[s.type],
-    exs.length+' exercises · e.g. '+exs[0][0]+' '+exs[0][1]+' · target '+cals+' kcal');
+  const title = 'Today: '+TYPE_LABEL[s.type]+' — '+MUSCLES[s.type];
+  const body = exs.length+' exercises · e.g. '+exs[0][0]+' '+exs[0][1]+' · target '+cals+' kcal';
+  pushNotif(NIC.cal, title, body);
+  systemNotify('Apexify — Gym Reminder', title+'. '+body);
 }
 function renderTodaySession(){
   const d = todayName(), s = mySplit[d];
@@ -1325,26 +1361,26 @@ months.forEach((m,i)=>{
 
 /* ============ DEMO DATABASE (session only — resets on refresh) ============ */
 const DB = { users: [
-  {name:'Hamza R.', email:'hamza@demo.pk', plan:'Pro', joined:'Jul 10, 2026 · 8:14 PM', device:'Android'},
-  {name:'Sara K.', email:'sara@demo.pk', plan:'Elite', joined:'Jul 11, 2026 · 1:02 PM', device:'iPhone'},
-  {name:'Ali M.', email:'ali@demo.pk', plan:'Free', joined:'Jul 13, 2026 · 9:41 AM', device:'Desktop'},
+  {name:'hamza_r', phone:'0301-2345678', plan:'Pro', joined:'Jul 10, 2026 · 8:14 PM', device:'Android'},
+  {name:'sara.k', phone:'0333-9876543', plan:'Elite', joined:'Jul 11, 2026 · 1:02 PM', device:'iPhone'},
+  {name:'ali_m', phone:'0345-1122334', plan:'Trial (3 days)', joined:'Jul 13, 2026 · 9:41 AM', device:'Desktop'},
 ]};
-function recordUser(name, email, via){
-  DB.users.push({ name, email, plan:'Free (trial)', via,
+function recordUser(name, phone, via){
+  const u = { name, phone, plan:'Trial (3 days)', via,
     joined: new Date().toLocaleString('en-PK',{dateStyle:'medium',timeStyle:'short'}),
-    device: /Mobi|Android/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop' });
-  renderAdmin();
+    device: /Mobi|Android/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop' };
+  DB.users.push(u); renderAdmin(); sendToDatabase(u);
 }
 function renderAdmin(){
   const tb = document.getElementById('adminRows'); if(!tb) return;
-  tb.innerHTML = DB.users.map((u,i)=>`<tr><td>${i+1}</td><td><b>${u.name}</b></td><td>${u.email}</td><td><span class="pill ${u.plan.includes('Elite')?'c':u.plan.includes('Pro')?'a':'b'}">${u.plan}</span></td><td>${u.joined}</td><td>${u.device}</td></tr>`).join('');
+  tb.innerHTML = DB.users.map((u,i)=>`<tr><td>${i+1}</td><td><b>${u.name}</b></td><td>${u.phone}</td><td><span class="pill ${u.plan.includes('Elite')?'c':u.plan.includes('Pro')?'a':'b'}">${u.plan}</span></td><td>${u.joined}</td><td>${u.device}</td></tr>`).join('');
   const s = document.getElementById('adminStats');
   if(s) s.innerHTML = `<div class="card stat-card"><small>Total Users</small><b>${DB.users.length}</b></div>
    <div class="card stat-card"><small>Pro / Elite</small><b>${DB.users.filter(u=>/Pro|Elite/.test(u.plan)).length}</b></div>
    <div class="card stat-card"><small>Signed up this session</small><b>${DB.users.filter(u=>u.via).length}</b></div>`;
 }
 function exportCSV(){
-  const rows = [['Name','Email','Plan','Joined','Device'], ...DB.users.map(u=>[u.name,u.email,u.plan,u.joined,u.device])];
+  const rows = [['Username','Phone','Plan','Joined','Device'], ...DB.users.map(u=>[u.name,u.phone,u.plan,u.joined,u.device])];
   const csv = rows.map(r=>r.map(c=>'"'+String(c).replace(/"/g,'""')+'"').join(',')).join('\n');
   const a = document.createElement('a');
   a.href = URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
