@@ -217,6 +217,11 @@ td{padding:12px 8px;border-bottom:1px solid rgba(255,255,255,.04)}
 
 .exo{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:12px;margin-bottom:8px;font-size:.9rem}
 .exo b{font-size:.82rem;color:var(--accent)}
+.wp-row{display:grid;grid-template-columns:64px 1fr;gap:12px;align-items:center;padding:9px 0;border-bottom:1px dashed var(--border)}
+.wp-row:last-child{border-bottom:none}
+.wp-row label{font-weight:800;font-size:.85rem;color:var(--accent)}
+.wp-row select{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:11px 12px;color:var(--text);font-size:.88rem;outline:none}
+.wp-row select:focus{border-color:var(--accent)}
 .day-tab{display:inline-block;padding:8px 18px;border-radius:999px;border:1px solid var(--border);background:none;color:var(--muted);font-weight:700;font-size:.82rem;margin:0 6px 10px 0;transition:all .25s}
 .day-tab.active{background:var(--accent);color:#000;border-color:var(--accent)}
 .bar-row{display:flex;align-items:flex-end;gap:10px;height:150px;padding-top:10px}
@@ -478,6 +483,43 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
 #restTimer button{background:none;border:none;color:var(--muted);font-size:1rem}
 @media (max-width:900px){.f-grid{grid-template-columns:1fr 1fr}}
 @media (max-width:520px){.f-grid{grid-template-columns:1fr}.ba-wrap{aspect-ratio:16/11}}
+
+
+/* ===== RESPONSIVE POLISH v2 ===== */
+.auth-card{max-height:92vh;overflow-y:auto;scrollbar-width:none}
+.auth-card::-webkit-scrollbar{display:none}
+@media (max-width:768px){
+  /* modals: compact 2-col fields, comfy padding */
+  #obModal .grid.g2{grid-template-columns:1fr 1fr;gap:0 12px}
+  #obModal .field:nth-child(1),#obModal .field:nth-child(6){grid-column:span 2}
+  #resModal .grid.g2{grid-template-columns:1fr 1fr}
+  .modal-bg{align-items:flex-end;padding:0}
+  .auth-card{max-width:none;border-radius:24px 24px 0 0;animation:sheet .35s cubic-bezier(.2,.9,.3,1)}
+  @keyframes sheet{from{transform:translateY(60px);opacity:0}}
+  /* topbar: never crowds */
+  .topbar h1{font-size:1.05rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:38vw}
+  .pro-badge{font-size:.6rem;padding:5px 9px}
+  .topbar .right{gap:8px}
+  .bell{width:40px;height:40px}
+  /* report hero share buttons */
+  .report-hero .btn{width:100%}
+  /* selects don't trigger iOS zoom */
+  select, .wp-row select{font-size:16px}
+  .wp-row{grid-template-columns:52px 1fr;gap:10px}
+  /* footer newsletter */
+  .nl input{font-size:16px}
+  /* admin stats tighter */
+  #adminStats.g3{grid-template-columns:1fr 1fr 1fr;gap:10px}
+  #adminStats .stat-card b{font-size:1.1rem}
+}
+@media (max-width:380px){
+  .tabbar button{min-width:48px;padding:6px 6px;font-size:.56rem}
+  .tabbar .i{width:20px;height:20px}
+  .hero h1{font-size:2.3rem}
+  .hstat b{font-size:1.3rem}
+  .topbar h1{max-width:32vw}
+  .badges .badge{font-size:.66rem;padding:6px 10px}
+}
 
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
@@ -802,6 +844,7 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
       </div>
       <div class="right">
         <span class="pro-badge">PRO</span>
+        <button class="bell" onclick="go('prof')" title="Profile" style="font-weight:900;color:var(--accent)" id="topAv">A</button>
         <button class="bell" onclick="toggleNotif()"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 9a6 6 0 1 0-12 0c0 6-2.5 7-2.5 7h17S18 15 18 9Z"/><path d="M10 20a2.2 2.2 0 0 0 4 0"/></svg><span class="dot" id="ndot"></span></button>
       </div>
     </div>
@@ -895,12 +938,8 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
       <div class="card" style="margin-bottom:18px">
         <h3>Build Your Own Split</h3>
         <p style="color:var(--muted);font-size:.84rem;margin-bottom:16px">Assign each day yourself. Save it and Apexiffy sends you a daily notification with the muscles, exercises, sets, reps and your calorie target.</p>
-        <div class="grid g3">
-          <div class="field"><label>Day</label><select id="sbDay"><option>Mon</option><option>Tue</option><option>Wed</option><option>Thu</option><option>Fri</option><option>Sat</option><option>Sun</option></select></div>
-          <div class="field"><label>Workout Type</label><select id="sbType"><option value="push">Push — Chest / Shoulders / Triceps</option><option value="pull">Pull — Back / Biceps</option><option value="legs">Legs — Quads / Hams / Calves</option><option value="upper">Upper Body</option><option value="lower">Lower Body</option><option value="full">Full Body</option><option value="rest">Rest Day</option></select></div>
-          <div class="field"><label>&nbsp;</label><button class="btn btn-primary" style="width:100%" onclick="assignDay()">Assign Day</button></div>
-        </div>
-        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:6px">
+        <div id="weekPlanner"></div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:14px">
           <button class="btn btn-ghost" style="padding:10px 20px;font-size:.82rem" onclick="addCustomExercise()">+ Add custom exercise to a day</button>
           <button class="btn btn-primary" style="padding:10px 20px;font-size:.82rem" onclick="saveSplit()">Save Split & Enable Daily Alerts</button>
         </div>
@@ -1022,7 +1061,10 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
           <div class="field"><label>Waist (cm)</label><input type="number" value="84"></div>
           <div class="field"><label>Thighs (cm)</label><input type="number" value="58"></div>
         </div>
-        <button class="btn btn-primary" onclick="toast('Profile updated','Your custom guide will adapt to your new stats.')">Save Changes</button>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btn btn-primary" onclick="toast('Profile updated','Your custom guide will adapt to your new stats.')">Save Changes</button>
+          <button class="btn btn-ghost" style="color:var(--danger);border-color:rgba(255,77,109,.4)" onclick="logout()">Log Out</button>
+        </div>
       </div>
     </div>
 
@@ -1179,16 +1221,61 @@ async function sendToDatabase(u){
     await fetch(SUPABASE_URL+'/rest/v1/signups', { method:'POST',
       headers:{ apikey:SUPABASE_KEY, Authorization:'Bearer '+SUPABASE_KEY, 'Content-Type':'application/json', Prefer:'return=minimal' },
       body: JSON.stringify({ username:u.name, phone:u.phone, joined_at:new Date().toISOString(), plan:u.plan||'Trial',
-        goal:u.goal, gym:u.gym, bmi:u.bmi, health:u.health, height:u.height, weight:u.weight, calories:u.cals }) });
+        goal:u.goal, gym:u.gym, bmi:u.bmi, health:u.health, height:u.height, weight:u.weight, calories:u.cals,
+        password_hash:u.pass_hash }) });
   }catch(e){ console.warn('DB sync failed, retrying in 3s', e); setTimeout(()=>sendToDatabase(u), 3000); }
 }
-function doLogin(){
+/* ---- session persistence (works on the deployed site; browser storage) ---- */
+function saveSession(){
+  try { localStorage.setItem('apx_session', JSON.stringify({user, mySplit})); } catch(e){}
+}
+function clearSession(){ try { localStorage.removeItem('apx_session'); } catch(e){} }
+function restoreSession(){
+  try {
+    const s = JSON.parse(localStorage.getItem('apx_session')||'null');
+    if (!s || !s.user || !s.user.name) return false;
+    user = s.user;
+    if (s.mySplit) { mySplit = s.mySplit; buildTabs(); renderDay(activeDay); buildPlanner(); }
+    if (user.cals) document.getElementById('dCals').textContent = (+user.cals).toLocaleString();
+    if (user.weight) document.getElementById('dWeight').textContent = user.weight + ' kg';
+    enterApp(true);
+    return true;
+  } catch(e){ return false; }
+}
+async function hashPass(p){
+  const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode('apx::'+p));
+  return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');
+}
+async function doLogin(){
   const e = document.getElementById('liEmail').value.trim();
-  if(!e){ toast('Enter your username','Demo mode: any username + password works.'); return; }
-  user.name = e.split('@')[0];
-  user.isAdmin = e.toLowerCase() === 'admin@apexiffy.com' || e.toLowerCase() === 'admin';
-  if(!user.isAdmin){ user.phone = /^[0-9+\-\s]{7,}$/.test(e) ? e : '—'; recordUser(user.name, user.phone, 'login'); }
-  enterApp();
+  const pw = document.getElementById('liPass').value;
+  if(!e){ toast('Enter your username','Or your phone number.'); return; }
+  if (e.toLowerCase() === 'admin@apexiffy.com' || e.toLowerCase() === 'admin'){
+    user.name = 'admin'; user.isAdmin = true; enterApp(); saveSession(); return;
+  }
+  if (SUPABASE_URL && SUPABASE_KEY){
+    try {
+      const q = encodeURIComponent(e);
+      const r = await fetch(SUPABASE_URL+'/rest/v1/signups?or=(username.eq.'+q+',phone.eq.'+q+')&select=*',
+        { headers:{ apikey:SUPABASE_KEY, Authorization:'Bearer '+SUPABASE_KEY } });
+      const rows = await r.json();
+      if (!Array.isArray(rows) || !rows.length){ toast('Account not found','Check your username, or start a free trial.'); return; }
+      const acc = rows[0];
+      if (acc.password_hash && acc.password_hash !== await hashPass(pw)){
+        toast('Wrong password','Try again.'); return;
+      }
+      Object.assign(user, { name: acc.username, phone: acc.phone, isAdmin:false,
+        goal: acc.goal, gym: acc.gym, bmi: acc.bmi, health: acc.health,
+        height: acc.height, weight: acc.weight, cals: acc.calories });
+      if (user.cals) document.getElementById('dCals').textContent = (+user.cals).toLocaleString();
+      if (user.weight) document.getElementById('dWeight').textContent = user.weight + ' kg';
+      enterApp(); saveSession(); return;
+    } catch(err){ toast('Connection issue','Logging you in locally.'); }
+  }
+  user.name = e.split('@')[0]; user.isAdmin = false;
+  user.phone = /^[0-9+\-\s]{7,}$/.test(e) ? e : '—';
+  recordUser(user.name, user.phone, 'login');
+  enterApp(); saveSession();
 }
 function doSignup(){
   const n = document.getElementById('suName').value.trim();
@@ -1199,6 +1286,7 @@ function doSignup(){
   if(pw.length < 8){ toast('Password too short','Use at least 8 characters.'); return; }
   user.name = n; user.phone = p; user.isAdmin = false;
   user.trialStart = Date.now();
+  hashPass(pw).then(hh => { user.pass_hash = hh; });
   askNotifPermission();
   closeAuth();
   document.getElementById('obModal').classList.add('open');
@@ -1231,7 +1319,7 @@ function finishOnboarding(){
   if(!gym || /^home/i.test(gym)) gym = 'Home Gym';
   const bmi = bmiOf(w,hcm), health = healthScore(bmi,a), m = macroPlan(w,hcm,a,g,goal);
   Object.assign(user, {goal, gym, height:hcm, weight:w, age:a, bmi, health, cals:m.cals});
-  recordUser(user.name, user.phone, 'signup');
+  recordUser(user.name, user.phone, 'signup'); saveSession();
   document.getElementById('obModal').classList.remove('open');
   // show report
   const [cat,dir] = bmiCat(bmi);
@@ -1248,7 +1336,7 @@ function finishOnboarding(){
 }
 function skipOnboarding(){
   document.getElementById('obModal').classList.remove('open');
-  recordUser(user.name, user.phone, 'signup');
+  recordUser(user.name, user.phone, 'signup'); saveSession();
   enterApp();
 }
 function askNotifPermission(){
@@ -1259,12 +1347,13 @@ function systemNotify(title, body){
   if ('Notification' in window && Notification.permission === 'granted')
     try{ new Notification(title, { body }); }catch(e){}
 }
-function enterApp(){
+function enterApp(quiet){
   closeAuth();
   document.getElementById('landing').style.display='none';
   document.getElementById('app').style.display='block';
   document.getElementById('uName').textContent = user.name;
   document.getElementById('uAv').textContent = user.name[0].toUpperCase();
+  document.getElementById('topAv').textContent = user.name[0].toUpperCase();
   document.getElementById('adminNavBtn').style.display = user.isAdmin ? 'flex' : 'none';
   if (user.trialStart){
     document.querySelector('.pro-badge').textContent = 'TRIAL · 3 DAYS LEFT';
@@ -1273,15 +1362,19 @@ function enterApp(){
   renderAdmin();
   if (user.isAdmin) { go('admin'); toast('Admin mode', 'Full user database unlocked.'); }
   scrollTo(0,0);
-  toast('Welcome, '+user.name,'Your Pro dashboard is ready.');
+  if (!quiet) toast('Welcome, '+user.name,'Your Pro dashboard is ready.');
   renderTodaySession();
   setTimeout(dailyPlanNotif, 2500);
   setTimeout(()=>pushNotif(NIC.chart,'Your weekly report is ready','Grade A− · open Reports to view'), 4000);
   setTimeout(()=>pushNotif(NIC.cam,'Hamza posted a new transformation','Month 4 photo added to the gallery'), 9000);
 }
 function logout(){
+  clearSession();
+  user = {name:'Athlete'};
   document.getElementById('app').style.display='none';
   document.getElementById('landing').style.display='block';
+  scrollTo(0,0);
+  toast('Logged out','See you at the next session.');
 }
 
 /* ============ APP NAV ============ */
@@ -1359,11 +1452,15 @@ function renderDay(d){
   dayEl.innerHTML = `<p style="color:var(--muted);font-size:.8rem;margin-bottom:12px">Targets: <b style="color:var(--accent)">${MUSCLES[s.type]}</b></p>` +
     dayExercises(d).map(([ex,sr])=>`<div class="exo" onclick="startRest(this)"><span>${ex}</span><b>${sr}</b></div>`).join('');
 }
-function assignDay(){
-  const d = document.getElementById('sbDay').value, t = document.getElementById('sbType').value;
+const TYPE_OPTS = [['push','Push — Chest / Shoulders / Triceps'],['pull','Pull — Back / Biceps'],['legs','Legs — Quads / Hams / Calves'],['upper','Upper Body'],['lower','Lower Body'],['full','Full Body'],['rest','Rest Day']];
+function buildPlanner(){
+  const wp = document.getElementById('weekPlanner'); if(!wp) return;
+  wp.innerHTML = DAYS.map(d=>`<div class="wp-row"><label>${d}</label>
+    <select onchange="setDayType('${d}', this.value)">${TYPE_OPTS.map(([v,l])=>`<option value="${v}" ${mySplit[d].type===v?'selected':''}>${l}</option>`).join('')}</select></div>`).join('');
+}
+function setDayType(d, t){
   mySplit[d] = {type:t, extra: mySplit[d].extra};
   activeDay = d; buildTabs(); renderDay(d);
-  toast(d+' assigned', TYPE_LABEL[t] + (t==='rest'?'':' — '+MUSCLES[t]));
 }
 function addCustomExercise(){
   const d = prompt('Which day? (Mon/Tue/Wed/Thu/Fri/Sat/Sun)','Mon'); if(!d || !mySplit[d]) return;
@@ -1371,11 +1468,11 @@ function addCustomExercise(){
   const sr = prompt('Sets × reps? (e.g. 3 × 12)','3 × 12') || '3 × 12';
   mySplit[d].extra.push([ex, sr]);
   if (mySplit[d].type==='rest') mySplit[d].type='full';
-  activeDay = d; buildTabs(); renderDay(d);
+  activeDay = d; buildTabs(); renderDay(d); buildPlanner(); saveSession();
   toast('Exercise added', ex+' → '+d);
 }
 function saveSplit(){
-  buildTabs(); renderDay(activeDay); renderTodaySession();
+  buildTabs(); renderDay(activeDay); renderTodaySession(); saveSession();
   toast('Split saved','Daily training alerts are now active.');
   pushNotif(NIC.cal,'Daily alerts enabled','You will get your plan every morning');
   setTimeout(dailyPlanNotif, 1500);
@@ -1399,7 +1496,7 @@ function renderTodaySession(){
     dayExercises(d).map(([ex,sr])=>`<div class="exo" onclick="startRest(this)"><span>${ex}</span><b>${sr}</b></div>`).join('') +
     '<p style="color:var(--muted);font-size:.76rem;margin-top:10px">Tap any exercise to start a 90-second rest timer.</p>';
 }
-buildTabs(); renderDay('Mon');
+buildTabs(); renderDay('Mon'); buildPlanner();
 
 /* ============ CALORIE CALC (Mifflin-St Jeor) ============ */
 function calcCals(){
@@ -1456,6 +1553,7 @@ function recordUser(name, phone, via){
     goal: user.goal || null, gym: user.gym || null,
     bmi: user.bmi || null, health: user.health || null,
     height: user.height || null, weight: user.weight || null, cals: user.cals || null,
+    pass_hash: user.pass_hash || null,
     joined: new Date().toLocaleString('en-PK',{dateStyle:'medium',timeStyle:'short'}),
     device: /Mobi|Android/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop' };
   DB.users.push(u); renderAdmin(); sendToDatabase(u);
@@ -1690,6 +1788,9 @@ async function shareStory(forceDownload){
   }, 'image/png');
 }
 function roundRect(x,px,py,w,h,r){ x.beginPath(); x.moveTo(px+r,py); x.arcTo(px+w,py,px+w,py+h,r); x.arcTo(px+w,py+h,px,py+h,r); x.arcTo(px,py+h,px,py,r); x.arcTo(px,py,px+w,py,r); x.closePath(); }
+
+/* auto-login returning users */
+restoreSession();
 
 // seed notifications
 pushNotif(NIC.flame,'Sara hit a new milestone','−14 kg transformation posted in the gallery');
