@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
-<title>APEXIFY — Your Body. Engineered.</title>
+<title>APEXIFFY — Your Body. Engineered.</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <style>
 :root{
@@ -494,7 +494,7 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
 <!-- ================= LANDING ================= -->
 <div id="landing">
 <nav class="nav">
-  <a class="logo" href="#">APEX<span>IFY</span></a>
+  <a class="logo" href="#">APEX<span>IFFY</span></a>
   <div class="nav-links" id="navLinks">
     <a href="#features">Features</a>
     <a href="#how">How it works</a>
@@ -680,7 +680,7 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
     <details class="faq"><summary>Do I need gym equipment?<span>+</span></summary><p>No. The guide generator adapts — tell it home, dumbbell-only, or full gym, and the exercises adjust to what you have.</p></details>
     <details class="faq"><summary>Can I cancel anytime?<span>+</span></summary><p>Anytime, one tap, no questions. Your data and photos remain in your account even on the free plan.</p></details>
     <details class="faq"><summary>How do payments work in Pakistan?<span>+</span></summary><p>JazzCash, Easypaisa, and all major debit/credit cards. Annual plans get two months free.</p></details>
-    <details class="faq"><summary>What makes this different from a PDF plan?<span>+</span></summary><p>A PDF never changes. Apexify recalculates your calories, adjusts your split, and grades your week — every week, from your real logs.</p></details>
+    <details class="faq"><summary>What makes this different from a PDF plan?<span>+</span></summary><p>A PDF never changes. Apexiffy recalculates your calories, adjusts your split, and grades your week — every week, from your real logs.</p></details>
   </div>
 </section>
 
@@ -700,18 +700,18 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
 <footer class="lux-footer">
   <div class="f-grid">
     <div>
-      <a class="logo" href="#">APEX<span>IFY</span></a>
+      <a class="logo" href="#">APEX<span>IFFY</span></a>
       <p style="color:var(--muted);font-size:.85rem;margin-top:14px;max-width:280px">The premium body engineering platform. Built for people who treat training like it matters.</p>
     </div>
     <div><h4>Platform</h4><a href="#features">Features</a><a href="#how">How it works</a><a href="#gallery">Transformations</a><a href="#pricing">Pricing</a></div>
-    <div><h4>Company</h4><a href="#stories">Member stories</a><a href="#faq">FAQ</a><a onclick="toast('Coming soon','Blog launches with v1.0')">Blog</a><a onclick="toast('Contact','support@apexify.app')">Contact</a></div>
+    <div><h4>Company</h4><a href="#stories">Member stories</a><a href="#faq">FAQ</a><a onclick="toast('Coming soon','Blog launches with v1.0')">Blog</a><a onclick="toast('Contact','support@apexiffy.app')">Contact</a></div>
     <div>
       <h4>Get the drop</h4>
       <p style="color:var(--muted);font-size:.82rem;margin-bottom:12px">Launch news, training insights. No spam.</p>
       <div class="nl"><input type="email" placeholder="your@email.com" id="nlEmail"><button class="btn btn-primary" style="padding:12px 20px" onclick="toast('Subscribed','You are on the launch list.');document.getElementById('nlEmail').value=''">→</button></div>
     </div>
   </div>
-  <div class="f-bottom">© 2026 Apexify · Crafted in Pakistan · Train hard. Track harder.</div>
+  <div class="f-bottom">© 2026 Apexiffy · Crafted in Pakistan · Train hard. Track harder.</div>
 </footer>
 </div>
 
@@ -721,7 +721,7 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
     <button class="close-x" onclick="closeAuth()">✕</button>
     <div id="loginForm">
       <h2>Welcome back</h2>
-      <p>Log in to your Apexify account</p>
+      <p>Log in to your Apexiffy account</p>
       <div class="field"><label>Username or Phone</label><input type="text" id="liEmail" placeholder="Username / 03XX-XXXXXXX"></div>
       <div class="field"><label>Password</label><input type="password" id="liPass" placeholder="••••••••"></div>
       <button class="btn btn-primary" style="width:100%" onclick="doLogin()">Log In →</button>
@@ -740,11 +740,46 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
   </div>
 </div>
 
+<!-- ONBOARDING (body stats after signup) -->
+<div class="modal-bg" id="obModal">
+  <div class="auth-card" style="max-width:460px">
+    <h2>Set up your body profile</h2>
+    <p>We use this to build your plan — and calculate your BMI, health score, and exact calorie needs.</p>
+    <div class="grid g2" style="gap:0 14px">
+      <div class="field"><label>Goal</label><select id="obGoal"><option value="cut">Cut — lose fat</option><option value="bulk">Bulk — gain muscle</option><option value="recomp">Recomp — both</option></select></div>
+      <div class="field"><label>Gender</label><select id="obG"><option value="m">Male</option><option value="f">Female</option></select></div>
+      <div class="field"><label>Height (cm)</label><input type="number" id="obH" placeholder="175" inputmode="numeric"></div>
+      <div class="field"><label>Weight (kg)</label><input type="number" id="obW" placeholder="78" inputmode="numeric"></div>
+      <div class="field"><label>Age</label><input type="number" id="obA" placeholder="24" inputmode="numeric"></div>
+      <div class="field"><label>Your Gym</label><input type="text" id="obGym" placeholder="Gym name — or type Home"></div>
+    </div>
+    <button class="btn btn-primary" style="width:100%" onclick="finishOnboarding()">Calculate & Enter →</button>
+    <div class="auth-switch"><a onclick="skipOnboarding()">Skip for now</a></div>
+  </div>
+</div>
+
+<!-- RESULTS MODAL -->
+<div class="modal-bg" id="resModal">
+  <div class="auth-card" style="max-width:460px">
+    <button class="close-x" onclick="document.getElementById('resModal').classList.remove('open')">✕</button>
+    <h2>Your body report</h2>
+    <p>Based on what you entered — here's where you stand.</p>
+    <div class="grid g2" style="gap:12px;margin-bottom:16px">
+      <div class="card stat-card" style="background:var(--bg2)"><small>BMI</small><b id="resBmi">—</b><span class="trend" id="resBmiCat"></span></div>
+      <div class="card stat-card" style="background:var(--bg2)"><small>Health Score</small><b id="resHealth" style="color:var(--accent)">—</b><span class="trend up">out of 100%</span></div>
+      <div class="card stat-card" style="background:var(--bg2)"><small>Daily Calories</small><b id="resCals">—</b></div>
+      <div class="card stat-card" style="background:var(--bg2)"><small>Protein / Fat</small><b id="resMac" style="font-size:1.2rem">—</b></div>
+    </div>
+    <p id="resTip" style="color:var(--muted);font-size:.86rem;line-height:1.6;margin-bottom:18px"></p>
+    <button class="btn btn-primary" style="width:100%" onclick="document.getElementById('resModal').classList.remove('open')">Let's train →</button>
+  </div>
+</div>
+
 <!-- ================= APP ================= -->
 <div id="app">
 <div class="app-layout">
   <aside class="sidebar" id="sidebar">
-    <a class="logo" href="#" onclick="logout()">APEX<span>IFY</span></a>
+    <a class="logo" href="#" onclick="logout()">APEX<span>IFFY</span></a>
     <div class="snav">
       <button class="active" onclick="go('dash',this)"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg> Dashboard</button>
       <button onclick="go('guide',this)"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/><circle cx="12" cy="12" r="3.2"/></svg> My Custom Guide</button>
@@ -859,7 +894,7 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
     <div class="page" id="pg-split">
       <div class="card" style="margin-bottom:18px">
         <h3>Build Your Own Split</h3>
-        <p style="color:var(--muted);font-size:.84rem;margin-bottom:16px">Assign each day yourself. Save it and Apexify sends you a daily notification with the muscles, exercises, sets, reps and your calorie target.</p>
+        <p style="color:var(--muted);font-size:.84rem;margin-bottom:16px">Assign each day yourself. Save it and Apexiffy sends you a daily notification with the muscles, exercises, sets, reps and your calorie target.</p>
         <div class="grid g3">
           <div class="field"><label>Day</label><select id="sbDay"><option>Mon</option><option>Tue</option><option>Wed</option><option>Thu</option><option>Fri</option><option>Sat</option><option>Sun</option></select></div>
           <div class="field"><label>Workout Type</label><select id="sbType"><option value="push">Push — Chest / Shoulders / Triceps</option><option value="pull">Pull — Back / Biceps</option><option value="legs">Legs — Quads / Hams / Calves</option><option value="upper">Upper Body</option><option value="lower">Lower Body</option><option value="full">Full Body</option><option value="rest">Rest Day</option></select></div>
@@ -1005,7 +1040,7 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
           <button class="btn btn-primary" style="padding:10px 22px" onclick="exportCSV()">Export CSV ↓</button>
         </div>
         <div style="overflow-x:auto">
-        <table><thead><tr><th>#</th><th>Username</th><th>Phone</th><th>Plan</th><th>Joined</th><th>Device</th></tr></thead>
+        <table><thead><tr><th>#</th><th>Username</th><th>Phone</th><th>Gym</th><th>Goal</th><th>BMI</th><th>Health</th><th>Plan</th><th>Joined</th></tr></thead>
         <tbody id="adminRows"></tbody></table>
         </div>
       </div>
@@ -1137,14 +1172,15 @@ async function sendToDatabase(u){
   try{
     await fetch(SUPABASE_URL+'/rest/v1/signups', { method:'POST',
       headers:{ apikey:SUPABASE_KEY, Authorization:'Bearer '+SUPABASE_KEY, 'Content-Type':'application/json', Prefer:'return=minimal' },
-      body: JSON.stringify({ username:u.name, phone:u.phone, joined_at:new Date().toISOString(), plan:u.plan||'Trial' }) });
-  }catch(e){ console.warn('DB sync failed', e); }
+      body: JSON.stringify({ username:u.name, phone:u.phone, joined_at:new Date().toISOString(), plan:u.plan||'Trial',
+        goal:u.goal, gym:u.gym, bmi:u.bmi, health:u.health, height:u.height, weight:u.weight, calories:u.cals }) });
+  }catch(e){ console.warn('DB sync failed, retrying in 3s', e); setTimeout(()=>sendToDatabase(u), 3000); }
 }
 function doLogin(){
   const e = document.getElementById('liEmail').value.trim();
   if(!e){ toast('Enter your username','Demo mode: any username + password works.'); return; }
   user.name = e.split('@')[0];
-  user.isAdmin = e.toLowerCase() === 'admin@apexify.com' || e.toLowerCase() === 'admin';
+  user.isAdmin = e.toLowerCase() === 'admin@apexiffy.com' || e.toLowerCase() === 'admin';
   if(!user.isAdmin){ user.phone = /^[0-9+\-\s]{7,}$/.test(e) ? e : '—'; recordUser(user.name, user.phone, 'login'); }
   enterApp();
 }
@@ -1157,8 +1193,56 @@ function doSignup(){
   if(pw.length < 8){ toast('Password too short','Use at least 8 characters.'); return; }
   user.name = n; user.phone = p; user.isAdmin = false;
   user.trialStart = Date.now();
-  recordUser(n, p, 'signup');
   askNotifPermission();
+  closeAuth();
+  document.getElementById('obModal').classList.add('open');
+}
+function bmiOf(w,hcm){ return +(w/((hcm/100)**2)).toFixed(1); }
+function healthScore(bmi, age){
+  let s = 100 - Math.abs(bmi - 22) * 7;         // distance from ideal BMI 22
+  if (age > 45) s -= (age-45) * .4;             // slight age adjustment
+  return Math.max(15, Math.min(98, Math.round(s)));
+}
+function bmiCat(b){ return b < 18.5 ? ['Underweight','down'] : b < 25 ? ['Healthy range','up'] : b < 30 ? ['Overweight','down'] : ['Obese','down']; }
+function macroPlan(w,hcm,age,g,goal){
+  const bmr = 10*w + 6.25*hcm - 5*age + (g==='m'?5:-161);
+  const adj = goal==='cut' ? -450 : goal==='bulk' ? 350 : 0;
+  const cals = Math.round(bmr*1.55 + adj);
+  const pro = Math.round(w*2), fat = Math.round(cals*.25/9);
+  const carb = Math.round((cals - pro*4 - fat*9)/4);
+  return {cals, pro, fat, carb};
+}
+const GOAL_TIPS = {
+  cut: 'You are set for a cut: eat in a ~450 kcal deficit, keep protein high (it saves muscle), lift heavy 4-5x a week, and walk 8-10k steps daily. Expect ~0.5 kg/week down — your weekly report tracks it.',
+  bulk: 'You are set for a bulk: ~350 kcal surplus, protein at 2 g/kg, and progressive overload is the priority — add weight or reps every week. Expect ~0.25-0.5 kg/week up, mostly lean if you stay consistent.',
+  recomp: 'Recomp mode: eat at maintenance, protein at 2.2 g/kg, train hard and sleep 7.5h+. Scale weight may not move much — your photos and measurements will show the change.'
+};
+function finishOnboarding(){
+  const hcm = +document.getElementById('obH').value, w = +document.getElementById('obW').value, a = +document.getElementById('obA').value;
+  const g = document.getElementById('obG').value, goal = document.getElementById('obGoal').value;
+  let gym = document.getElementById('obGym').value.trim();
+  if(!hcm || !w || !a){ toast('Missing info','Height, weight and age are required.'); return; }
+  if(!gym || /^home/i.test(gym)) gym = 'Home Gym';
+  const bmi = bmiOf(w,hcm), health = healthScore(bmi,a), m = macroPlan(w,hcm,a,g,goal);
+  Object.assign(user, {goal, gym, height:hcm, weight:w, age:a, bmi, health, cals:m.cals});
+  recordUser(user.name, user.phone, 'signup');
+  document.getElementById('obModal').classList.remove('open');
+  // show report
+  const [cat,dir] = bmiCat(bmi);
+  document.getElementById('resBmi').textContent = bmi;
+  const cEl = document.getElementById('resBmiCat'); cEl.textContent = cat; cEl.className = 'trend '+dir;
+  document.getElementById('resHealth').textContent = health + '%';
+  document.getElementById('resCals').textContent = m.cals.toLocaleString();
+  document.getElementById('resMac').textContent = m.pro+'g / '+m.fat+'g';
+  document.getElementById('resTip').textContent = GOAL_TIPS[goal] + ' Daily targets: '+m.cals+' kcal · '+m.pro+'g protein · '+m.carb+'g carbs · '+m.fat+'g fat.';
+  document.getElementById('resModal').classList.add('open');
+  document.getElementById('dCals').textContent = m.cals.toLocaleString();
+  document.getElementById('dWeight').textContent = w + ' kg';
+  enterApp();
+}
+function skipOnboarding(){
+  document.getElementById('obModal').classList.remove('open');
+  recordUser(user.name, user.phone, 'signup');
   enterApp();
 }
 function askNotifPermission(){
@@ -1299,7 +1383,7 @@ function dailyPlanNotif(){
   const title = 'Today: '+TYPE_LABEL[s.type]+' — '+MUSCLES[s.type];
   const body = exs.length+' exercises · e.g. '+exs[0][0]+' '+exs[0][1]+' · target '+cals+' kcal';
   pushNotif(NIC.cal, title, body);
-  systemNotify('Apexify — Gym Reminder', title+'. '+body);
+  systemNotify('Apexiffy — Gym Reminder', title+'. '+body);
 }
 function renderTodaySession(){
   const d = todayName(), s = mySplit[d];
@@ -1360,32 +1444,31 @@ months.forEach((m,i)=>{
 
 
 /* ============ DEMO DATABASE (session only — resets on refresh) ============ */
-const DB = { users: [
-  {name:'hamza_r', phone:'0301-2345678', plan:'Pro', joined:'Jul 10, 2026 · 8:14 PM', device:'Android'},
-  {name:'sara.k', phone:'0333-9876543', plan:'Elite', joined:'Jul 11, 2026 · 1:02 PM', device:'iPhone'},
-  {name:'ali_m', phone:'0345-1122334', plan:'Trial (3 days)', joined:'Jul 13, 2026 · 9:41 AM', device:'Desktop'},
-]};
+const DB = { users: [] };  // starts empty — only real signups/logins are recorded
 function recordUser(name, phone, via){
   const u = { name, phone, plan:'Trial (3 days)', via,
+    goal: user.goal || null, gym: user.gym || null,
+    bmi: user.bmi || null, health: user.health || null,
+    height: user.height || null, weight: user.weight || null, cals: user.cals || null,
     joined: new Date().toLocaleString('en-PK',{dateStyle:'medium',timeStyle:'short'}),
     device: /Mobi|Android/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop' };
   DB.users.push(u); renderAdmin(); sendToDatabase(u);
 }
 function renderAdmin(){
   const tb = document.getElementById('adminRows'); if(!tb) return;
-  tb.innerHTML = DB.users.map((u,i)=>`<tr><td>${i+1}</td><td><b>${u.name}</b></td><td>${u.phone}</td><td><span class="pill ${u.plan.includes('Elite')?'c':u.plan.includes('Pro')?'a':'b'}">${u.plan}</span></td><td>${u.joined}</td><td>${u.device}</td></tr>`).join('');
+  tb.innerHTML = DB.users.length === 0 ? '<tr><td colspan="9" style="text-align:center;color:var(--muted);padding:40px">No users yet — accounts appear here the moment someone signs up.</td></tr>' : DB.users.map((u,i)=>`<tr><td>${i+1}</td><td><b>${u.name}</b></td><td>${u.phone}</td><td>${u.gym||'—'}</td><td>${u.goal||'—'}</td><td>${u.bmi||'—'}</td><td>${u.health?u.health+'%':'—'}</td><td><span class="pill ${u.plan.includes('Elite')?'c':u.plan.includes('Pro')?'a':'b'}">${u.plan}</span></td><td>${u.joined}</td></tr>`).join('');
   const s = document.getElementById('adminStats');
   if(s) s.innerHTML = `<div class="card stat-card"><small>Total Users</small><b>${DB.users.length}</b></div>
    <div class="card stat-card"><small>Pro / Elite</small><b>${DB.users.filter(u=>/Pro|Elite/.test(u.plan)).length}</b></div>
    <div class="card stat-card"><small>Signed up this session</small><b>${DB.users.filter(u=>u.via).length}</b></div>`;
 }
 function exportCSV(){
-  const rows = [['Username','Phone','Plan','Joined','Device'], ...DB.users.map(u=>[u.name,u.phone,u.plan,u.joined,u.device])];
+  const rows = [['Username','Phone','Gym','Goal','BMI','Health %','Plan','Joined','Device'], ...DB.users.map(u=>[u.name,u.phone,u.gym||'',u.goal||'',u.bmi||'',u.health||'',u.plan,u.joined,u.device])];
   const csv = rows.map(r=>r.map(c=>'"'+String(c).replace(/"/g,'""')+'"').join(',')).join('\n');
   const a = document.createElement('a');
   a.href = URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
-  a.download = 'apexify-users.csv'; a.click();
-  toast('Database exported','apexify-users.csv downloaded');
+  a.download = 'apexiffy-users.csv'; a.click();
+  toast('Database exported','apexiffy-users.csv downloaded');
 }
 
 /* ============ LIVE ACTIVITY FEED (continuous notifications) ============ */
@@ -1547,10 +1630,10 @@ async function shareStory(forceDownload){
   // logo
   x.textAlign='center';
   x.font = '900 84px Sora, sans-serif';
-  x.fillStyle = '#f2f2f7'; x.fillText('APEX', W/2 - 92, 220);
+  x.fillStyle = '#f2f2f7'; x.fillText('APEX', W/2 - 118, 220);
   x.fillStyle = '#c8ff3d';
   x.shadowColor = 'rgba(200,255,61,.8)'; x.shadowBlur = 40;
-  x.fillText('IFY', W/2 + 118, 220);
+  x.fillText('IFFY', W/2 + 132, 220);
   x.shadowBlur = 0;
   // header
   x.fillStyle = '#8a8a9e'; x.font = '600 34px Space Grotesk, sans-serif';
@@ -1586,13 +1669,13 @@ async function shareStory(forceDownload){
   x.fillText('T R A I N   H A R D  ·  T R A C K   H A R D E R', W/2, 1815);
 
   cv.toBlob(async blob=>{
-    const file = new File([blob], 'apexify-weekly-report.png', {type:'image/png'});
+    const file = new File([blob], 'apexiffy-weekly-report.png', {type:'image/png'});
     if (!forceDownload && navigator.canShare && navigator.canShare({files:[file]})){
-      try { await navigator.share({files:[file], title:'My Apexify Weekly Report'});
+      try { await navigator.share({files:[file], title:'My Apexiffy Weekly Report'});
         toast('Share sheet opened','Pick Instagram → Add to Story.'); return; } catch(e){}
     }
     const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob); a.download = 'apexify-weekly-report.png'; a.click();
+    a.href = URL.createObjectURL(blob); a.download = 'apexiffy-weekly-report.png'; a.click();
     toast('Story image downloaded','Open Instagram → Story → add from gallery.');
   }, 'image/png');
 }
