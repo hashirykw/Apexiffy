@@ -530,6 +530,25 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
 }
 
 
+
+/* Apexiffy Recommends panel */
+.apx-reco{background:radial-gradient(120% 130% at 0% 0%,rgba(200,255,61,.1),transparent 55%),radial-gradient(120% 130% at 100% 100%,rgba(61,214,255,.08),transparent 55%),var(--surface);border:1px solid rgba(200,255,61,.25)}
+.apx-reco .rh{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.apx-reco .rh .lg{height:26px;width:auto;filter:drop-shadow(0 0 10px rgba(200,255,61,.4))}
+.apx-reco .rh b{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+.apx-reco h2{font-size:1.3rem;margin-bottom:4px}
+.apx-reco .verdict{color:var(--muted);font-size:.9rem;line-height:1.6;margin-bottom:16px}
+.apx-reco .verdict b{color:var(--text)}
+.reco-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.reco-tile{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:14px;text-align:center}
+.reco-tile small{display:block;color:var(--muted);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+.reco-tile b{font-size:1.25rem;font-family:'Sora',sans-serif}
+.reco-tile .u{font-size:.72rem;color:var(--muted);font-weight:500}
+.reco-tile.hl{border-color:rgba(200,255,61,.4);background:rgba(200,255,61,.06)}
+.reco-tile.hl b{color:var(--accent)}
+@media (max-width:768px){.reco-grid{grid-template-columns:1fr 1fr 1fr}}
+@media (max-width:400px){.reco-grid{grid-template-columns:1fr 1fr}}
+
 /* interactive reminder popup */
 #reminderPop{position:fixed;left:50%;bottom:calc(100px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:320;width:min(380px,92vw);display:none}
 #reminderPop.on{display:block;animation:pop .35s cubic-bezier(.2,.9,.3,1.3)}
@@ -875,6 +894,7 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
 
     <!-- DASHBOARD -->
     <div class="page active" id="pg-dash">
+      <div class="card apx-reco" id="apxReco" style="margin-bottom:18px;display:none"></div>
       <div class="grid g4" style="margin-bottom:18px">
         <div class="card stat-card"><small>Current Weight</small><b id="dWeight">78 kg</b><span class="trend down">▼ 1.2 kg this month</span></div>
         <div class="card stat-card"><small>Workouts This Week</small><b>4 / 5</b><span class="trend up">▲ On track</span></div>
@@ -927,7 +947,7 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
         <div class="card">
           <h3>Water Intake</h3>
           <div class="water-row" id="waterRow"></div>
-          <p style="color:var(--muted);font-size:.82rem;margin-top:12px"><b id="waterCount" style="color:var(--accent2)">3</b> of 8 glasses · tap to log</p>
+          <p style="color:var(--muted);font-size:.82rem;margin-top:12px"><b id="waterCount" style="color:var(--accent2)">0</b> of <span id="waterGoal">8</span> glasses · tap to log</p>
         </div>
         <div class="card">
           <h3>Achievements</h3>
@@ -1378,6 +1398,7 @@ function finishOnboarding(){
   document.getElementById('resMac').textContent = m.pro+'g / '+m.fat+'g';
   document.getElementById('resTip').textContent = GOAL_TIPS[goal] + ' Daily targets: '+m.cals+' kcal · '+m.pro+'g protein · '+m.carb+'g carbs · '+m.fat+'g fat.';
   document.getElementById('resModal').classList.add('open');
+  renderReco();
   document.getElementById('dCals').textContent = m.cals.toLocaleString();
   document.getElementById('dWeight').textContent = w + ' kg';
   enterApp();
@@ -1412,7 +1433,7 @@ function enterApp(quiet){
   scrollTo(0,0);
   if (!quiet) toast('Welcome, '+user.name,'Your Pro dashboard is ready.');
   renderTodaySession();
-  paintWater();
+  paintWater(); renderReco();
   setTimeout(dailyPlanNotif, 2500);
   if (!window._remEngineOn){ window._remEngineOn = true; startReminderEngine(); }
   setTimeout(()=>pushNotif(NIC.chart,'Your weekly report is ready','Grade A− · open Reports to view'), 4000);
@@ -1902,6 +1923,39 @@ function startReminderEngine(){
   setTimeout(workoutReminder, 20*60000);         // workout check after 20 min
   setTimeout(mealReminder, 45*60000);            // meal check after 45 min
   setInterval(mealReminder, 4*60*60000);         // meals every 4 hours
+}
+
+
+/* ============ APEXIFFY RECOMMENDS (personalized verdict) ============ */
+function waterTarget(w){ return Math.max(6, Math.min(12, Math.round((w||70)*0.033*4))); } // ~glasses/day
+function renderReco(){
+  const box = document.getElementById('apxReco'); if(!box) return;
+  if (!user.weight || !user.height || !user.bmi){ box.style.display='none'; return; }
+  const goal = user.goal || 'recomp';
+  const m = macroPlan(user.weight, user.height, user.age||24, (user.gender||'m'), goal);
+  const cals = user.cals || m.cals;
+  const [cat] = bmiCat(user.bmi);
+  const wGlasses = waterTarget(user.weight);
+  const goalName = {cut:'CUT — Lose Fat', bulk:'BULK — Build Muscle', recomp:'RECOMP — Lean & Strong'}[goal];
+  // Apexiffy's reasoning based on BMI
+  let think;
+  if (user.bmi >= 25) think = `Your BMI is <b>${user.bmi} (${cat})</b>. Apexiffy recommends a <b>CUT</b> — a calorie deficit to drop fat while keeping muscle. Even if you picked bulk, leaning out first will make everything look better.`;
+  else if (user.bmi < 18.5) think = `Your BMI is <b>${user.bmi} (${cat})</b>. Apexiffy recommends a <b>BULK</b> — eat in a surplus and lift heavy to add healthy weight and muscle.`;
+  else think = `Your BMI is <b>${user.bmi} (${cat})</b> — a great starting point. Your <b>${goal.toUpperCase()}</b> plan fits well. Stay consistent and let the weekly reports guide adjustments.`;
+
+  const logo = document.querySelector('.nav .logo-img')?.src || '';
+  box.innerHTML = `
+    <div class="rh">${logo?`<img class="lg" src="${logo}" alt="">`:''}<b>Apexiffy Recommends</b></div>
+    <h2>${goalName}</h2>
+    <div class="verdict">${think}</div>
+    <div class="reco-grid">
+      <div class="reco-tile hl"><small>Calories</small><b>${cals.toLocaleString()}</b><span class="u">kcal / day</span></div>
+      <div class="reco-tile"><small>Protein</small><b>${m.pro}</b><span class="u">grams</span></div>
+      <div class="reco-tile"><small>Carbs</small><b>${m.carb}</b><span class="u">grams</span></div>
+      <div class="reco-tile"><small>Fats</small><b>${m.fat}</b><span class="u">grams</span></div>
+      <div class="reco-tile"><small>Water</small><b>${wGlasses}</b><span class="u">glasses</span></div>
+    </div>`;
+  box.style.display = 'block';
 }
 
 /* auto-login returning users */
