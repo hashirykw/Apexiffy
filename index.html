@@ -1031,7 +1031,8 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
       <div class="report-hero" style="border-color:rgba(61,214,255,.3)">
         <div class="tag" style="color:var(--accent2);font-size:.75rem;letter-spacing:.2em">OWNER ACCESS</div>
         <h2>User Database</h2>
-        <p style="color:var(--muted);font-size:.88rem;margin-top:6px">Every account created on the platform, live. Demo note: this resets on refresh — a real backend (Supabase) makes it permanent and emails you each signup.</p>
+        <p style="color:var(--muted);font-size:.88rem;margin-top:6px">Every account created on the platform. Full console with live sync: <b style="color:var(--accent2)">apexiffydatabase.vercel.app</b></p>
+        <p id="connStatus" style="font-size:.8rem;margin-top:10px;font-weight:700"></p>
       </div>
       <div class="grid g3" id="adminStats" style="margin-bottom:18px"></div>
       <div class="card">
@@ -1161,12 +1162,17 @@ function switchAuth(m){
   document.getElementById('signupForm').style.display = m==='signup'?'block':'none';
 }
 let user = {name:'Athlete'};
-/* ======= DATABASE SYNC (connects to apexifydatabase.vercel.app via Supabase) =======
-   1. Create a free project at supabase.com
-   2. Create table `signups` with columns: username (text), phone (text), joined_at (timestamptz), plan (text)
-   3. Paste the same two values below AND in the database website file. Done — both sites share live data. */
-const SUPABASE_URL = '';   // e.g. https://xxxx.supabase.co
-const SUPABASE_KEY = '';   // your anon public key
+/* ████████████████████████████████████████████████████████████████████
+   ██  APEXIFFY LIVE DATABASE CONFIG — THE ONLY 2 LINES YOU EDIT      ██
+   ██                                                                 ██
+   ██  1. supabase.com → New Project (free)                           ██
+   ██  2. SQL Editor → run the table SQL (in the setup guide)         ██
+   ██  3. Settings → API → copy Project URL + anon public key         ██
+   ██  4. Paste both below, and the SAME values in the database file  ██
+   ██     deployed at https://apexiffydatabase.vercel.app/            ██
+   ████████████████████████████████████████████████████████████████████ */
+const SUPABASE_URL = 'https://vqsonygexituacuubsps.supabase.co';   // connected
+const SUPABASE_KEY = 'sb_publishable_QYbjakOEmauQuhpE6ejSlA_XNqluDLj';   // connected
 async function sendToDatabase(u){
   if(!SUPABASE_URL || !SUPABASE_KEY) return; // demo mode: session-only DB
   try{
@@ -1455,6 +1461,10 @@ function recordUser(name, phone, via){
   DB.users.push(u); renderAdmin(); sendToDatabase(u);
 }
 function renderAdmin(){
+  const cs = document.getElementById('connStatus');
+  if (cs) cs.innerHTML = (SUPABASE_URL && SUPABASE_KEY)
+    ? '<span style="color:var(--accent)">● LIVE SYNC ON</span> — signups are being sent to your Supabase database.'
+    : '<span style="color:var(--danger)">● NOT CONNECTED</span> — signups are NOT being saved permanently. Paste your Supabase URL + key at the top of this file (and the database file) to go live.';
   const tb = document.getElementById('adminRows'); if(!tb) return;
   tb.innerHTML = DB.users.length === 0 ? '<tr><td colspan="9" style="text-align:center;color:var(--muted);padding:40px">No users yet — accounts appear here the moment someone signs up.</td></tr>' : DB.users.map((u,i)=>`<tr><td>${i+1}</td><td><b>${u.name}</b></td><td>${u.phone}</td><td>${u.gym||'—'}</td><td>${u.goal||'—'}</td><td>${u.bmi||'—'}</td><td>${u.health?u.health+'%':'—'}</td><td><span class="pill ${u.plan.includes('Elite')?'c':u.plan.includes('Pro')?'a':'b'}">${u.plan}</span></td><td>${u.joined}</td></tr>`).join('');
   const s = document.getElementById('adminStats');
