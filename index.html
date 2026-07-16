@@ -570,6 +570,59 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
 @media (max-width:768px){.reco-grid{grid-template-columns:1fr 1fr 1fr}}
 @media (max-width:400px){.reco-grid{grid-template-columns:1fr 1fr}}
 
+
+#waFloat{position:fixed;right:20px;bottom:calc(22px + env(safe-area-inset-bottom));z-index:130;display:flex;align-items:center;gap:0;padding:0;height:52px;border-radius:999px;
+  background:rgba(18,18,28,.72);backdrop-filter:blur(14px) saturate(1.3);border:1px solid rgba(200,255,61,.28);
+  color:var(--text);text-decoration:none;overflow:hidden;box-shadow:0 10px 34px rgba(0,0,0,.45);transition:border-color .3s,box-shadow .3s,transform .3s}
+#waFloat:hover{border-color:var(--accent);box-shadow:0 12px 40px rgba(200,255,61,.22);transform:translateY(-2px)}
+#waFloat .wa-ic{width:52px;height:52px;display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0}
+#waFloat .wa-tx{font-size:.85rem;font-weight:700;letter-spacing:.01em;max-width:0;opacity:0;white-space:nowrap;padding-right:0;transition:max-width .35s ease,opacity .3s,padding-right .35s}
+#waFloat:hover .wa-tx{max-width:140px;opacity:1;padding-right:20px}
+/* pulse ring on the dot */
+#waFloat .wa-ic::after{content:'';position:absolute;width:10px;height:10px;border-radius:50%;background:var(--accent);top:12px;right:12px;box-shadow:0 0 0 0 rgba(200,255,61,.6);animation:waPing 2.2s infinite}
+@keyframes waPing{0%{box-shadow:0 0 0 0 rgba(200,255,61,.55)}70%{box-shadow:0 0 0 10px rgba(200,255,61,0)}100%{box-shadow:0 0 0 0 rgba(200,255,61,0)}}
+@media (max-width:768px){
+  #waFloat{bottom:calc(90px + env(safe-area-inset-bottom));height:48px}
+  #waFloat .wa-ic{width:48px;height:48px}
+  #waFloat .wa-tx{max-width:0;opacity:0;padding-right:0}
+  #waFloat.open .wa-tx{max-width:130px;opacity:1;padding-right:18px}
+}
+
+
+
+/* IG social */
+.ig-head{display:flex;align-items:center;gap:14px}
+.ig-av{width:60px;height:60px;font-size:1.4rem;flex-shrink:0}
+.ig-stats{display:flex;gap:8px}
+.ig-stats button{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:10px 16px;text-align:center;cursor:pointer;color:var(--text);transition:border-color .25s}
+.ig-stats button:hover{border-color:var(--accent)}
+.ig-stats b{display:block;font-size:1.05rem;font-family:'Sora',sans-serif}
+.ig-stats small{color:var(--muted);font-size:.66rem;letter-spacing:.05em;text-transform:uppercase}
+.um-head{display:flex;align-items:center;gap:16px;margin-bottom:16px}
+.um-head .avatar{width:64px;height:64px;font-size:1.5rem}
+.um-stats{display:flex;gap:8px;margin-bottom:16px}
+.um-stats>div,.um-stats>button{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:10px 6px;text-align:center;color:var(--text);cursor:default;font-family:inherit}
+.um-stats button{cursor:pointer;transition:border-color .25s}
+.um-stats button:hover{border-color:var(--accent)}
+.um-stats b{display:block;font-size:1rem;font-family:'Sora',sans-serif}
+.um-stats small{color:var(--muted);font-size:.62rem;letter-spacing:.05em;text-transform:uppercase}
+.fr-card .fr-tap{display:flex;align-items:center;gap:14px;flex:1;min-width:0;cursor:pointer}
+.heart{background:none;border:none;color:var(--muted);cursor:pointer;display:flex;align-items:center;gap:5px;font-size:.78rem;font-weight:700;padding:4px 8px;border-radius:8px;transition:color .2s,transform .2s}
+.heart:hover{transform:scale(1.1)}
+.heart.liked{color:#ff4d6d}
+.heart svg{width:16px;height:16px}
+
+.feed-item{display:flex;align-items:center;gap:12px;padding:11px 4px;border-bottom:1px dashed var(--border)}
+.feed-item:last-child{border-bottom:none}
+/* friends cards */
+.fr-card{display:flex;align-items:center;gap:14px;padding:13px 6px;border-bottom:1px dashed var(--border)}
+.fr-card:last-child{border-bottom:none}
+.fr-card .avatar{width:46px;height:46px;font-size:1.05rem;flex-shrink:0}
+.fr-info{flex:1;min-width:0}
+.fr-info b{display:block;font-size:.95rem}
+.fr-info small{color:var(--muted);font-size:.78rem;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fr-btn{padding:9px 20px;font-size:.8rem}
+
 /* interactive reminder popup */
 #reminderPop{position:fixed;left:50%;bottom:calc(100px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:320;width:min(380px,92vw);display:none}
 #reminderPop.on{display:block;animation:pop .35s cubic-bezier(.2,.9,.3,1.3)}
@@ -810,9 +863,16 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
       <p style="color:var(--muted);font-size:.85rem;margin-top:14px;max-width:280px">The premium body engineering platform. Built for people who treat training like it matters.</p>
     </div>
     <div><h4>Platform</h4><a href="#features">Features</a><a href="#how">How it works</a><a href="#gallery">Transformations</a><a href="#pricing">Pricing</a></div>
-    <div><h4>Company</h4><a href="#stories">Member stories</a><a href="#faq">FAQ</a><a onclick="toast('Coming soon','Blog launches with v1.0')">Blog</a><a onclick="toast('Contact','support@apexiffy.app')">Contact</a></div>
+    <div><h4>Company</h4><a href="#stories">Member stories</a><a href="#faq">FAQ</a><a href="https://wa.me/923053687680" target="_blank" rel="noopener">WhatsApp us</a><a href="tel:+923053687680">Call: 0305-3687680</a></div>
     <div>
-      <h4>Get the drop</h4>
+      <h4>Contact</h4>
+      <a href="https://wa.me/923053687680" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px">
+        <svg viewBox="0 0 24 24" width="16" fill="#25D366"><path d="M17.5 14.4c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.7.1s-.8.9-.9 1.1-.3.2-.6.1a8 8 0 0 1-2.4-1.5 9 9 0 0 1-1.6-2c-.2-.3 0-.5.1-.6l.5-.5.3-.5v-.5l-.9-2.1c-.2-.5-.4-.5-.6-.5h-.6c-.2 0-.5.1-.8.4a3.4 3.4 0 0 0-1 2.5 6 6 0 0 0 1.2 3.1 13.5 13.5 0 0 0 5.2 4.6c.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4l-.4-.3zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg>
+        WhatsApp: 0305-3687680</a>
+      <a href="tel:+923053687680" style="display:flex;align-items:center;gap:8px">
+        <svg viewBox="0 0 24 24" width="16" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8.1 9.5a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2z"/></svg>
+        Call: 0305-3687680</a>
+      <h4 style="margin-top:20px">Get the drop</h4>
       <p style="color:var(--muted);font-size:.82rem;margin-bottom:12px">Launch news, training insights. No spam.</p>
       <div class="nl"><input type="email" placeholder="your@email.com" id="nlEmail"><button class="btn btn-primary" style="padding:12px 20px" onclick="toast('Subscribed','You are on the launch list.');document.getElementById('nlEmail').value=''">→</button></div>
     </div>
@@ -894,6 +954,7 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
       <button onclick="go('gal',this)"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v12H4V8Z"/><circle cx="12" cy="13" r="3.4"/></svg> Progress Gallery</button>
       <button onclick="go('rep',this)"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M21 20H3"/></svg> Reports</button>
       <button onclick="go('prof',this)"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1"/></svg> Profile & Stats</button>
+      <button onclick="go('friends',this)"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.4"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17.5" cy="9.5" r="2.6"/><path d="M15.5 15.6a5.6 5.6 0 0 1 6 4.4"/></svg> Friends</button>
       <button id="adminNavBtn" style="display:none;color:var(--accent2)" onclick="go('admin',this)"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18M8 14h3"/></svg> Admin Database</button>
       <button onclick="logout()" style="color:var(--danger)"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h4M15 8l4 4-4 4M19 12H9"/></svg> Log out</button>
     </div>
@@ -920,7 +981,7 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
         <div class="card stat-card"><small>Current Weight</small><b id="dWeight">78 kg</b><span class="trend down">▼ 1.2 kg this month</span></div>
         <div class="card stat-card"><small>Workouts This Week</small><b>4 / 5</b><span class="trend up">▲ On track</span></div>
         <div class="card stat-card"><small>Daily Calories</small><b id="dCals">2,340</b><span class="trend up">Target hit 6/7 days</span></div>
-        <div class="card stat-card"><small>Consistency Score</small><b>92%</b><span class="trend up">▲ +5% vs last week</span></div>
+        <div class="card stat-card"><small>Training Streak</small><b id="streakVal">0 days</b><span class="trend up" id="streakSub">Log a workout to start</span></div>
       </div>
       <div class="grid g2">
         <div class="card">
@@ -1126,10 +1187,48 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
           <div class="field"><label>Waist (cm)</label><input type="number" value="84"></div>
           <div class="field"><label>Thighs (cm)</label><input type="number" value="58"></div>
         </div>
+        <div style="margin:6px 0 18px;padding:16px;background:var(--bg2);border:1px solid var(--border);border-radius:14px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+          <div><b style="font-size:.95rem">Private account</b><br><small style="color:var(--muted)">When private, others can follow you but can't see your profile details</small></div>
+          <button class="btn btn-ghost" id="privBtn" style="padding:10px 22px" onclick="togglePrivacy()">Public</button>
+        </div>
         <div style="display:flex;gap:12px;flex-wrap:wrap">
           <button class="btn btn-primary" onclick="toast('Profile updated','Your custom guide will adapt to your new stats.')">Save Changes</button>
           <button class="btn btn-ghost" style="color:var(--danger);border-color:rgba(255,77,109,.4)" onclick="logout()">Log Out</button>
         </div>
+      </div>
+    </div>
+
+    <!-- FRIENDS -->
+    <div class="page" id="pg-friends">
+      <div class="card ig-head" style="margin-bottom:18px">
+        <div class="avatar ig-av" id="igMyAv">A</div>
+        <div style="flex:1;min-width:0">
+          <b id="igMyName" style="font-size:1.05rem">Athlete</b>
+          <small id="igMySub" style="display:block;color:var(--muted);font-size:.78rem;margin-top:2px"></small>
+        </div>
+        <div class="ig-stats">
+          <button onclick="openList('followers')"><b id="cFollowers">0</b><small>Followers</small></button>
+          <button onclick="openList('following')"><b id="cFollowing">0</b><small>Following</small></button>
+        </div>
+      </div>
+      <div class="card" style="margin-bottom:18px">
+        <h3>Activity Feed</h3>
+        <div id="feedBox"><p style="color:var(--muted);font-size:.85rem;padding:4px 2px">Follow friends to see their training activity here.</p></div>
+      </div>
+      <div class="card" style="margin-bottom:18px">
+        <h3>Find Friends</h3>
+        <div style="display:flex;gap:10px">
+          <input type="text" id="frSearch" placeholder="Search by username…" style="flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:13px 16px;color:var(--text);font-size:16px;outline:none" onkeydown="if(event.key==='Enter')searchUsers()">
+          <button class="btn btn-primary" style="padding:12px 24px" onclick="searchUsers()">Search</button>
+        </div>
+        <div id="frResults" style="margin-top:14px"></div>
+      </div>
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:6px">
+          <h3 style="margin:0">Your Circle</h3>
+          <span id="frStats" style="color:var(--muted);font-size:.82rem;font-weight:700"></span>
+        </div>
+        <div id="frFollowing"></div>
       </div>
     </div>
 
@@ -1162,8 +1261,25 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
   <button data-tab="guide" onclick="goTab('guide',this)"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/><circle cx="12" cy="12" r="3.2"/></svg><em>Guide</em></button>
   <button data-tab="diet" onclick="goTab('diet',this)"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c1.5 3.5 6 5 6 10a6 6 0 0 1-12 0c0-3 2-4.5 2.8-7 1.2 1.8 2.4 2 3.2-3Z"/></svg><em>Diet</em></button>
   <button data-tab="gal" onclick="goTab('gal',this)"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v12H4V8Z"/><circle cx="12" cy="13" r="3.4"/></svg><em>Gallery</em></button>
+  <button data-tab="friends" onclick="goTab('friends',this)"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.4"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17.5" cy="9.5" r="2.6"/><path d="M15.5 15.6a5.6 5.6 0 0 1 6 4.4"/></svg><em>Friends</em></button>
   <button data-tab="rep" onclick="goTab('rep',this)"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M21 20H3"/></svg><em>Reports</em></button>
 </nav>
+</div>
+
+<!-- USER PROFILE MODAL (IG style) -->
+<div class="modal-bg" id="userModal">
+  <div class="auth-card" style="max-width:400px">
+    <button class="close-x" onclick="document.getElementById('userModal').classList.remove('open')">✕</button>
+    <div id="umBody"></div>
+  </div>
+</div>
+<!-- FOLLOW LIST MODAL -->
+<div class="modal-bg" id="listModal">
+  <div class="auth-card" style="max-width:400px">
+    <button class="close-x" onclick="document.getElementById('listModal').classList.remove('open')">✕</button>
+    <h2 id="lmTitle" style="font-size:1.2rem;margin-bottom:14px">Followers</h2>
+    <div id="lmBody" style="max-height:55vh;overflow-y:auto"></div>
+  </div>
 </div>
 
 <!-- NOTIFICATIONS -->
@@ -1172,6 +1288,10 @@ section::before{content:'';position:absolute;top:0;left:50%;transform:translateX
   <div id="notifList"></div>
 </div>
 <div id="restTimer"><div><b id="rtTime">1:30</b><small id="rtLabel">Rest — Bench Press</small></div><button onclick="stopRest()">✕</button></div>
+<a id="waFloat" href="https://wa.me/923053687680" target="_blank" rel="noopener" aria-label="Chat with Apexiffy on WhatsApp">
+  <span class="wa-ic"><svg viewBox="0 0 24 24" width="18" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.7.1s-.8.9-.9 1.1-.3.2-.6.1a8 8 0 0 1-2.4-1.5 9 9 0 0 1-1.6-2c-.2-.3 0-.5.1-.6l.5-.5.3-.5v-.5l-.9-2.1c-.2-.5-.4-.5-.6-.5h-.6c-.2 0-.5.1-.8.4a3.4 3.4 0 0 0-1 2.5 6 6 0 0 0 1.2 3.1 13.5 13.5 0 0 0 5.2 4.6c.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4l-.4-.3zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></span>
+  <span class="wa-tx">Chat with us</span>
+</a>
 <div id="reminderPop"></div>
 <div class="toast-wrap" id="toasts"></div>
 
@@ -1353,7 +1473,7 @@ async function doLogin(){
         toast('Wrong password','Try again.'); return;
       }
       Object.assign(user, { name: acc.username, phone: acc.phone, isAdmin:false,
-        goal: acc.goal, gym: acc.gym, bmi: acc.bmi, health: acc.health,
+        goal: acc.goal, gym: acc.gym, bmi: acc.bmi, health: acc.health, is_private: acc.is_private,
         height: acc.height, weight: acc.weight, cals: acc.calories });
       if (user.cals) document.getElementById('dCals').textContent = (+user.cals).toLocaleString();
       if (user.weight) document.getElementById('dWeight').textContent = user.weight + ' kg';
@@ -1454,7 +1574,9 @@ function enterApp(quiet){
   scrollTo(0,0);
   if (!quiet) toast('Welcome, '+user.name,'Your Pro dashboard is ready.');
   renderTodaySession();
-  paintWater(); renderReco();
+  paintWater(); renderReco(); renderStreak();
+  const pb = document.getElementById('privBtn');
+  if (pb){ pb.textContent = user.is_private ? 'Private' : 'Public'; pb.style.color = user.is_private?'var(--accent)':''; pb.style.borderColor = user.is_private?'var(--accent)':''; }
   setTimeout(dailyPlanNotif, 2500);
   if (!window._remEngineOn){ window._remEngineOn = true; startReminderEngine(); }
   setTimeout(()=>pushNotif(NIC.chart,'Your weekly report is ready','Grade A− · open Reports to view'), 4000);
@@ -1470,8 +1592,9 @@ function logout(){
 }
 
 /* ============ APP NAV ============ */
-const titles = {dash:'Dashboard', guide:'My Custom Guide', split:'My Split & Schedule', diet:'Diet & Calories', gal:'Progress Gallery', rep:'Reports', prof:'Profile & Stats', admin:'Admin — User Database'};
+const titles = {dash:'Dashboard', guide:'My Custom Guide', split:'My Split & Schedule', diet:'Diet & Calories', gal:'Progress Gallery', rep:'Reports', prof:'Profile & Stats', friends:'Friends', admin:'Admin — User Database'};
 function go(p, btn){
+  if (p === 'friends') setTimeout(()=>{ loadCircle().then(loadFeed); }, 50);
   document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
   document.getElementById('pg-'+p).classList.add('active');
   document.querySelectorAll('.snav button').forEach(b=>b.classList.remove('active'));
@@ -1513,6 +1636,7 @@ function genGuide(){
   html += '</div>';
   document.getElementById('guideOut').innerHTML = html;
   toast('Custom guide generated', days+'-day split built for your '+goal+' goal.');
+  postActivity('generated a new plan', days+'-day '+goal);
   pushNotif(NIC.spark,'New custom guide created','Your '+days+'-day program is live on your dashboard');
 }
 
@@ -1632,6 +1756,7 @@ months.forEach((m,i)=>{
     const tgt = document.getElementById(i===0 ? 'baBefore' : 'baAfter');
     if (tgt){ const c = document.createElement('img'); c.src = img.src; tgt.appendChild(c); }
     toast('Photo uploaded','Added to your '+m.replace(' — upload now','')+' progress log.');
+    postActivity('added a progress photo', null);
     pushNotif(NIC.cam,'Progress photo added','Your monthly comparison will include this photo');
   });
   grid.appendChild(slot);
@@ -1810,6 +1935,7 @@ function addPR(){
     `<tr><td>${l}</td><td><b>${w} kg</b></td><td>${new Date().toLocaleDateString('en-PK',{month:'short',day:'numeric'})}</td></tr>`);
   toast('New PR logged', l+' \u2014 '+w+' kg. Keep climbing.');
   pushNotif(NIC.chart,'New personal record', l+' '+w+' kg logged');
+  postActivity('hit a new PR', l+' '+w+' kg');
 }
 /* ============ BEFORE / AFTER SLIDER ============ */
 const baR = document.getElementById('baRange');
@@ -1933,7 +2059,7 @@ function workoutReminder(){
   if (s.type === 'rest') return;
   showReminder(WORKOUT_ICON, 'Did you train today?', TYPE_LABEL[s.type]+' day — '+MUSCLES[s.type],
     'Yes, done', 'Not yet',
-    ()=>{ user.trainedToday = new Date().toDateString(); saveSession(); toast('Logged','Session marked complete. Streak safe.'); pushNotif(NIC.chart,'Workout logged',TYPE_LABEL[s.type]+' day complete'); },
+    ()=>{ markTrained(); toast('Logged','Session marked complete. Streak safe.'); pushNotif(NIC.chart,'Workout logged',TYPE_LABEL[s.type]+' day complete'); postActivity('completed a workout', TYPE_LABEL[s.type]+' day'); },
     ()=>{ toast('Still time','Even 30 minutes counts. Go get it.'); });
 }
 
@@ -1977,6 +2103,270 @@ function renderReco(){
       <div class="reco-tile"><small>Water</small><b>${wGlasses}</b><span class="u">glasses</span></div>
     </div>`;
   box.style.display = 'block';
+}
+
+/* WhatsApp pill: peek label once on mobile */
+(function(){ const w=document.getElementById('waFloat'); if(w&&innerWidth<=768){ setTimeout(()=>{w.classList.add('open'); setTimeout(()=>w.classList.remove('open'),2600);}, 1800);} })();
+
+
+/* ============ FRIENDS (Instagram-style follow system) ============ */
+function sbReq(path, opts={}){
+  return fetch(SUPABASE_URL+'/rest/v1/'+path, Object.assign({
+    headers: Object.assign({ apikey:SUPABASE_KEY, Authorization:'Bearer '+SUPABASE_KEY, 'Content-Type':'application/json' }, opts.headers||{})
+  }, opts));
+}
+let myFollowing = [];  // usernames I follow
+const AV_GRADS = ['linear-gradient(135deg,var(--accent),var(--accent2))','linear-gradient(135deg,var(--accent2),#be78ff)','linear-gradient(135deg,#ffb03d,var(--accent))','linear-gradient(135deg,#be78ff,#ff4d6d)'];
+function avFor(name){ return AV_GRADS[(name||'a').charCodeAt(0) % AV_GRADS.length]; }
+
+function userCard(u, followed){
+  const isMe = u.username === user.name;
+  const priv = u.is_private;
+  const sub = priv && !isMe
+    ? '<span style="color:var(--muted)">Private account</span>'
+    : [u.gym, u.goal ? u.goal[0].toUpperCase()+u.goal.slice(1) : null].filter(Boolean).join(' · ') || 'Apexiffy member';
+  const btn = isMe ? '<span class="pill b">You</span>'
+    : followed
+      ? `<button class="btn btn-ghost fr-btn" onclick="unfollow('${u.username}')">Following ✓</button>`.replace(' ✓','')
+      : `<button class="btn btn-primary fr-btn" onclick="follow('${u.username}')">Follow</button>`;
+  return `<div class="fr-card">
+    <div class="fr-tap" onclick="openProfile('${u.username}')">
+    <div class="avatar" style="background:${avFor(u.username)}">${(u.username||'?')[0].toUpperCase()}</div>
+    <div class="fr-info"><b>${u.username}${priv?' <svg viewBox="0 0 24 24" width="12" style="vertical-align:-1px" fill="none" stroke="var(--muted)" stroke-width="2.4"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>':''}</b>
+    <small>${sub}</small></div>
+    </div>
+    ${btn}
+  </div>`;
+}
+
+async function searchUsers(){
+  const q = document.getElementById('frSearch').value.trim();
+  const out = document.getElementById('frResults');
+  if (!q){ out.innerHTML=''; return; }
+  out.innerHTML = '<p style="color:var(--muted);font-size:.85rem;padding:8px 2px">Searching…</p>';
+  if (!SUPABASE_URL || !SUPABASE_KEY){
+    out.innerHTML = '<p style="color:var(--muted);font-size:.85rem;padding:8px 2px">Friend search needs the live database connection.</p>'; return;
+  }
+  try{
+    const r = await sbReq('signups?username=ilike.*'+encodeURIComponent(q)+'*&select=username,gym,goal,is_private&limit=10');
+    const rows = await r.json();
+    if (!Array.isArray(rows) || !rows.length){ out.innerHTML = '<p style="color:var(--muted);font-size:.85rem;padding:8px 2px">No one found with that username.</p>'; return; }
+    out.innerHTML = rows.map(u=>userCard(u, myFollowing.includes(u.username))).join('');
+  }catch(e){ out.innerHTML = '<p style="color:var(--danger);font-size:.85rem;padding:8px 2px">Search failed — check connection.</p>'; }
+}
+
+async function follow(name){
+  if (!user.name || user.name==='Athlete'){ toast('Log in first','Create an account to follow friends.'); return; }
+  try{
+    await sbReq('follows', { method:'POST', headers:{Prefer:'return=minimal'},
+      body: JSON.stringify({ follower:user.name, following:name }) });
+    if (!myFollowing.includes(name)) myFollowing.push(name);
+    toast('Following '+name, 'They\'re in your circle now.');
+    postActivity('started following', name);
+    pushNotif(NIC.spark, 'New follow', 'You followed '+name);
+    searchUsers(); loadCircle();
+  }catch(e){ toast('Could not follow','Try again.'); }
+}
+async function unfollow(name){
+  try{
+    await sbReq('follows?follower=eq.'+encodeURIComponent(user.name)+'&following=eq.'+encodeURIComponent(name), { method:'DELETE', headers:{Prefer:'return=minimal'} });
+    myFollowing = myFollowing.filter(x=>x!==name);
+    toast('Unfollowed '+name,'');
+    searchUsers(); loadCircle();
+  }catch(e){}
+}
+
+async function loadCircle(){
+  const box = document.getElementById('frFollowing'), st = document.getElementById('frStats');
+  if (!box) return;
+  if (!SUPABASE_URL || !SUPABASE_KEY){ box.innerHTML='<p style="color:var(--muted);font-size:.85rem">Connect the live database to build your circle.</p>'; return; }
+  try{
+    const [fRes, bRes] = await Promise.all([
+      sbReq('follows?follower=eq.'+encodeURIComponent(user.name)+'&select=following'),
+      sbReq('follows?following=eq.'+encodeURIComponent(user.name)+'&select=follower')
+    ]);
+    const fRows = await fRes.json(), bRows = await bRes.json();
+    myFollowing = Array.isArray(fRows) ? fRows.map(x=>x.following) : [];
+    const followers = Array.isArray(bRows) ? bRows.length : 0;
+    myCounts = {followers, following: myFollowing.length};
+    paintMyHead();
+    if (st) st.textContent = myFollowing.length+' following · '+followers+' followers';
+    paintMyHead();
+    if (!myFollowing.length){ box.innerHTML='<p style="color:var(--muted);font-size:.85rem;padding:6px 2px">You\'re not following anyone yet — search above to find friends.</p>'; return; }
+    const inList = myFollowing.map(n=>'"'+n.replace(/"/g,'')+'"').join(',');
+    const r = await sbReq('signups?username=in.('+encodeURIComponent(myFollowing.join(','))+')&select=username,gym,goal,is_private');
+    const rows = await r.json();
+    box.innerHTML = (Array.isArray(rows)?rows:[]).map(u=>userCard(u, true)).join('');
+  }catch(e){ box.innerHTML='<p style="color:var(--danger);font-size:.85rem">Could not load your circle.</p>'; }
+}
+
+async function togglePrivacy(){
+  user.is_private = !user.is_private;
+  const b = document.getElementById('privBtn');
+  if (b){ b.textContent = user.is_private ? 'Private' : 'Public';
+    b.style.color = user.is_private ? 'var(--accent)' : '';
+    b.style.borderColor = user.is_private ? 'var(--accent)' : ''; }
+  saveSession();
+  if (SUPABASE_URL && SUPABASE_KEY && user.name){
+    try{ await sbReq('signups?username=eq.'+encodeURIComponent(user.name), { method:'PATCH', headers:{Prefer:'return=minimal'}, body: JSON.stringify({ is_private:user.is_private }) }); }catch(e){}
+  }
+  toast(user.is_private ? 'Account set to Private' : 'Account set to Public',
+        user.is_private ? 'Others can follow you but won\'t see your details.' : 'Your basic profile is visible to members.');
+}
+
+
+
+/* ============ STREAK ============ */
+function markTrained(){
+  const today = new Date().toDateString();
+  user.trainDays = user.trainDays || [];
+  if (!user.trainDays.includes(today)) user.trainDays.push(today);
+  user.trainDays = user.trainDays.slice(-60);
+  user.trainedToday = today;
+  saveSession(); renderStreak();
+}
+function streakCount(){
+  const days = new Set(user.trainDays||[]);
+  let n = 0; const d = new Date();
+  if (!days.has(d.toDateString())) d.setDate(d.getDate()-1); // allow today not-yet-trained
+  while (days.has(d.toDateString())){ n++; d.setDate(d.getDate()-1); }
+  return n;
+}
+function renderStreak(){
+  const el = document.getElementById('streakVal'); if(!el) return;
+  const n = streakCount();
+  el.textContent = n + (n===1?' day':' days');
+  const sub = document.getElementById('streakSub');
+  if (sub) sub.textContent = n===0 ? 'Log a workout to start your streak' : n>=7 ? 'On fire — keep the chain alive' : 'Building momentum';
+}
+
+/* ============ ACTIVITY FEED ============ */
+async function postActivity(action, detail){
+  if (!SUPABASE_URL || !SUPABASE_KEY || !user.name || user.name==='Athlete') return;
+  try{ await sbReq('activities', { method:'POST', headers:{Prefer:'return=minimal'},
+    body: JSON.stringify({ username:user.name, action, detail }) }); }catch(e){}
+}
+function timeAgo(iso){
+  const s = (Date.now()-new Date(iso).getTime())/1000;
+  if (s<60) return 'just now';
+  if (s<3600) return Math.floor(s/60)+'m ago';
+  if (s<86400) return Math.floor(s/3600)+'h ago';
+  return Math.floor(s/86400)+'d ago';
+}
+const FEED_ICONS = { workout:'🏋', pr:'🏆', photo:'📷', guide:'🧬', follow:'👥', water:'💧' };
+async function loadFeed(){
+  const box = document.getElementById('feedBox'); if(!box) return;
+  if (!SUPABASE_URL || !SUPABASE_KEY) return;
+  try{
+    const names = [...myFollowing, user.name].filter(Boolean);
+    if (!names.length) return;
+    const r = await sbReq('activities?username=in.('+encodeURIComponent(names.join(','))+')&select=*&order=created_at.desc&limit=20');
+    const rows = await r.json();
+    if (!Array.isArray(rows) || !rows.length){ box.innerHTML='<p style="color:var(--muted);font-size:.85rem;padding:4px 2px">No activity yet — you and your circle\'s training will show up here.</p>'; return; }
+    // fetch likes for these activities
+    let likeMap = {}, mine = new Set();
+    try{
+      const ids = rows.map(a=>a.id).join(',');
+      const lr = await sbReq('likes?activity_id=in.('+ids+')&select=activity_id,username');
+      const ls = await lr.json();
+      (Array.isArray(ls)?ls:[]).forEach(l=>{ likeMap[l.activity_id]=(likeMap[l.activity_id]||0)+1; if(l.username===user.name) mine.add(l.activity_id); });
+    }catch(e){}
+    box.innerHTML = rows.map(a=>`
+      <div class="feed-item">
+        <div class="avatar" style="width:38px;height:38px;font-size:.85rem;background:${avFor(a.username)};cursor:pointer" onclick="openProfile('${a.username}')">${a.username[0].toUpperCase()}</div>
+        <div style="flex:1;min-width:0">
+          <span style="font-size:.88rem"><b style="cursor:pointer" onclick="openProfile('${a.username}')">${a.username===user.name?'You':a.username}</b> ${a.action}${a.detail?' — <span style="color:var(--accent)">'+a.detail+'</span>':''}</span>
+          <small style="display:block;color:var(--muted);font-size:.72rem;margin-top:2px">${timeAgo(a.created_at)}</small>
+        </div>
+        <button class="heart ${mine.has(a.id)?'liked':''}" onclick="toggleLike('${a.id}',this)">
+          <svg viewBox="0 0 24 24" fill="${mine.has(a.id)?'currentColor':'none'}" stroke="currentColor" stroke-width="2"><path d="M19 14c1.5-1.5 3-3.3 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3.4 1-4.5 2.5C10.9 4 9.3 3 7.5 3A5.5 5.5 0 0 0 2 8.5c0 2.2 1.5 4 3 5.5l7 7z"/></svg>
+          <span>${likeMap[a.id]||0}</span>
+        </button>
+      </div>`).join('');
+  }catch(e){}
+}
+
+
+/* ============ IG SOCIAL: profiles, lists, likes ============ */
+let myCounts = {followers:0, following:0};
+function paintMyHead(){
+  const n = document.getElementById('igMyName'); if(!n) return;
+  n.innerHTML = user.name + (user.is_private?' <svg viewBox="0 0 24 24" width="12" fill="none" stroke="var(--muted)" stroke-width="2.4"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>':'');
+  document.getElementById('igMyAv').textContent = (user.name||'A')[0].toUpperCase();
+  document.getElementById('igMyAv').style.background = avFor(user.name);
+  document.getElementById('igMySub').textContent = [user.gym, user.goal? user.goal[0].toUpperCase()+user.goal.slice(1):null].filter(Boolean).join(' · ') || 'Apexiffy member';
+  document.getElementById('cFollowers').textContent = myCounts.followers;
+  document.getElementById('cFollowing').textContent = myCounts.following;
+}
+async function counts(name){
+  const [a,b] = await Promise.all([
+    sbReq('follows?following=eq.'+encodeURIComponent(name)+'&select=follower'),
+    sbReq('follows?follower=eq.'+encodeURIComponent(name)+'&select=following')
+  ]);
+  const fers = await a.json(), fing = await b.json();
+  return { followers: Array.isArray(fers)?fers.length:0, following: Array.isArray(fing)?fing.length:0,
+           followerNames: (fers||[]).map(x=>x.follower), followingNames: (fing||[]).map(x=>x.following) };
+}
+async function openProfile(name){
+  if (!SUPABASE_URL) return;
+  const modal = document.getElementById('userModal'), body = document.getElementById('umBody');
+  body.innerHTML = '<p style="color:var(--muted)">Loading…</p>'; modal.classList.add('open');
+  try{
+    const [uRes, c, actRes] = await Promise.all([
+      sbReq('signups?username=eq.'+encodeURIComponent(name)+'&select=username,gym,goal,is_private,joined_at'),
+      counts(name),
+      sbReq('activities?username=eq.'+encodeURIComponent(name)+'&select=action,detail,created_at&order=created_at.desc&limit=5')
+    ]);
+    const u = (await uRes.json())[0]; const acts = await actRes.json();
+    if (!u){ body.innerHTML='<p style="color:var(--muted)">User not found.</p>'; return; }
+    const isMe = u.username===user.name, followed = myFollowing.includes(u.username);
+    const hidden = u.is_private && !isMe;
+    body.innerHTML = `
+      <div class="um-head">
+        <div class="avatar" style="background:${avFor(u.username)}">${u.username[0].toUpperCase()}</div>
+        <div style="flex:1;min-width:0"><b style="font-size:1.15rem">${u.username}${u.is_private?' 🔒'.replace(' 🔒','')+' <svg viewBox="0 0 24 24" width="13" fill="none" stroke="var(--muted)" stroke-width="2.4"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>':''}</b>
+        <small style="display:block;color:var(--muted);font-size:.8rem;margin-top:3px">${hidden?'Private account':[u.gym,u.goal?u.goal[0].toUpperCase()+u.goal.slice(1):null].filter(Boolean).join(' · ')||'Apexiffy member'}</small></div>
+      </div>
+      <div class="um-stats">
+        <div><b>${Array.isArray(acts)?acts.length:0}${Array.isArray(acts)&&acts.length===5?'+':''}</b><small>Activities</small></div>
+        <button onclick="openList('followers','${u.username}')"><b>${c.followers}</b><small>Followers</small></button>
+        <button onclick="openList('following','${u.username}')"><b>${c.following}</b><small>Following</small></button>
+      </div>
+      ${isMe?'':(followed
+        ? `<button class="btn btn-ghost" style="width:100%" onclick="unfollow('${u.username}').then(()=>openProfile('${u.username}'))">Following — Unfollow</button>`
+        : `<button class="btn btn-primary" style="width:100%" onclick="follow('${u.username}').then(()=>openProfile('${u.username}'))">Follow</button>`)}
+      ${hidden?'':(Array.isArray(acts)&&acts.length? '<h3 style="font-size:.85rem;margin:18px 0 8px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase">Recent activity</h3>'+acts.map(a=>`<div class="feed-item" style="padding:8px 2px"><span style="font-size:.85rem">${a.action}${a.detail?' — <span style=\'color:var(--accent)\'>'+a.detail+'</span>':''}<small style="display:block;color:var(--muted);font-size:.7rem">${timeAgo(a.created_at)}</small></span></div>`).join(''):'')}`;
+  }catch(e){ body.innerHTML='<p style="color:var(--danger)">Could not load profile.</p>'; }
+}
+async function openList(kind, name){
+  name = name || user.name;
+  const modal = document.getElementById('listModal'), body = document.getElementById('lmBody');
+  document.getElementById('lmTitle').textContent = (name===user.name?'Your ':name+"'s ") + (kind==='followers'?'Followers':'Following');
+  body.innerHTML = '<p style="color:var(--muted)">Loading…</p>'; modal.classList.add('open');
+  try{
+    const c = await counts(name);
+    const names = kind==='followers'? c.followerNames : c.followingNames;
+    if (!names.length){ body.innerHTML='<p style="color:var(--muted);font-size:.85rem">No one here yet.</p>'; return; }
+    const r = await sbReq('signups?username=in.('+encodeURIComponent(names.join(','))+')&select=username,gym,goal,is_private');
+    const rows = await r.json();
+    body.innerHTML = (rows||[]).map(u=>userCard(u, myFollowing.includes(u.username))).join('');
+  }catch(e){ body.innerHTML='<p style="color:var(--danger)">Could not load list.</p>'; }
+}
+
+/* ---- likes ---- */
+async function toggleLike(actId, btn){
+  if (!user.name || user.name==='Athlete') return;
+  const liked = btn.classList.contains('liked');
+  const cEl = btn.querySelector('span');
+  try{
+    if (liked){
+      await sbReq('likes?activity_id=eq.'+actId+'&username=eq.'+encodeURIComponent(user.name), {method:'DELETE',headers:{Prefer:'return=minimal'}});
+      btn.classList.remove('liked'); cEl.textContent = Math.max(0, (+cEl.textContent||0)-1);
+    } else {
+      await sbReq('likes', {method:'POST',headers:{Prefer:'return=minimal'}, body: JSON.stringify({activity_id:actId, username:user.name})});
+      btn.classList.add('liked'); cEl.textContent = (+cEl.textContent||0)+1;
+    }
+  }catch(e){}
 }
 
 /* auto-login returning users */
