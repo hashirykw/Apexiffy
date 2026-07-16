@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://apexiffy.vercel.app/sitemap.xml
